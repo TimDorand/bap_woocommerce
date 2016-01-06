@@ -1,0 +1,15 @@
+/* Begin Microthemer Code */
+function add_microthemer_css() {
+    if (!defined('MT_IS_ACTIVE')) {
+        $p = get_option('preferences_themer_loader');
+        if (!empty($p['g_fonts_used'])){
+            $p['g_url'] = !empty($p['gfont_subset']) ? $p['g_url'] . $p['gfont_subset'] : $p['g_url'];
+            wp_register_style( 'microthemer_g_font', $p['g_url'], false );
+            wp_enqueue_style( 'microthemer_g_font' );
+        }
+        wp_register_style( 'microthemer', content_url() . '/micro-themes/active-styles.css');
+        wp_enqueue_style('microthemer');
+    }
+}
+add_action('wp_enqueue_scripts', 'add_microthemer_css');
+/* End Microthemer Code */
