@@ -7,7 +7,7 @@ body .navbar-toggle .icon-bar {
 }
 body .navbar-fixed-top {
     background: black;
-    opacity: 0.7;
+    opacity: 1;
     position: center;
     border-color: black;
     margin: 0;

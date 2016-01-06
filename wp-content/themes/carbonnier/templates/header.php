@@ -34,7 +34,9 @@ endif;*/
     </button>
   </div>
 
-  <div id="navbar" class="navbar-collapse collapse">
+  <div id="navbar navbartop" class="navbar-collapse collapse">
+    <a href="<?= esc_url(home_url('/')); ?>"><img src="<?php bloginfo('template_directory');?>/img/logofinal.png" width="100" alt="logo yc"></a>
+
     <ul class="nav navbar-nav navbar-center">
       <li><a href="<?= esc_url(home_url('/')); ?>">ACCUEIL</a></li>
 
@@ -58,8 +60,8 @@ endif;*/
 
       <li><a href="<?= esc_url(home_url('/')); ?>contact">CONTACT</a></li>
     <li><div class="icons">
-      <a href="#"><i class="fa fa-search" style="font-size:20px;color:white;"></i></a></li>
-      <li><a href="<?= esc_url(home_url('/')); ?>cart"><i class="fa fa-shopping-cart" style="font-size:20px;color:white;margin-left:5px;"></i></a></li>
+<!--      <a href="#"><i class="fa fa-search" style="font-size:20px;color:white;"></i></a></li>-->
+      <li id="icon-cart"><a href="<?= esc_url(home_url('/')); ?>cart"><i class="fa fa-shopping-cart" style="font-size:20px;margin-left:5px;"></i></a></li>
     </ul>
 
     </div>
