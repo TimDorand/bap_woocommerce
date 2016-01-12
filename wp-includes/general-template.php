@@ -216,6 +216,7 @@ function get_search_form( $echo = true ) {
 	 */
 	$format = apply_filters( 'search_form_format', $format );
 
+//	AJOUT DE CLASS POUR LE THEME
 	$search_form_template = locate_template( 'searchform.php' );
 	if ( '' != $search_form_template ) {
 		ob_start();
@@ -223,12 +224,12 @@ function get_search_form( $echo = true ) {
 		$form = ob_get_clean();
 	} else {
 		if ( 'html5' == $format ) {
-			$form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+			$form = '<form role="search" method="get" class="form-inline search-form" action="' . esc_url( home_url( '/' ) ) . '">
 				<label>
-					<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>
-					<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label' ) . '" />
+					<!--<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span> -->
+					<input type="search" class="form-control search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label' ) . '" />
 				</label>
-				<input type="submit" class="search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+				<input type="submit" class="form-control search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
 			</form>';
 		} else {
 			$form = '<form role="search" method="get" id="searchform" class="searchform" action="' . esc_url( home_url( '/' ) ) . '">

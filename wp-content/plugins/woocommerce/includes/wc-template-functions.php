@@ -344,7 +344,21 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
 
 			<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 
-				<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
+				<?php if(is_front_page()): ?>
+					<div class="head-front-title">
+						<div class="col-md-6" style="padding-left:0;">
+							<h1 class="title-front"><?php woocommerce_page_title(); ?></h1>
+						</div>
+						<div class="col-md-6">
+						<?php get_search_form(); ?>
+						</div>
+					</div>
+
+				<?php else: ?>
+
+					<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
+
+				<?php endif; ?>
 
 			<?php endif; ?>
 

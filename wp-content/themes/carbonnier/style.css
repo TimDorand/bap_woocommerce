@@ -237,7 +237,7 @@ body section #subForm {
 label{
     float:left;
     padding-left: 10px;
-    padding-top: 9px;
+    /*padding-top: 9px;*/
     font-size: 14px;
     font-weight: lighter;
 }
@@ -614,10 +614,16 @@ body .imgproduit {
 .page-title {
     font-size:1.5em;
     text-transform: uppercase;
-    margin-top: 30px;
+    margin-top: 80px;
     width:40%;
     float:left;
 }
+
+.title-front{
+    font-size:1.5em;
+    text-transform: uppercase;
+    }
+
 .singlemargin{
     margin-top:51px !important;
 
@@ -662,7 +668,11 @@ body footer a:hover{
 /*EDIT TIMOTHEE MARION EUGENIE 6JANV*/
 
 .navbar-center #icon-cart :hover{
-    background-color: #000 !important;
+    background: rgb(245, 245, 245) !important;
+}
+.navbar-center a:hover{
+    background: rgb(245, 245, 245) !important;
+    height:52px;
 }
 .navbar-center #icon-cart{
     color:white;
@@ -677,6 +687,8 @@ height:10px;
 .navbar-collapse{
 background: white;
 }
+
+
 
 .dropdown-menu {
     margin-right: auto !important;
@@ -709,9 +721,6 @@ background:white !important;
 .dropdown-menu ul:hover{
 background:white !important;
 }
-#navbartop{
-    height:50px !important;
-}
 
 
 /*VIGNETTES PRODUITS HOME*/
@@ -722,4 +731,53 @@ background:white !important;
 
 .add-to-cart a{
     display:none;
+}
+
+
+.head-front-title input{
+    margin-top:20px;
+}
+
+.head-front-title{
+    margin-top: 2px;
+}
+
+.search-form{
+    float:right;
+}
+
+/*EASY SLIDER IMAGE*/
+.easingslider-slide {
+    background: #000;
+}
+
+.easingslider-image {
+    min-height: 100% ;
+    min-width: 1080px !important;
+
+}
+
+.product_type_single a{
+    display:none;
+}
+
+
+/*MEDIA QUERIES*/
+
+@media (max-width: 750px) {
+    .easingslider-image {
+        left: -25%;
+    }
+    .logoprincipal{
+        display:none;
+    }
+    .logomobile{
+
+    }
+}
+
+@media (min-width: 750px){
+    .logomobile{
+        display:none;
+    }
 }
