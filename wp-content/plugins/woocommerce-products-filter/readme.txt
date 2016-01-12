@@ -1,10 +1,10 @@
 === WooCommerce Products Filter ===
 Contributors: RealMag777
 Donate link: http://codecanyon.net/item/woof-woocommerce-products-filter/11498469?ref=realmag777
-Tags: woocommerce products filter, products filter, ajax products filter, filter, shortcode, widget, woocommerce, products, ajax
+Tags: woocommerce products filter, woocommerce product filter, products filter, ajax products filter, filter for woocommerce, filter, shortcode, widget, woocommerce, products, ajax
 Requires at least: 4.1.0
-Tested up to: 4.3.0
-Stable tag: 1.1.2
+Tested up to: 4.4.0
+Stable tag: 1.1.3.1
 
 WooCommerce Products Filter – Quick&Easy products filter
 
@@ -13,6 +13,8 @@ WooCommerce Products Filter – Quick&Easy products filter
 WooCommerce Products Filter – is a plugin that allows you filter products by products categories, products attributes, products tags, products custom taxonomies.
 Supports latest version of the WooCommerce plugin.
 
+ATTENTION: before update from v.1.1.2 to v.1.1.3 read this please http://www.woocommerce-filter.com/migration-v-2-1-2-or-1-1-2-and-lower-to-2-1-3-or-1-1-3-and-higher/
+
 ### The Plugin Features:
 
 * Shortcode&Widget -> [woof]
@@ -20,17 +22,18 @@ Supports latest version of the WooCommerce plugin.
 * Uses native woocommerce API only
 * Products searching by AJAX
 * Dynamic products recount
-* You can show your taxonomies as: radio, checkbox, drop-down, multi-drop-down and color in the premium version
+* You can show your taxonomies as: radio, checkbox, drop-down, multi-drop-down and (color,label,hierarchy drop-down) in the premium version
 * Different skins for radio and checkboxes in the plugin settings
 * Simple options
 * Compatible with WooCommerce Currency Switcher - https://wordpress.org/plugins/woocommerce-currency-switcher/
+* Compatible with WooCommerce Brands - http://codecanyon.net/item/woocommerce-brands/8039481?ref=realmag777
 * WPML compatibility
 * Demo site is: http://demo.woocommerce-filter.com
 * Documentation: http://www.woocommerce-filter.com/documentation/
 * Premium version: http://codecanyon.net/item/woof-woocommerce-products-filter/11498469?ref=realmag777
 
 
-https://www.youtube.com/watch?v=Xn2jtWH3FuA
+https://www.youtube.com/watch?v=jZPtdWgAxKk
 
 
 == Installation ==
@@ -46,23 +49,54 @@ https://www.youtube.com/watch?v=Xn2jtWH3FuA
 Q: Where can I see demo?
 R: http://demo.woocommerce-filter.com
 
-Q: Where can I get Premium version of WOOF
+Q: Where can I get the Premium version of WOOF
 R: http://codecanyon.net/item/woof-woocommerce-products-filter/11498469?ref=realmag777
 
-Q: How to create custom taxomomy?
+Q: How to create a custom taxomomy?
 R: Use this plugin https://wordpress.org/plugins/custom-post-type-ui/
 
 Q: FAQ?
 R: http://www.woocommerce-filter.com/category/faq/
 
+Q: Documentation?
+R: http://www.woocommerce-filter.com/documentation/ and http://www.woocommerce-filter.com/interaction/
+
+
 == Screenshots ==
-1. The plugin settings tab 1
-2. The plugin settings tab 2-1
-3. The plugin settings tab 2-2
-4. The plugin settings tab 3
-5. The plugin settings tab 4
+1. The plugin settings
+2. The plugin settings
+3. The plugin settings
+4. The plugin settings
+5. The plugin settings
 
 == Changelog ==
+
+= 1.1.3.1 =
+* Hot js fix: https://wordpress.org/support/topic/variable-products-not-working-3
+
+= 1.1.3 =
+* ATTENTION: before update from v.1.1.2 to v.1.1.3 read this please http://www.woocommerce-filter.com/migration-v-2-1-2-or-1-1-2-and-lower-to-2-1-3-or-1-1-3-and-higher/
+* Fixed bugs from customers
+* New wp filter: $wr = apply_filters('woof_products_query', $wr); in [woof_products]
+* New attributes added: [woof tax_only='pa_color,pa_size' items_only='by_text,by_author']
+* http://www.woocommerce-filter.com/documentation/#!/hierarchy-drop-down
+* Color type improved, now its possible set background image too
+* Search by text: by excerpt, by content OR excerpt, by title OR content OR excerpt
+* Added new shortcode: [woof_text_filter]
+* Added new shortcode: [woof_author_filter]
+* Added new shortcode: [woof_search_options]
+* Improved shortcode: [woof_price_filter type="slider"] //slider,select
+* Improved shortcode: [woof_products behaviour='recent' per_page=12 columns=3]
+* Improved shortcode: [woof redirect="xxx" autosubmit=1]
+* Improved shortcode: [woof redirect="http://www.dev.woocommerce-filter.com/test-all/" autosubmit=1 ajax_redraw=1 is_ajax=1 tax_only="locations" by_only="none"] - new attributes - tax_only,by_only,redirect
+* Disable swoof influence option
+* Custom front css styles file link option
+* Additional text in the widget optionally
+* Additional options in the widget optionally
+* Custom extensions possibility implemented
+* Show helper button option
+* Old v.1.1.2: http://www.woocommerce-filter.com/wp-content/uploads/2015/12/woocommerce-products-filter-112.zip
+
 
 = 1.1.2 =
 * Fixed minor issues from customers
@@ -132,4 +166,5 @@ WARRANTY. See the GNU General Public License for more details.
 
 
 == Upgrade Notice ==
+Old v.1.1.2: http://www.woocommerce-filter.com/wp-content/uploads/2015/12/woocommerce-products-filter-112.zip
 

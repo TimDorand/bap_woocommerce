@@ -22,7 +22,17 @@ class WOOF_Widget extends WP_Widget
         $args['sidebar_id'] = $args['id'];
         $args['sidebar_name'] = $args['name'];
         //+++
-        $price_filter = (int) get_option('woof_show_price_search', 0);
+        global $WOOF;
+        if (isset($WOOF->settings['by_price']['show']))
+        {
+            //just for compatibility from 2.1.2 to 2.1.3
+            $price_filter = (int) $WOOF->settings['by_price']['show'];
+        } else
+        {
+            $price_filter = (int) get_option('woof_show_price_search', 0);
+        }
+
+
 
         if (isset($args['before_widget']))
         {
@@ -48,12 +58,26 @@ class WOOF_Widget extends WP_Widget
             ?>
 
 
-            <?php if (get_option('woof_hide_red_top_panel', 0) == 0): ?>
-                <div class="woof_products_top_panel"></div>
-            <?php endif; ?>
+            <?php
+            if (isset($instance['additional_text_before']))
+            {
+                echo do_shortcode($instance['additional_text_before']);
+            }
 
+            $redirect = '';
+            if (isset($instance['redirect']))
+            {
+                $redirect = $instance['redirect'];
+            }
 
-            <?php echo do_shortcode('[woof sid="widget"  price_filter=' . $price_filter . ']'); ?>
+            $ajax_redraw = '';
+            if (isset($instance['ajax_redraw']))
+            {
+                $ajax_redraw = $instance['ajax_redraw'];
+            }
+            ?>
+
+            <?php echo do_shortcode('[woof sid="widget" price_filter=' . $price_filter . ' redirect="' . $redirect . '" ajax_redraw=' . $ajax_redraw . ']'); ?>
         </div>
         <?php
         if (isset($args['after_widget']))
@@ -67,6 +91,9 @@ class WOOF_Widget extends WP_Widget
     {
         $instance = $old_instance;
         $instance['title'] = $new_instance['title'];
+        $instance['additional_text_before'] = $new_instance['additional_text_before'];
+        $instance['redirect'] = $new_instance['redirect'];
+        $instance['ajax_redraw'] = $new_instance['ajax_redraw'];
         return $instance;
     }
 
@@ -75,7 +102,10 @@ class WOOF_Widget extends WP_Widget
     {
 //Defaults
         $defaults = array(
-            'title' => __('WooCommerce Products Filter', 'woocommerce-products-filter')
+            'title' => __('WooCommerce Products Filter', 'woocommerce-products-filter'),
+            'additional_text_before' => '',
+            'redirect' => '',
+            'ajax_redraw' => 0
         );
         $instance = wp_parse_args((array) $instance, $defaults);
         $args = array();
@@ -85,6 +115,30 @@ class WOOF_Widget extends WP_Widget
         <p>
             <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'woocommerce-products-filter') ?>:</label>
             <input class="widefat" type="text" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('additional_text_before'); ?>"><?php _e('Additional text before', 'woocommerce-products-filter') ?>:</label>
+            <textarea class="widefat" type="text" id="<?php echo $this->get_field_id('additional_text_before'); ?>" name="<?php echo $this->get_field_name('additional_text_before'); ?>"><?php echo $instance['additional_text_before']; ?></textarea>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('redirect'); ?>"><?php _e('Redirect to', 'woocommerce-products-filter') ?>:</label>
+            <input class="widefat" type="text" id="<?php echo $this->get_field_id('redirect'); ?>" name="<?php echo $this->get_field_name('redirect'); ?>" value="<?php echo $instance['redirect']; ?>" /><br />
+            <i><?php _e('Redirect to any page - use it by your own logic. Leave it empty for default behavior.', 'woocommerce-products-filter') ?></i>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('ajax_redraw'); ?>"><?php _e('Form AJAX redrawing', 'woocommerce-products-filter') ?>:</label>
+            <?php
+            $options = array(
+                0 => __('No', 'woocommerce-products-filter'),
+                1 => __('Yes', 'woocommerce-products-filter')
+            );
+            ?>
+            <select class="widefat" id="<?php echo $this->get_field_id('ajax_redraw') ?>" name="<?php echo $this->get_field_name('ajax_redraw') ?>">
+                <?php foreach ($options as $k => $val) : ?>
+                    <option <?php selected($instance['ajax_redraw'], $k) ?> value="<?php echo $k ?>" class="level-0"><?php echo $val ?></option>
+                <?php endforeach; ?>
+            </select>
+            <i><?php _e('Useful when uses hierarchical drop-down for example', 'woocommerce-products-filter') ?></i>
         </p>
         <?php
     }

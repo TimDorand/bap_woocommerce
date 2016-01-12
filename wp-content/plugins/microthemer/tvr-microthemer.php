@@ -5,7 +5,7 @@ Plugin URI: http://www.themeover.com/microthemer
 Text Domain: microthemer
 Domain Path: /languages
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 4.6.5
+Version: 4.7.1
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -57,7 +57,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '4.6.5';
+			var $version = '4.7.1';
 			var $locale = '';
 			var $time = 0;
 			// set this to true if version saved in DB is different, other actions may follow if new v
@@ -2911,7 +2911,13 @@ if ( is_admin() ) {
 					$conflict = $this->is_name_conflict($alt_name, $orig_settings, $new_settings, $context);
 					$suffix++;
 				} while ( $conflict );
-				return $alt_name;
+				// also need to have index value by itself so return array.
+				$alt = array(
+					'name' => $alt_name,
+					'index' => $suffix-1
+				);
+				return $alt;
+				//return $alt_name;
 			}
 
 			// check if the section name exists in the orig_settings or the new_settings (possible after name modification)
@@ -3286,7 +3292,7 @@ if ( is_admin() ) {
 							<li class="add-selector-list-item">
 								<div class="sel-row item-row">
 									<?php
-									$tip = esc_html__('Non-coders should use the selector wizard instead of using these form fields. Just double-click something on your site!', 'microthemer');
+									$tip = esc_html__('Non-coders should use the selector wizard instead of using these form fields.', 'microthemer') . '<br />' . esc_html__('Just double-click something on your site!');
 									if (!$this->optimisation_test){
 										$this->selector_add_modify_form('add', $tip);
 									}
@@ -3379,7 +3385,7 @@ if ( is_admin() ) {
 							<span class="toggle-modify-selector tvr-icon edit-icon" title="<?php esc_attr_e("Edit Selector", 'microthemer'); ?>"></span>
 						</span>
 						<?php
-						$tip = esc_html__('Give your selector a better descriptive name and/or modify the CSS selector code (if you know CSS)', 'microthemer');
+						$tip = esc_html__('Give your selector a better descriptive name and/or modify the CSS selector code.', 'microthemer');
 						if (!$this->optimisation_test){
 							$this->selector_add_modify_form('edit', $tip, $labelCss, $section_name, $css_selector);
 						}
@@ -3402,11 +3408,11 @@ if ( is_admin() ) {
 				}
 				?>
 				<div class='<?php echo $con; ?>-selector-form float-form hidden'>
-					<p class="tip">
+					<!--<p class="tip">
 
 						<span><?php echo $tip; ?></span>
 
-					</p>
+					</p>-->
 					<p>
 						<label><?php esc_html_e('Descriptive Name:', 'microthemer'); ?></label>
 						<input type='text' class='selector-name-input' name='<?php echo $con; ?>_selector[label]' value='<?php echo esc_attr($display_selector_name); ?>' />
@@ -4013,236 +4019,27 @@ if ( is_admin() ) {
 				return $html;
 			}
 
-
-			/* output media query tabs
-			function media_query_tabs($section_name, $css_selector, $property_group_name,
-									$property_group_array = false, $template = false) {
-
-				// we're not currently allowing the mq tabs to be added as a tmpl so this is redundant
-				if ($template){
-					$id = 'id="mt-tab-template"';
-				} else {
-					$id = '';
-				}
-				$human_pg_name = ucwords(str_replace('_', ' & ', $property_group_name));
-				$html = '';
-
-				$html.='<div '.$id.' class="query-tabs">
-				<span class="edit-mq show-dialog" title="' . __('Edit media queries', 'microthemer') . '" rel="edit-media-queries"></span>
-				<span class="add-mq" title="' . sprintf(__('Manage tabs for %1$s', 'microthemer'), $human_pg_name) . '">
-				<span class="tvr-icon add-mq-icon"></span>
-				'.$this->media_query_checkboxes($section_name, $css_selector, $property_group_name, $property_group_array).'
-				</span>';
-				// get the configuration of the device tab
-				$device_tab = $this->device_focus_inc_legacy($section_name, $css_selector, $property_group_name, $property_group_array);
-
-				// should the tab be visible (if the pg group has no data it should never be visible)
-				$has_styles = '';
-				if (is_array($property_group_array)) {
-					$has_styles = 'has-styles';
-				}
-				else {
-					//$has_styles = $this->fix_for_mq_update($section_name, $css_selector, $property_group_name, $main_label_show_class);
-				}
-				if ($device_tab == 'all-devices') {
-					$all_tab_active = 'active';
-				} else {
-					$all_tab_active = '';
-				}
-				$html.='<input class="device-focus" type="hidden"
-				name="tvr_mcth['.$section_name.']['.$css_selector.'][device_focus]['.$property_group_name.']"
-				value="'. esc_attr($device_tab) .'" />
-				<span class="mt-tab mt-tab-all-devices '.$has_styles. ' '.$all_tab_active.'"
-				rel="all-devices" title="' . esc_attr__('General CSS that will apply to all devices', 'microthemer') . '">' . esc_html__('All Devices', 'microthemer') . '</span>';
-				foreach ($this->preferences['m_queries'] as $key => $m_query) {
-					// should the tab be visible
-					//$array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector];
-					//$legacy_values = $this->has_legacy_values($array['styles'], $property_group_name);
-
-					if (
-						//$this->pg_has_values_inc_legacy($array, $property_group_name)
-						!empty($this->current_pg_group_tabs[$key])
-					) {
-						$has_styles = 'has-styles';
-						//$html.= 'hello111 <pre>'. print_r($array) . '</pre>' . $property_group_name . $this->pg_has_values_inc_legacy($array, $property_group_name);
+			// add px unit if no unit specified (and qualifies)
+			function maybe_apply_px($property_group_name, $property, $value) {
+				$value = trim($value);
+				if (!empty($this->propertyoptions[$property_group_name][$property]['default_unit'])) {
+					// if single plain number add px
+					if ( is_numeric($value) and $value != 0){
+						$value.= 'px';
 					}
-					else {
-						$has_styles = '';
+					// if space separated values, apply to each segment
+					if (strpos($value, ' ')) {
+						$m = explode(' ', $value);
+						foreach ($m as $k => $v){
+							$arr[$k] = $v;
+							if ( is_numeric($v) and $v != 0){
+								$arr[$k].= 'px';
+							}
+						}
+						$value = implode(' ', $arr);
 					}
-					// should the tab be active
-					if ($device_tab == $key) {
-						$class = 'active';
-					} else {
-						$class = '';
-					}
-					$html.= '<span class="mt-tab mt-tab-'.$key.' '.$class.' '.$has_styles.'" rel="'.$key.'"
-					title="'.$m_query['query'].'">'.$m_query['label'].'</span>';
 				}
-				$html.='<div class="clear"></div>
-				</div>';
-				return $html;
-			}*/
-
-			/* output the media query checkboxes
-			function media_query_checkboxes($section_name, $css_selector,
-											$property_group_name, $property_group_array) {
-				// this is the first time we need to check which tabs are active, save the config in a temp variable for later reference
-				$this->current_pg_group_tabs = array(); //reset
-
-				$html = '';
-				if (is_array($property_group_array)
-					//or $this->fix_for_mq_update($section_name, $css_selector, $property_group_name, $main_label_show_class)
-				) {
-					$checked = 'checked="checked"';
-					$property_group_state = 'on';
-					$this->current_pg_group_tabs['all-devices'] = 'all-devices';
-				}
-				else {
-					$checked='';
-					$property_group_state = '';
-				}
-				// All devices checkbox
-				$html.='<span class="mq-options">
-				<span class="mq-button mqb-all-devices '.$property_group_state.'" title="' . __('Styles will apply to all screen sizes', 'microthemer') . '">';
-
-					$html.='<input class="style-config checkbox all-toggle" type="checkbox" autocomplete="off"
-					value="'.$property_group_name.'"
-					name="tvr_mcth['. $section_name.']['.$css_selector.'][all_devices]['.$property_group_name.']"
-					'.$checked.' />
-					<span class="mq-remove tvr-icon" rel="all-devices|All Devices" title="' . __('Remove tab', 'microthemer') . '"></span>
-					<span class="mq-clear tvr-icon" rel="all-devices|All Devices" title="' . __('Clear tab styles', 'microthemer') . '"></span>
-					<span class="mq-add tvr-icon" rel="all-devices|All Devices" title="' . __('Add tab', 'microthemer') . '"></span>
-					<span class="mq-button-text mq-add" rel="all-devices|All Devices" title="' . __('Styles will apply to all screen sizes', 'microthemer') . '">' .
-						esc_html__('All Devices', 'microthemer') . '</span>
-
-				</span>';
-				// Media query checkboxes
-				foreach ($this->preferences['m_queries'] as $key => $m_query) {
-					// may need to register the group like the regular checkbox (but if no bugs, may be much more efficient not to)
-					// check if the properties group is checked
-					if (
-					!empty($this->options['non_section']['m_query'][$key][$section_name][$css_selector]) and
-						$this->pg_has_values_inc_legacy($this->options['non_section']['m_query'][$key][$section_name][$css_selector],$property_group_name)) {
-						$property_group_state = 'on';
-						$this->current_pg_group_tabs[$key] = $key;
-					}
-					else {
-						$property_group_state = '';
-					}
-					$html.= '<span class="mq-button mqb-'.$key.' '.$property_group_state.'" title="'.$m_query['query'].'">
-					<span class="mq-remove mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="' . __('Remove tab', 'microthemer') . '"></span>
-					<span class="mq-clear mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="' . __('Clear tab styles', 'microthemer') . '"></span>
-					<span class="mq-add mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="' . __('Add tab', 'microthemer') . '"></span>
-					<span class="mq-button-text mq-specific mq-add" rel="'.$key.'|'.$m_query['label'].'" title="'.$m_query['query'].'">'.$m_query['label'].'</span>
-
-					</span>';
-
-				}
-				// remove all option
-				$html.= '
-				<span class="mq-button remove-all" title="' . sprintf(__('Remove all "%1$s" styling options for this selector', 'microthemer'), ucwords($property_group_name)) . '">
-					<span class="mq-remove-all tvr-icon delete-icon"></span>
-					<span class="mq-button-text mq-remove-all link">' . esc_html__('Remove all tabs', 'microthemer') . '</span>
-				</span>';
-
-				$html.='</span>';
-				return $html;
-			} */
-
-			// output the media query form fields (or empty container divs) - no longer in use
-			/*
-			function media_query_fields($section_name, $css_selector, $property_group_name) {
-
-				// Note this function copies a lot of code from single_option_group_html() and single_option_fields()
-				// perhaps it could be done more efficiently...
-
-				$html = '';
-
-
-				// loop through each MQ to check for existing styles (inc legacy)
-				foreach ($this->preferences['m_queries'] as $key => $m_query) {
-
-					 $property_group_array = false;
-
-					 if (!empty($this->options['non_section']['m_query'][$key][$section_name][$css_selector])){
-						 $array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector];
-
-						 if ($styles_found = $this->pg_has_values_inc_legacy($array, $property_group_name)) {
-
-
-							 // if there are current styles for the MQ, retrieve them
-							 if ($styles_found['cur_leg'] == 'current'){
-								 $property_group_array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['styles'][$property_group_name];
-							 }
-							 // if legacy values exist, set pg as empty array so inputs are displayed
-							 else {
-								 $property_group_array = array();
-
-							 }
-						 }
-					 }
-
-					 // show fields even if no values if tab is current
-					 if ( !$property_group_array and $this->preferences['mq_device_focus'] == $key ){
-						 $property_group_array = array();
-					 }
-
-					 // output MQ fields if needed
-					 if ( is_array( $property_group_array ) ) {
-
-						 // visible if all-devices tab is active
-						 $show_class = ( $this->preferences['mq_device_focus'] == $key ) ? 'show' : '';
-
-						 $html.= '
-						 <div class="property-fields hidden property-'.$property_group_name
-							 . ' property-fields-'.$key . ' ' .$show_class.'">';
-
-						 // merge to allow for new properties added to property-options.inc.php (array with values must come 2nd)
-						 $property_group_array = array_merge($this->propertyoptions[$property_group_name], $property_group_array);
-
-						 foreach ($property_group_array as $property => $value) {
-
-							 // filter prop
-							 $property = esc_attr($property);
-
-							 // if a new CSS property has been added with array_merge(), $value will be something like:
-							 //Array ( [label] => Left [default_unit] => px [icon] => position_left )
-							 //so just set to nothing if it's an array
-
-							 $value = ( !is_array($value) ) ? esc_attr($value) : '';
-
-							 // format input fields
-							 $html.= $this->resolve_input_fields($section_name, $css_selector, $property_group_array,
-								 $property_group_name, $property, $value, 'mq', $key);
-						 }
-
-						 $html.= '
-						 </div><!-- end property-fields -->';
-					 } // ends foreach property
-				}
-				return $html;
-			}*/
-
-
-			// check if need to default to px
-			function check_unit($property_group_name, $property, $value) {
-				if (!empty($this->preferences['my_props'][$property_group_name]['pg_props'][$property]['default_unit'])
-					and
-				is_numeric($value) and
-				//strpos('%', $value) === false and
-				$value != 0) {
-					$unit = 'px';
-				}
-				/*elseif (!empty($this->propertyoptions[$property_group_name][$property]['default_unit']) and
-				$this->propertyoptions[$property_group_name][$property]['default_unit'] == '%' and
-				is_numeric($value) and
-				$value != 0) {
-					$unit = '%';
-				}*/
-				else {
-					$unit = '';
-				}
-				return $unit;
+				return $value;
 			}
 
 			// check if !important should be used for CSS3 line
@@ -4375,7 +4172,6 @@ $tab$css_selector {
 
 								// loop the groups of properties for the selector
 								$pie_relevant = false;
-								$box_sizing_relevant = false;
 								if ( is_array( $array['styles'] ) ) {
 									foreach ( $array['styles'] as $property_group_name => $property_group_array ) {
 										if ( is_array( $property_group_array ) ) {
@@ -4383,10 +4179,10 @@ $tab$css_selector {
 											$xy_done = false;
 											foreach ($property_group_array as $property => $value) {
 												// we don't want the display_img field in the stylesheet
-												if ($property == 'list_style_imageimg_display' or $property == 'background_imageimg_display'){
+												if ($property == 'list_style_imageimg_display'
+													or $property == 'background_imageimg_display'){
 													continue;
 												}
-
 
 												// get the appropriate value for !important
 												if (empty($this->options['non_section']['important'])) {
@@ -4400,8 +4196,6 @@ $tab$css_selector {
 												}
 
 												if ( $value != '' ) {
-													// check if value needs px extension
-													$unit = $this->check_unit($property_group_name, $property, $value);
 													// account for old PHP versions with magic quotes
 													$value = $this->stripslashes($value);
 													// check if !important should be added
@@ -4415,14 +4209,12 @@ $tab$css_selector {
 															$sty['css_important'] = '';
 														}
 													}
-													if ($property == 'box_sizing'){
-														$box_sizing_relevant = true;
-													}
 													// if css3 property
 													if (in_array($property, $sty['css3'])) {
 														include $this->thisplugindir . 'includes/resolve-css3.inc.php';
 													}
 													else {
+														$property_slug = $property;
 														$property = str_replace('_', '-', $property);
 														// exception for images
 														if ( ($property == 'background-image'
@@ -4431,13 +4223,9 @@ $tab$css_selector {
 																.$this->root_rel($value, false, true)."\"){$sty['css_important']};
 ";
 														}
-														// exception for custom background image position
-														elseif ($property == 'background-position' and $value == 'custom') {
-															$sty['data'].= ""; // do nothing
-														}
-														// exception for font family wit Google selected
+														// exception for font family with Google selected
 														elseif ($property == 'font-family' and $value == 'Google Font...') {
-															$sty['data'].= ""; // do nothing
+															// do nothing
 														}
 														// exception for google font
 														elseif ($property == 'google-font' and $value) {
@@ -4452,50 +4240,14 @@ $tab$css_selector {
 															if ($sty['g_fonts'][$url_font_value][$f_var] != 1) {
 																$sty['g_fonts'][$url_font_value][$f_var] = 1;
 															}
-															$sty['data'].= $tab."	font-family: '$f_name'{$sty['css_important']};
+															$sty['data'] .= $tab . "	font-family: '$f_name'{$sty['css_important']};
 ";
-														}
-														// exception for custom bg x/y coordinates
-														elseif ($property == 'background-position-x' or $property == 'background-position-y') {
-															if ($property_group_array['background_position'] != 'custom') {
-																$sty['data'].= ""; // do nothing
-															}
-															// resolve custom x/y coordinates
-															else {
-																if ($xy_done) {
-																	$sty['data'].= ""; // do nothing (x had a value so we did it then)
-																}
-																else {
-																	// check if !important was specified next to dropdown menu
-																	$pos_x_value = $property_group_array['background_position_x'];
-																	$pos_y_value = $property_group_array['background_position_y'];
-																	// resolve x value and unit
-																	if ( $pos_x_value != '' ) {
-																		$pos_x_unit = $this->check_unit($property_group_name, 'background_position_x',
-																		$pos_x_value);
-																		$pos_x = $pos_x_value . $pos_x_unit;
-																	}
-																	else {
-																		$pos_x = '0'; // default to 0
-																	}
-																	// resolve y value and unit
-																	if ( $pos_y_value != '' ) {
-																		$pos_y_unit = $this->check_unit($property_group_name, 'background_position_y',
-																		$pos_y_value);
-																		$pos_y = $pos_y_value . $pos_y_unit;
-																	}
-																	else {
-																		$pos_y = '0'; // default to 0
-																	}
-																	$sty['data'].= $tab."	background-position:$pos_x $pos_y{$sty['css_important']};
-";
-																	$xy_done = true;
-																}
-															}
 														}
 														// default method
 														else {
-															$sty['data'].= $tab."	$property: $value{$unit}{$sty['css_important']};
+															// check if value needs px extension
+															$val_with_unit = $this->maybe_apply_px($property_group_name, $property_slug, $value);
+															$sty['data'].= $tab."	$property: {$val_with_unit}{$sty['css_important']};
 ";
 														}
 														// if opacity property, add cross-browser rules too.
@@ -4528,12 +4280,6 @@ $tab$css_selector {
 ";
 									}
 								}
-								/* determine if box-sizing polyfill neeeds calling
-								if ($box_sizing_relevant and ($this->preferences['boxsizing_by_default'] == 1 or $array['boxsizing'] == 1)) {
-									$sty['data'].= $tab."	*behavior: url(".$sty['boxsizing'].");
-";
-
-								}*/
 
 								// output the custom styles if they exist
 								if ($cusStyles and is_array($cusStyles)) {
@@ -5104,11 +4850,14 @@ $tab$css_selector {
 						// if a name conflict exists
 						if ( $this->is_name_conflict($section_name, $orig_settings, $new_settings, 'first-check') ) {
 							// create a non-conflicting new name
-							$alt_name = $this->get_alt_section_name($section_name, $orig_settings, $new_settings);
+							$alt = $this->get_alt_section_name($section_name, $orig_settings, $new_settings);
+							$alt_name = $alt['name'];
+							$alt_index = $alt['index'];
 							// rename the to-be-merged section and the corresponding non_section extras
 							$new_settings[$alt_name] = $new_settings[$section_name];
-							unset($new_settings[$section_name]);
+							$new_settings[$alt_name]['this']['label'] = $new_settings[$alt_name]['this']['label'].' '.$alt_index;
 							$new_settings['non_section']['view_state'][$alt_name] = $new_settings['non_section']['view_state'][$section_name];
+							unset($new_settings[$section_name]);
 							unset($new_settings['non_section']['view_state'][$section_name]);
 							// also rename all the corresponding [m_query] folder names (ouch)
 							if ($mq_arr){
@@ -6332,7 +6081,7 @@ DateCreated: '.date('Y-m-d').'
 										$this->log(
 											esc_html__('Screenshot thumbnail successfully created', 'microthemer'),
 											'<p>' . sprintf(
-												esc_html__('<b>%s</b> was successfully created.', 'microthemer'),
+												esc_html__('%s was successfully created.', 'microthemer'),
 												$root_rel_thumb
 											) . '</p>',
 											'notice'
@@ -6642,7 +6391,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '4.6.5';
+			var $version = '4.7.1';
 			var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**

@@ -6,6 +6,8 @@ if (!defined('ABSPATH'))
 final class WOOF_HELPER
 {
 
+    static $notices = array();
+
     //log test data while makes debbuging
     public static function log($string)
     {
@@ -18,11 +20,23 @@ final class WOOF_HELPER
     public static function get_terms($taxonomy, $hide_empty = true, $get_childs = true, $selected = 0, $category_parent = 0)
     {
         static $collector = array();
+        global $WOOF;
 
         if (isset($collector[$taxonomy]))
         {
             return $collector[$taxonomy];
         }
+
+        //***
+        if (isset($WOOF->settings['cache_terms']) AND $WOOF->settings['cache_terms'] == 1)
+        {
+            $cache_key = 'woof_terms_cache_' . md5($taxonomy . '-' . (int) $hide_empty . '-' . (int) $get_childs . '-' . (int) $selected . '-' . (int) $category_parent);
+            if (false !== ( $cats = get_transient($cache_key) ))
+            {
+                return $cats;
+            }
+        }
+        //***
 
         $args = array(
             'orderby' => 'name',
@@ -74,6 +88,38 @@ final class WOOF_HELPER
             }
         }
 
+        //***
+        if (isset($WOOF->settings['cache_terms']) AND $WOOF->settings['cache_terms'] == 1)
+        {
+            $period = 0;
+
+            $periods = array(
+                0 => 0,
+                'hourly' => HOUR_IN_SECONDS,
+                'twicedaily' => 12 * HOUR_IN_SECONDS,
+                'daily' => DAY_IN_SECONDS,
+                'days2' => 2 * DAY_IN_SECONDS,
+                'days3' => 3 * DAY_IN_SECONDS,
+                'days4' => 4 * DAY_IN_SECONDS,
+                'days5' => 5 * DAY_IN_SECONDS,
+                'days6' => 6 * DAY_IN_SECONDS,
+                'days7' => 7 * DAY_IN_SECONDS
+            );
+
+            if (isset($WOOF->settings['cache_terms_auto_clean']))
+            {
+                $period = $WOOF->settings['cache_terms_auto_clean'];
+
+                if (!$period)
+                {
+                    $period = 0;
+                }
+            }
+
+            set_transient($cache_key, $cats, $periods[$period]);
+        }
+        //***
+
         $collector[$taxonomy] = $cats;
         return $cats;
     }
@@ -101,12 +147,22 @@ final class WOOF_HELPER
 
     //https://wordpress.org/support/topic/translated-label-with-wpml
     //for taxonomies labels translations
-    public static function wpml_translate($taxonomy_info, $string = '')
+    public static function wpml_translate($taxonomy_info, $string = '', $index = -1)
     {
+        global $WOOF;
+
+        if (empty($string))
+        {
+            $string = $WOOF->settings['custom_tax_label'][$taxonomy_info->name];
+        }
+
+
         if (empty($string))
         {
             $string = $taxonomy_info->label;
         }
+
+
         //***
         $check_for_custom_label = false;
         if (class_exists('SitePress'))
@@ -135,7 +191,13 @@ final class WOOF_HELPER
                     if (isset($translations[$lang][$string]))
                     {
                         $string = $translations[$lang][$string];
+                    } else
+                    {
+                        $check_for_custom_label = TRUE;
                     }
+                } else
+                {
+                    $check_for_custom_label = TRUE;
                 }
             } else
             {
@@ -147,24 +209,29 @@ final class WOOF_HELPER
         }
 
         //+++
-        if (!empty($string))
+        if (empty($string))
         {
-            $check_for_custom_label = false;
+            $check_for_custom_label = FALSE;
         }
-        //+++
 
-        if ($check_for_custom_label)
+
+        //for hierarchy titles type of: name1+name2+name3
+        if ($index != -1)
         {
-            global $WOOF;
-            if (isset($WOOF->settings['custom_tax_label'][$taxonomy_info->name]) AND ! empty($WOOF->settings['custom_tax_label'][$taxonomy_info->name]))
+            if (stripos($string, '+'))
             {
-                $string = $WOOF->settings['custom_tax_label'][$taxonomy_info->name];
+                $tmp = explode('+', $string);
+                if (isset($tmp[$index]))
+                {
+                    $string = $tmp[$index];
+                }
             }
         }
 
         return $string;
     }
 
+    //drawing of native woo price filter
     public static function price_filter()
     {
         global $_chosen_attributes, $wpdb, $wp, $WOOF;
@@ -315,8 +382,73 @@ final class WOOF_HELPER
     //for drop-down price filter
     public static function get_price2_filter_data($additional_taxes = '')
     {
-        
-        //Premium only
+        $woof_settings = get_option('woof_settings', array());
+        if (isset($woof_settings['by_price']['ranges']) AND ! empty($woof_settings['by_price']['ranges']))
+        {
+            global $WOOF;
+            $res = array();
+            $request = $WOOF->get_request_data();
+            $res['selected'] = '';
+            if (isset($request['min_price']) AND isset($request['max_price']))
+            {
+                $res['selected'] = $request['min_price'] . '-' . $request['max_price'];
+            }
+
+            //+++
+            $r = array(); //drop-doen options
+            $rc = array(); //count of items
+            $ranges = explode(',', $woof_settings['by_price']['ranges']);
+            $get = $request;
+            $max = self::get_max_price();
+            $show_count = get_option('woof_show_count', 0);
+            foreach ($ranges as $value)
+            {
+                $key = str_replace('i', $max, $value);
+                //+++
+                $tmp = explode('-', $value);
+                $wc_price_args = array();
+                /*
+                  $wc_price_args = array(
+                  'currency' => 'default'
+                  );
+                 */
+                //$_REQUEST['woof_price_filter_working'] = TRUE;
+
+                $tmp[0] = wc_price(floatval($tmp[0]), $wc_price_args);
+
+                if ($tmp[1] != 'i')
+                {
+                    $tmp[1] = wc_price(floatval($tmp[1]), $wc_price_args);
+                } else
+                {
+                    $tmp[1] = '&#8734;';
+                }
+                //$_REQUEST['woof_price_filter_working'] = FALSE;
+
+
+                $value = $tmp[0] . ' - ' . $tmp[1];
+                //+++
+
+                $r[$key] = $value;
+                //***
+                $v = explode('-', $key);
+                $_GET['min_price'] = $v[0];
+                $_GET['max_price'] = $v[1];
+                if ($show_count)
+                {
+                    $rc[$key] = $WOOF->dynamic_count(NULL, 0, $additional_taxes);
+                } else
+                {
+                    $rc[$key] = 0;
+                }
+            }
+            $_GET = $get;
+            $ranges['options'] = $r;
+            $ranges['count'] = $rc;
+            //+++
+            $res['ranges'] = $ranges;
+            return $res;
+        }
 
 
         return array();
@@ -325,16 +457,76 @@ final class WOOF_HELPER
     public static function get_max_price()
     {
         global $wpdb;
-        $max = ceil($wpdb->get_var(
-                        $wpdb->prepare('
+        if (0 === sizeof(WC()->query->layered_nav_product_ids))
+        {
+
+            $max = ceil($wpdb->get_var(
+                            $wpdb->prepare('
 					SELECT max(meta_value + 0)
 					FROM %1$s
 					LEFT JOIN %2$s ON %1$s.ID = %2$s.post_id
 					WHERE meta_key IN ("' . implode('","', apply_filters('woocommerce_price_filter_meta_keys', array('_price'))) . '")
 				', $wpdb->posts, $wpdb->postmeta, '_price')
-        ));
+            ));
+        } else
+        {
+
+            $max = ceil($wpdb->get_var(
+                            $wpdb->prepare('
+					SELECT max(meta_value + 0)
+					FROM %1$s
+					LEFT JOIN %2$s ON %1$s.ID = %2$s.post_id
+					WHERE meta_key IN ("' . implode('","', apply_filters('woocommerce_price_filter_meta_keys', array('_price'))) . '")
+					AND (
+						%1$s.ID IN (' . implode(',', array_map('absint', WC()->query->layered_nav_product_ids)) . ')
+						OR (
+							%1$s.post_parent IN (' . implode(',', array_map('absint', WC()->query->layered_nav_product_ids)) . ')
+							AND %1$s.post_parent != 0
+						)
+					)
+				', $wpdb->posts, $wpdb->postmeta
+            )));
+        }
+
 
         return $max;
+    }
+
+    public static function get_min_price()
+    {
+        global $wpdb;
+
+        if (0 === sizeof(WC()->query->layered_nav_product_ids))
+        {
+            $min = floor($wpdb->get_var(
+                            $wpdb->prepare('
+					SELECT min(meta_value + 0)
+					FROM %1$s
+					LEFT JOIN %2$s ON %1$s.ID = %2$s.post_id
+					WHERE meta_key IN ("' . implode('","', apply_filters('woocommerce_price_filter_meta_keys', array('_price', '_min_variation_price'))) . '")
+					AND meta_value != ""
+				', $wpdb->posts, $wpdb->postmeta)
+            ));
+        } else
+        {
+            $min = floor($wpdb->get_var(
+                            $wpdb->prepare('
+					SELECT min(meta_value + 0)
+					FROM %1$s
+					LEFT JOIN %2$s ON %1$s.ID = %2$s.post_id
+					WHERE meta_key IN ("' . implode('","', apply_filters('woocommerce_price_filter_meta_keys', array('_price', '_min_variation_price'))) . '")
+					AND meta_value != ""
+					AND (
+						%1$s.ID IN (' . implode(',', array_map('absint', WC()->query->layered_nav_product_ids)) . ')
+						OR (
+							%1$s.post_parent IN (' . implode(',', array_map('absint', WC()->query->layered_nav_product_ids)) . ')
+							AND %1$s.post_parent != 0
+						)
+					)
+				', $wpdb->posts, $wpdb->postmeta
+            )));
+        }
+        return $min;
     }
 
     //is customer look the site from mobile device
@@ -348,134 +540,50 @@ final class WOOF_HELPER
         return false;
     }
 
-    //for dynamic recount - under dev
-    public static function get_post_count($args)
+    public static function show_admin_notice($key)
     {
-        global $wpdb;
+        global $WOOF;
+        echo $WOOF->render_html(WOOF_PATH . 'views/notices/' . $key . '.php');
+    }
 
-        //get terms ids
-        $sql1 = "SELECT term_id FROM wp_terms WHERE slug='clothing'";
-        $term_id = $wpdb->get_var($sql1);
+    public static function add_notice($key)
+    {
+        //update_option('woof_notices', array());
+        $notices = get_option('woof_notices', array());
+        $is_hidden = false;
+        if (isset($notices[$key]) AND $notices[$key] == 'hidden')
+        {
+            $is_hidden = true;
+        }
 
-//$termchildren = get_term_children( $term_id, $taxonomy_name );
+        if (!$is_hidden)
+        {
+            self::$notices[] = $key;
+            $notices[] = $key;
+            update_option('woof_notices', $notices);
+        }
+    }
 
+    public static function hide_admin_notices()
+    {
+        if (isset($_GET['woof_hide_notice']) && isset($_GET['_wpnonce']))
+        {
+            if (!wp_verify_nonce($_GET['_wpnonce']))
+            {
+                wp_die(__('Action failed. Please refresh the page and retry.', 'woocommerce-products-filter'));
+            }
 
-        $sql = "SELECT wp_posts.ID FROM wp_posts  
-            INNER JOIN wp_term_relationships ON (wp_posts.ID = wp_term_relationships.object_id)  
-            INNER JOIN wp_term_relationships AS tt1 ON (wp_posts.ID = tt1.object_id)  
-            INNER JOIN wp_term_relationships AS tt2 ON (wp_posts.ID = tt2.object_id) 
-            INNER JOIN wp_postmeta ON ( wp_posts.ID = wp_postmeta.post_id )  
-            INNER JOIN wp_postmeta AS mt1 ON ( wp_posts.ID = mt1.post_id ) 
-            WHERE 1=1  AND ( 
-  wp_term_relationships.term_taxonomy_id IN (9) 
-  AND 
-  tt1.term_taxonomy_id IN (24,34,35) 
-  AND 
-  tt2.term_taxonomy_id IN (27,38,39,40)
-) AND ( 
-  wp_postmeta.meta_key = '_price' 
-  AND 
-  ( 
-    ( mt1.meta_key = '_visibility' AND CAST(mt1.meta_value AS CHAR) IN ('visible','catalog') )
-  )
-) AND wp_posts.post_type = 'product' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') 
-GROUP BY wp_posts.ID ORDER BY wp_posts.post_date DESC ";
+            if (!current_user_can('manage_woocommerce'))
+            {
+                wp_die(__('Cheatin&#8217; huh?', 'woocommerce-products-filter'));
+            }
 
-
-
-
-        return count($wpdb->get_results($sql));
+            $key = sanitize_text_field($_GET['woof_hide_notice']);
+            unset(self::$notices[$key]);
+            $notices = get_option('woof_notices', array());
+            $notices[$key] = 'hidden';
+            update_option('woof_notices', $notices);
+        }
     }
 
 }
-
-final class WOOF_POST_COUNTER
-{
-
-    public $post_type = 'product';
-
-    //$args in wp syntax
-    public function __construct($args)
-    {
-        
-    }
-
-}
-
-/*
- * Array
-(
-    [nopaging] => 1
-    [fields] => ids
-    [tax_query] => Array
-        (
-            [0] => Array
-                (
-                    [taxonomy] => product_cat
-                    [terms] => Array
-                        (
-                            [0] => clothing
-                        )
-
-                    [field] => slug
-                    [operator] => IN
-                    [include_children] => 1
-                )
-
-            [1] => Array
-                (
-                    [taxonomy] => pa_color
-                    [terms] => Array
-                        (
-                            [0] => red
-                        )
-
-                    [field] => slug
-                    [operator] => IN
-                    [include_children] => 1
-                )
-
-            [2] => Array
-                (
-                    [taxonomy] => pa_size
-                    [terms] => Array
-                        (
-                            [0] => l
-                        )
-
-                    [include_children] => 1
-                    [field] => slug
-                    [operator] => IN
-                )
-
-        )
-
-    [meta_query] => Array
-        (
-            [0] => Array
-                (
-                    [key] => _price
-                )
-
-            [1] => Array
-                (
-                    [0] => Array
-                        (
-                            [key] => _visibility
-                            [value] => Array
-                                (
-                                    [0] => visible
-                                    [1] => catalog
-                                )
-
-                            [compare] => IN
-                        )
-
-                    [relation] => OR
-                )
-
-            [relation] => AND
-        )
-
-)
- */

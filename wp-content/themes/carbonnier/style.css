@@ -20,10 +20,10 @@ body .navbar-toggle .icon-bar {
     background-color: black;
 }
 body .navbar-fixed-top {
-    background: black;
-    opacity: 0.7;
+    background: white;
+    opacity: 0.97;
     position: center;
-    border-color: black;
+    border-color: white;
     margin: 0;
 }
 .navbar .navbar-nav {
@@ -38,7 +38,7 @@ body .navbar-fixed-top {
 }
 
 body .nav.navbar-nav.navbar-center a {
-    color: white;
+    color: black;
     font-family: helvetica;
     font-size: 1em;
 }
@@ -58,13 +58,13 @@ body .slider {
 body .navbar-fixed2 {
     background: black;
     position: center;
-    border-color: black;
+    border-color: white;
     margin: 0;
 }
 body .navbar-center2 {
 }
 body .nav.navbar-nav.navbar-center2 a {
-    color: white;
+    color: black;
     font-family: helvetica;
     font-size: 1em;
     margin-right: 5px;
@@ -73,10 +73,10 @@ body .icons {
     margin-top: 15px;
 }
 body .nav.navbar-nav.navbar-center2 :hover a {
-    color: white;
+    color: black;
 }
 body .dropdown-menu {
-    background-color: black;
+    background-color: white;
 }
 body section {
     background-color: #ededed;
@@ -109,7 +109,10 @@ body section .blur img {
 /*HOVER*/
 
 .hov {
-    position:relative;
+    position: relative;
+    width: 165px;
+    height: 165px;
+    overflow: hidden;
 }
 .content-hover{
     display: inline-block;
@@ -137,7 +140,7 @@ body section .blur img {
     color: white;
     cursor: pointer;
     display: table;
-    height: 136px;
+    height: 165px;
     width: 100%;
     left: 0;
     position: absolute;
@@ -152,24 +155,63 @@ body section .blur img {
     vertical-align: middle;
 }
 /*HOVER*/
+
+/*EDIT TIMOTHEE 11JANV16*/
 .icon-custom{
     display: inline-block !important;
     width:24px !important;
     height:24px !important;
     margin: 0 !important;
-    margin-left: 24px !important;
-    margin-top:50px !important;
+    margin-left: 35px !important;
+    margin-top:75px !important;
+
+}
+
+.icon-custom:hover {
+
+}
+
+.icon-view:hover {
+    background:url('img/logored.png') center center no-repeat;
+}
+
+.icon-view a{
+    width:50%;
+    height:100%;
+}
+.icon-view{
+    background:url('img/logo.png') center center no-repeat;
+    width:50%;
+    height:100%;
+    float:left;
+}
+
+.icon-cart:hover{
+    background:url('img/logo1red.png') center center no-repeat;
+
+}
+
+.icon-cart a{
+    width:50%;
+    height:100%;
+}
+.icon-cart{
+    background:url('img/logo1.png') center center no-repeat;
+    width:50%;
+    height:100%;    float:left;
+
+
 }
 
 /*Fin Eugénie*/
 
 
-body section img:hover {
-    ilter: blur(2px);
+body section img:hover {/*
+    filter: blur(2px);
     -webkit-filter: blur(2px);
     -moz-filter: blur(2px);
     -o-filter: blur(2px);
-    -ms-filter: blur(2px);
+    -ms-filter: blur(2px);*/
 }
 body section .imgsection {
     margin-left: auto;
@@ -570,7 +612,11 @@ body .imgproduit {
 
 /*EDIT TIMOTHEE*/
 .page-title {
-    margin-top:55px !important;
+    font-size:1.5em;
+    text-transform: uppercase;
+    margin-top: 30px;
+    width:40%;
+    float:left;
 }
 .singlemargin{
     margin-top:51px !important;
@@ -578,10 +624,10 @@ body .imgproduit {
 }
 
 .dropdown-toggle a{
-    color:black !important;
+    color:white;
 }
 .dropdown-toggle a:hover{
-    color:black !important;
+    color:white;
 }
 
 .woocommerce-breadcrumb{
@@ -629,7 +675,7 @@ height:10px;
 /*MENU RESPONSIVE BACK NOIR*/
 
 .navbar-collapse{
-background:black !important;
+background: white;
 }
 
 .dropdown-menu {
@@ -638,12 +684,12 @@ background:black !important;
 
 .dropdown-menu{
     min-width:100%;
-    background:#000 !important;
+    background:white;
     opacity: 1;
 }
 
 .dropdown-menu :hover{
-    background:black;
+    background:white;
 }
 
 .dropdown-toggle{
@@ -655,13 +701,13 @@ background:black !important;
 margin:0 !important;
 }
 .dropdown-menu li:hover{
-background:black !important;
+background:white !important;
 }
 .dropdown-menu a:hover{
-background:black !important;
+background:white !important;
 }
 .dropdown-menu ul:hover{
-background:black !important;
+background:white !important;
 }
 #navbartop{
     height:50px !important;

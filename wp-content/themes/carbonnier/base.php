@@ -58,9 +58,9 @@ get_template_part('templates/header');
   <nav class="navbar navbar-default navbar-fixed2">
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-center2">
-        <li><a href="#"><i class="fa fa-truck" style="font-size:40px;color:white;margin-right: 20px;"></i>LIVRAISON GRATUITE</a></li>
-        <li><a href="#"><i class="fa fa-table" style="font-size:40px;color:white;margin-right: 20px;"></i>CARTE CADEAUX</a></li>
-        <li><a href="#"><i class="fa fa-calendar "style="font-size:40px;color:white;margin-right: 20px;"></i>SOLDES REDUCTION 20%</a></li>
+        <li><a href="#"><i class="fa fa-truck" style="font-size:40px;color:black;margin-right: 20px;"></i>LIVRAISON GRATUITE</a></li>
+        <li><a href="#"><i class="fa fa-table" style="font-size:40px;color:black;margin-right: 20px;"></i>CARTE CADEAUX</a></li>
+        <li><a href="#"><i class="fa fa-calendar "style="font-size:40px;color:black;margin-right: 20px;"></i>SOLDES REDUCTION 20%</a></li>
       </ul>
     </div>
   </nav>

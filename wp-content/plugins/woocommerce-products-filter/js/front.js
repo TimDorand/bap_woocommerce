@@ -1,25 +1,42 @@
+var woof_redirect = '';//if we use redirect attribute in shortcode [woof]
+//***
 jQuery(function () {
     jQuery('body').append('<div id="woof_html_buffer" class="woof_info_popup" style="display: none;"></div>');
     jQuery.fn.life = function (types, data, fn) {
         jQuery(this.context).on(types, this.selector, data, fn);
         return this;
     };
+
+    //http://stackoverflow.com/questions/2389540/jquery-hasparent
+    jQuery.extend(jQuery.fn, {
+        within: function (pSelector) {
+            // Returns a subset of items using jQuery.filter
+            return this.filter(function () {
+                // Return truthy/falsey based on presence in parent
+                return jQuery(this).closest(pSelector).length;
+            });
+        }
+    });
+
     //+++
 
     if (jQuery('#woof_results_by_ajax').length > 0) {
         woof_is_ajax = 1;
     }
 
+    //listening attributes in shortcode [woof]
+    woof_autosubmit = parseInt(jQuery('.woof').eq(0).data('autosubmit'), 10);
+    woof_ajax_redraw = parseInt(jQuery('.woof').eq(0).data('ajax-redraw'), 10);
+
+
+
+    //+++
+
+    woof_ext_init_functions = jQuery.parseJSON(woof_ext_init_functions);
+
     //fix for native woo price range
-    jQuery('.widget_price_filter form').submit(function () {
-        var min_price = jQuery(this).find('.price_slider_amount #min_price').val();
-        var max_price = jQuery(this).find('.price_slider_amount #max_price').val();
-        woof_current_values.min_price = min_price;
-        woof_current_values.max_price = max_price;
-        woof_ajax_page_num = 1;
-        woof_submit_link(woof_get_submit_link());
-        return false;
-    });
+    woof_init_native_woo_price_filter();
+
 
     jQuery('body').bind('price_slider_change', function (event, min, max) {
         if (woof_autosubmit && !woof_show_price_search_button) {
@@ -43,8 +60,13 @@ jQuery(function () {
             woof_current_values.max_price = val[1];
         }
 
-        woof_submit_link(woof_get_submit_link());
+        if (woof_autosubmit || jQuery(this).within('.woof').length == 0) {
+            woof_submit_link(woof_get_submit_link());
+        }
     });
+
+    //ion-slider price range slider
+    woof_init_ion_sliders();
 
     //***
 
@@ -63,7 +85,59 @@ jQuery(function () {
     woof_draw_products_top_panel();
     woof_shortcode_observer();
 
+
+//+++
+    //if we use redirect attribute in shortcode [woof is_ajax=0]
+    //not for ajax, for redirect mode only
+    if (!woof_is_ajax) {
+        woof_redirect_init();
+    }
+
+
+
 });
+
+//if we use redirect attribute in shortcode [woof is_ajax=0]
+//not for ajax, for redirect mode only
+function woof_redirect_init() {
+
+    try {
+        woof_redirect = jQuery('.woof').eq(0).data('redirect');//default value
+        if (woof_redirect.length > 0) {
+            woof_shop_page = woof_current_page_link = woof_redirect;
+        }
+
+
+        //***
+        /*
+         var events = ['click', 'change', 'ifChecked', 'ifUnchecked'];
+         
+         for (var i = 0; i < events.length; i++) {
+         
+         jQuery('div.woof input, div.woof option, div.woof div, div.woof label').live(events[i], function (e) {
+         try {
+         if (jQuery(this).parents('.woof').data('redirect').length > 0) {
+         woof_redirect = jQuery(this).parents('.woof').data('redirect');
+         }
+         } catch (e) {
+         console.log('Error: attribute redirection doesn works!');
+         }
+         e.stopPropagation();
+         });
+         
+         }
+         */
+        //***
+
+        if (woof_redirect.length > 0) {
+            woof_shop_page = woof_current_page_link = woof_redirect;
+        }
+
+        return woof_redirect;
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 function woof_init_orderby() {
     jQuery('form.woocommerce-ordering').life('submit', function () {
@@ -80,23 +154,43 @@ function woof_init_orderby() {
 function woof_init_reset_button() {
     jQuery('.woof_reset_search_form').life('click', function () {
         //var link = jQuery(this).data('link');
-        woof_current_values = {};
         woof_ajax_page_num = 1;
-        woof_submit_link(woof_get_submit_link().split("page/")[0]);
-        //woof_submit_link(woof_get_submit_link());
+        if (woof_is_permalink) {
+            woof_current_values = {};
+            woof_submit_link(woof_get_submit_link().split("page/")[0]);
+            //woof_submit_link(woof_get_submit_link());
+        } else {
+            var link = woof_shop_page;
+            if (woof_current_values.hasOwnProperty('page_id')) {
+                link = location.protocol + '//' + location.host + "/?page_id=" + woof_current_values.page_id;
+                woof_current_values = {'page_id': woof_current_values.page_id};
+                woof_get_submit_link();
+            }
+            //***
+            woof_submit_link(link);
+            if (woof_is_ajax) {
+                history.pushState({}, "", link);
+                if (woof_current_values.hasOwnProperty('page_id')) {
+                    woof_current_values = {'page_id': woof_current_values.page_id};
+                } else {
+                    woof_current_values = {};
+                }
+            }
+        }
         return false;
     });
 }
 
 function woof_init_pagination() {
     if (woof_is_ajax === 1) {
-        jQuery('.woocommerce-pagination ul.page-numbers a.page-numbers').life('click', function () {
+        //jQuery('.woocommerce-pagination ul.page-numbers a.page-numbers').life('click', function () {
+        jQuery('a.page-numbers').life('click', function () {
             var l = jQuery(this).attr('href');
 
             if (woof_ajax_first_done) {
                 //http://woocommerce-filter.pluginus.net/wp-admin/admin-ajax.php?paged=2
                 var res = l.split("paged=");
-                if (res[1] !== undefined) {
+                if (typeof res[1] !== 'undefined') {
                     woof_ajax_page_num = parseInt(res[1]);
                 } else {
                     woof_ajax_page_num = 1;
@@ -104,7 +198,7 @@ function woof_init_pagination() {
             } else {
                 //http://woocommerce-filter.pluginus.net/tester/page/2/
                 var res = l.split("page/");
-                if (res[1] !== undefined) {
+                if (typeof res[1] !== 'undefined') {
                     woof_ajax_page_num = parseInt(res[1]);
                 } else {
                     woof_ajax_page_num = 1;
@@ -125,19 +219,16 @@ function woof_init_pagination() {
 
 function woof_init_search_form() {
     woof_init_checkboxes();
-    woof_init_colors();
     woof_init_mselects();
     woof_init_radios();
     woof_init_selects();
-    try {
-        woof_init_title();
-    } catch (e) {
 
-    }
-    try {
-        woof_init_sku();
-    } catch (e) {
 
+    //for extensions
+    if (woof_ext_init_functions !== null) {
+        jQuery.each(woof_ext_init_functions, function (type, func) {
+            eval(func + '()');
+        });
     }
     //+++
     var containers = jQuery('.woof_container');
@@ -167,6 +258,12 @@ function woof_init_search_form() {
     }
     //+++
     jQuery('.woof_submit_search_form').click(function () {
+        if (woof_ajax_redraw) {
+            //[woof redirect="http://www.dev.woocommerce-filter.com/test-all/" autosubmit=1 ajax_redraw=1 is_ajax=1 tax_only="locations" by_only="none"]
+            woof_ajax_redraw = 0;
+            woof_is_ajax = 0;
+        }
+        //***
         woof_submit_link(woof_get_submit_link());
         return false;
     });
@@ -175,85 +272,6 @@ function woof_init_search_form() {
 
     //***
     jQuery('ul.woof_childs_list').parent('li').addClass('woof_childs_list_li');
-    //***
-
-    if (icheck_skin != 'none') {
-        jQuery('.woof_checkbox_instock').on('ifChecked', function (event) {
-            jQuery(this).attr("checked", true);
-            woof_current_values.stock = 'instock';
-            woof_ajax_page_num = 1;
-            if (woof_autosubmit) {
-                woof_submit_link(woof_get_submit_link());
-            }
-        });
-
-        jQuery('.woof_checkbox_instock').on('ifUnchecked', function (event) {
-            jQuery(this).attr("checked", false);
-            delete woof_current_values.stock;
-            woof_ajax_page_num = 1;
-            if (woof_autosubmit) {
-                woof_submit_link(woof_get_submit_link());
-            }
-        });
-
-        //+++
-
-
-        jQuery('.woof_checkbox_sales').on('ifChecked', function (event) {
-            jQuery(this).attr("checked", true);
-            woof_current_values.insales = 'salesonly';
-            woof_ajax_page_num = 1;
-            if (woof_autosubmit) {
-                woof_submit_link(woof_get_submit_link());
-            }
-        });
-
-        jQuery('.woof_checkbox_sales').on('ifUnchecked', function (event) {
-            jQuery(this).attr("checked", false);
-            delete woof_current_values.insales;
-            woof_ajax_page_num = 1;
-            if (woof_autosubmit) {
-                woof_submit_link(woof_get_submit_link());
-            }
-        });
-
-    } else {
-        jQuery('.woof_checkbox_instock').on('change', function (event) {
-            if (jQuery(this).is(':checked')) {
-                jQuery(this).attr("checked", true);
-                woof_current_values.stock = 'instock';
-                woof_ajax_page_num = 1;
-                if (woof_autosubmit) {
-                    woof_submit_link(woof_get_submit_link());
-                }
-            } else {
-                jQuery(this).attr("checked", false);
-                delete woof_current_values.stock;
-                woof_ajax_page_num = 1;
-                if (woof_autosubmit) {
-                    woof_submit_link(woof_get_submit_link());
-                }
-            }
-        });
-        //+++
-        jQuery('.woof_checkbox_sales').on('change', function (event) {
-            if (jQuery(this).is(':checked')) {
-                jQuery(this).attr("checked", true);
-                woof_current_values.insales = 'salesonly';
-                woof_ajax_page_num = 1;
-                if (woof_autosubmit) {
-                    woof_submit_link(woof_get_submit_link());
-                }
-            } else {
-                jQuery(this).attr("checked", false);
-                delete woof_current_values.insales;
-                woof_ajax_page_num = 1;
-                if (woof_autosubmit) {
-                    woof_submit_link(woof_get_submit_link());
-                }
-            }
-        });
-    }
 
     //***
 
@@ -264,14 +282,14 @@ function woof_init_search_form() {
 
 function woof_submit_link(link) {
     woof_show_info_popup(woof_lang_loading);
-    if (woof_is_ajax === 1) {
+    if (woof_is_ajax === 1 && !woof_ajax_redraw) {
         woof_ajax_first_done = true;
         var data = {
             action: "woof_draw_products",
             link: link,
             page: woof_ajax_page_num,
             shortcode: jQuery('#woof_results_by_ajax').data('shortcode'),
-            woof_shortcode: jQuery('div.woof').attr('shortcode')
+            woof_shortcode: jQuery('div.woof').data('shortcode')
         };
         jQuery.post(woof_ajaxurl, data, function (content) {
             content = jQuery.parseJSON(content);
@@ -287,6 +305,8 @@ function woof_submit_link(link) {
             woof_hide_info_popup();
             woof_draw_products_top_panel();
             woof_init_beauty_scroll();
+            woof_init_ion_sliders();
+            woof_reinit_native_woo_price_filter();//native woo price range slider reinit
             //removing id woof_results_by_ajax - multi in ajax mode sometimes
             //when uses shorcode woof_products in ajax and in settings try ajaxify shop is Yes
             jQuery.each(jQuery('#woof_results_by_ajax'), function (index, item) {
@@ -301,7 +321,28 @@ function woof_submit_link(link) {
             woof_js_after_ajax_done();
         });
     } else {
-        window.location = link;
+        if (woof_ajax_redraw) {
+            //redrawing [woof ajax_redraw=1] only
+            var data = {
+                action: "woof_draw_products",
+                link: link,
+                page: 1,
+                shortcode: 'woof_nothing', //we do not need get any products, serach form data only
+                woof_shortcode: jQuery('div.woof').eq(0).data('shortcode')
+            };
+            jQuery.post(woof_ajaxurl, data, function (content) {
+                content = jQuery.parseJSON(content);
+                jQuery('div.woof_redraw_zone').replaceWith(jQuery(content.form).find('.woof_redraw_zone'));
+                woof_remove_empty_elements();
+                woof_init_search_form();
+                woof_hide_info_popup();
+                woof_init_beauty_scroll();
+                woof_init_ion_sliders();
+                woof_reinit_native_woo_price_filter();//native woo price range slider reinit
+            });
+        } else {
+            window.location = link;
+        }
     }
 }
 
@@ -324,11 +365,11 @@ function woof_remove_empty_elements() {
 }
 
 function woof_get_submit_link() {
-    //filter woof_current_values values
+//filter woof_current_values values
     if (woof_is_ajax) {
         woof_current_values.page = woof_ajax_page_num;
     }
-    //+++
+//+++
     if (Object.keys(woof_current_values).length > 0) {
         jQuery.each(woof_current_values, function (index, value) {
             if (index == swoof_search_slug) {
@@ -337,43 +378,100 @@ function woof_get_submit_link() {
             if (index == 's') {
                 delete woof_current_values[index];
             }
+            if (index == 'product') {
+//for single product page (when no permalinks)
+                delete woof_current_values[index];
+            }
+            if (index == 'really_curr_tax') {
+                delete woof_current_values[index];
+            }
         });
     }
+
+
     //***
     if (Object.keys(woof_current_values).length === 2) {
         if (('min_price' in woof_current_values) && ('max_price' in woof_current_values)) {
             var l = woof_current_page_link + '?min_price=' + woof_current_values.min_price + '&max_price=' + woof_current_values.max_price;
-            history.pushState({}, "", l);
+            if (woof_is_ajax) {
+                history.pushState({}, "", l);
+            }
             return l;
         }
     }
 
 
-    if (Object.keys(woof_current_values).length === 1) {
-        if ('stock' in woof_current_values) {
-            //return woof_current_page_link;
-        }
-    }
+
+    //***
 
     if (Object.keys(woof_current_values).length === 0) {
-        history.pushState({}, "", woof_current_page_link);
+        if (woof_is_ajax) {
+            history.pushState({}, "", woof_current_page_link);
+        }
         return woof_current_page_link;
     }
     //+++
+    if (Object.keys(woof_really_curr_tax).length > 0) {
+        woof_current_values['really_curr_tax'] = woof_really_curr_tax.term_id + '-' + woof_really_curr_tax.taxonomy;
+    }
+    //+++
     var link = woof_current_page_link + "?" + swoof_search_slug + "=1";
+    //console.log(woof_current_page_link);
+    //just for the case when no permalinks enabled
+    if (!woof_is_permalink) {
+
+        if (woof_redirect.length > 0) {
+            link = woof_redirect + "?" + swoof_search_slug + "=1";
+            if (woof_current_values.hasOwnProperty('page_id')) {
+                delete woof_current_values.page_id;
+            }
+        } else {
+            link = location.protocol + '//' + location.host + "?" + swoof_search_slug + "=1";
+            /*
+             if (!woof_is_ajax) {
+             link = location.protocol + '//' + location.host + "?" + swoof_search_slug + "=1";
+             }
+             
+             if (woof_current_values.hasOwnProperty('page_id')) {
+             link = location.protocol + '//' + location.host + "?" + swoof_search_slug + "=1";
+             }
+             */
+        }
+    }
+    //console.log(link);
+    //throw('STOP!');
+
+    //any trash for different sites, useful for quick support
+    var woof_exclude_accept_array = ['path'];
+
     if (Object.keys(woof_current_values).length > 0) {
         jQuery.each(woof_current_values, function (index, value) {
             if (index == 'page' && woof_is_ajax) {
                 index = 'paged';//for right pagination if copy/paste this link and send somebody another by email for example
             }
-            link = link + "&" + index + "=" + value;
+
+            //http://www.dev.woocommerce-filter.com/?swoof=1&woof_author=3&woof_sku&woof_text=single
+            //avoid links where values is empty
+            if (typeof value !== 'undefined') {
+                if ((typeof value && value.length > 0) || typeof value == 'number')
+                {
+                    if (jQuery.inArray(index, woof_exclude_accept_array) == -1) {
+                        link = link + "&" + index + "=" + value;
+                    }
+                }
+            }
+
         });
     }
 
     //+++
     //remove wp pagination like 'page/2'
     link = link.replace(new RegExp(/page\/(\d+)\//), "");
-    history.pushState({}, "", link);
+    if (woof_is_ajax) {
+        history.pushState({}, "", link);
+    }
+
+    //throw ("STOP!");
     return link;
 }
 
@@ -418,31 +516,26 @@ function woof_draw_products_top_panel() {
     if (jQuery('.woof_products_top_panel').length) {
 
         if (woof_is_ajax) {
-            var panel = jQuery('.woof_products_top_panel').eq(0);
-        } else {
-            var panel = jQuery('.woof_products_top_panel');
+            jQuery('#woof_results_by_ajax').prev('.woof_products_top_panel').remove();
         }
+
+        var panel = jQuery('.woof_products_top_panel');
 
         panel.html('');
         if (Object.keys(woof_current_values).length > 0) {
             panel.show();
             panel.html('<ul></ul>');
             var is_price_in = false;
+            //lets show this on the panel
             jQuery.each(woof_current_values, function (index, value) {
-                if (index == swoof_search_slug) {
+
+                //lets filter data for the panel
+                if (jQuery.inArray(index, woof_accept_array) == -1) {
                     return;
                 }
 
-                //fix for layout constructor plugin
-                if (index == 'cs_preview') {
-                    return;
-                }
-                
-                
-                //fix for woocs
-                if (index == 'currency') {
-                    return;
-                }
+
+                //***
 
 
                 if ((index == 'min_price' || index == 'max_price') && is_price_in) {
@@ -471,22 +564,38 @@ function woof_draw_products_top_panel() {
 
                     var txt = v;
                     if (index == 'orderby') {
-                        txt = woof_lang_orderby + ': ' + v;
-                    } else if (index == 'woof_title') {
-                        txt = woof_lang_title + ': ' + v;
-                    } else if (index == 'insales') {
-                        txt = woof_lang_insales;
-                    } else if (index == 'stock') {
-                        txt = woof_lang_instock;
+                        txt = woof_lang.orderby + ': ' + v;
                     } else if (index == 'perpage') {
-                        txt = woof_lang_perpage;
-                    } else if (index == 'woof_sku') {
-                        txt = woof_lang_sku;
+                        txt = woof_lang.perpage;
+                    } else if (index == 'price') {
+                        txt = woof_lang.pricerange;
                     } else {
-                        txt = jQuery('.woof_n_' + index + '_' + v).val();
-                        if (txt === undefined) {
-                            txt = v;
+
+                        var is_in_custom = false;
+                        if (Object.keys(woof_lang_custom).length > 0) {
+                            jQuery.each(woof_lang_custom, function (i, v) {
+                                if (i == index) {
+                                    is_in_custom = true;
+                                    txt = v;
+                                }
+                            });
                         }
+
+                        if (!is_in_custom) {
+                            try {
+                                txt = jQuery('.woof_n_' + index + '_' + v).val();
+                            } catch (e) {
+                                console.log(e);
+                            }
+
+                            if (typeof txt === 'undefined')
+                            {
+                                txt = v;
+                            }
+                        }
+
+
+
                     }
 
                     panel.find('ul').append(
@@ -666,5 +775,193 @@ function woof_checkboxes_slide() {
             });
         }
     }
+}
+
+function woof_init_ion_sliders() {
+    jQuery.each(jQuery('.woof_range_slider'), function (index, input) {
+        try {
+            jQuery(input).ionRangeSlider({
+                min: jQuery(input).data('min'),
+                max: jQuery(input).data('max'),
+                from: jQuery(input).data('min-now'),
+                to: jQuery(input).data('max-now'),
+                type: 'double',
+                prefix: jQuery(input).data('slider-prefix'),
+                postfix: jQuery(input).data('slider-postfix'),
+                prettify: true,
+                hideMinMax: false,
+                hideFromTo: false,
+                grid: true,
+                step: jQuery(input).data('step'),
+                onFinish: function (ui) {
+                    woof_current_values.min_price = parseInt(ui.from, 10);
+                    woof_current_values.max_price = parseInt(ui.to, 10);
+                    //woocs adaptation
+                    if (typeof woocs_current_currency !== 'undefined') {
+                        woof_current_values.min_price = Math.ceil(woof_current_values.min_price / parseFloat(woocs_current_currency.rate));
+                        woof_current_values.max_price = Math.ceil(woof_current_values.max_price / parseFloat(woocs_current_currency.rate));
+                    }
+                    //***
+                    woof_ajax_page_num = 1;
+                    //jQuery(input).within('.woof').length -> if slider is as shortcode
+                    if (woof_autosubmit || jQuery(input).within('.woof').length == 0) {
+                        woof_submit_link(woof_get_submit_link());
+                    }
+                    return false;
+                }
+            });
+        } catch (e) {
+
+        }
+    });
+}
+
+function woof_init_native_woo_price_filter() {
+    jQuery('.widget_price_filter form').unbind('submit');
+    jQuery('.widget_price_filter form').submit(function () {
+        var min_price = jQuery(this).find('.price_slider_amount #min_price').val();
+        var max_price = jQuery(this).find('.price_slider_amount #max_price').val();
+        woof_current_values.min_price = min_price;
+        woof_current_values.max_price = max_price;
+        woof_ajax_page_num = 1;
+        if (woof_autosubmit || jQuery(input).within('.woof').length == 0) {
+            woof_submit_link(woof_get_submit_link());
+        }
+        return false;
+    });
+
+}
+
+//we need after ajax redrawing of the search form
+function woof_reinit_native_woo_price_filter() {
+
+    // woocommerce_price_slider_params is required to continue, ensure the object exists
+    if (typeof woocommerce_price_slider_params === 'undefined') {
+        return false;
+    }
+
+    // Get markup ready for slider
+    jQuery('input#min_price, input#max_price').hide();
+    jQuery('.price_slider, .price_label').show();
+
+    // Price slider uses jquery ui
+    var min_price = jQuery('.price_slider_amount #min_price').data('min'),
+            max_price = jQuery('.price_slider_amount #max_price').data('max'),
+            current_min_price = parseInt(min_price, 10),
+            current_max_price = parseInt(max_price, 10);
+
+    if (woof_current_values.hasOwnProperty('min_price')) {
+        current_min_price = parseInt(woof_current_values.min_price, 10);
+        current_max_price = parseInt(woof_current_values.max_price, 10);
+    } else {
+        if (woocommerce_price_slider_params.min_price) {
+            current_min_price = parseInt(woocommerce_price_slider_params.min_price, 10);
+        }
+        if (woocommerce_price_slider_params.max_price) {
+            current_max_price = parseInt(woocommerce_price_slider_params.max_price, 10);
+        }
+    }
+
+    //***
+
+    jQuery(document.body).bind('price_slider_create price_slider_slide', function (event, min, max) {
+
+        if (typeof woocs_current_currency !== 'undefined') {
+            var label_min = min;
+            var label_max = max;
+
+            if (woocs_current_currency.rate !== 1) {
+                label_min = Math.ceil(label_min * parseFloat(woocs_current_currency.rate));
+                label_max = Math.ceil(label_max * parseFloat(woocs_current_currency.rate));
+            }
+
+            //+++
+            label_min = number_format(label_min, 2, '.', ',');
+            label_max = number_format(label_max, 2, '.', ',');
+            if (jQuery.inArray(woocs_current_currency.name, woocs_array_no_cents) || woocs_current_currency.hide_cents == 1) {
+                label_min = label_min.replace('.00', '');
+                label_max = label_max.replace('.00', '');
+            }
+            //+++
+
+            if (woocs_current_currency.position === 'left') {
+
+                jQuery('.price_slider_amount span.from').html(woocommerce_price_slider_params.currency_symbol + label_min);
+                jQuery('.price_slider_amount span.to').html(woocommerce_price_slider_params.currency_symbol + label_max);
+
+            } else if (woocs_current_currency.position === 'left_space') {
+
+                jQuery('.price_slider_amount span.from').html(woocommerce_price_slider_params.currency_symbol + " " + label_min);
+                jQuery('.price_slider_amount span.to').html(woocommerce_price_slider_params.currency_symbol + " " + label_max);
+
+            } else if (woocs_current_currency.position === 'right') {
+
+                jQuery('.price_slider_amount span.from').html(label_min + woocommerce_price_slider_params.currency_symbol);
+                jQuery('.price_slider_amount span.to').html(label_max + woocommerce_price_slider_params.currency_symbol);
+
+            } else if (woocs_current_currency.position === 'right_space') {
+
+                jQuery('.price_slider_amount span.from').html(label_min + " " + woocommerce_price_slider_params.currency_symbol);
+                jQuery('.price_slider_amount span.to').html(label_max + " " + woocommerce_price_slider_params.currency_symbol);
+
+            }
+
+        } else {
+
+            if (woocommerce_price_slider_params.currency_pos === 'left') {
+
+                jQuery('.price_slider_amount span.from').html(woocommerce_price_slider_params.currency_symbol + min);
+                jQuery('.price_slider_amount span.to').html(woocommerce_price_slider_params.currency_symbol + max);
+
+            } else if (woocommerce_price_slider_params.currency_pos === 'left_space') {
+
+                jQuery('.price_slider_amount span.from').html(woocommerce_price_slider_params.currency_symbol + ' ' + min);
+                jQuery('.price_slider_amount span.to').html(woocommerce_price_slider_params.currency_symbol + ' ' + max);
+
+            } else if (woocommerce_price_slider_params.currency_pos === 'right') {
+
+                jQuery('.price_slider_amount span.from').html(min + woocommerce_price_slider_params.currency_symbol);
+                jQuery('.price_slider_amount span.to').html(max + woocommerce_price_slider_params.currency_symbol);
+
+            } else if (woocommerce_price_slider_params.currency_pos === 'right_space') {
+
+                jQuery('.price_slider_amount span.from').html(min + ' ' + woocommerce_price_slider_params.currency_symbol);
+                jQuery('.price_slider_amount span.to').html(max + ' ' + woocommerce_price_slider_params.currency_symbol);
+
+            }
+        }
+
+        jQuery(document.body).trigger('price_slider_updated', [min, max]);
+    });
+
+    jQuery('.price_slider').slider({
+        range: true,
+        animate: true,
+        min: min_price,
+        max: max_price,
+        values: [current_min_price, current_max_price],
+        create: function () {
+
+            jQuery('.price_slider_amount #min_price').val(current_min_price);
+            jQuery('.price_slider_amount #max_price').val(current_max_price);
+
+            jQuery(document.body).trigger('price_slider_create', [current_min_price, current_max_price]);
+        },
+        slide: function (event, ui) {
+
+            jQuery('input#min_price').val(ui.values[0]);
+            jQuery('input#max_price').val(ui.values[1]);
+
+            jQuery(document.body).trigger('price_slider_slide', [ui.values[0], ui.values[1]]);
+        },
+        change: function (event, ui) {
+
+            jQuery(document.body).trigger('price_slider_change', [ui.values[0], ui.values[1]]);
+        }
+    });
+
+
+    //***
+    woof_init_native_woo_price_filter();
 }
 

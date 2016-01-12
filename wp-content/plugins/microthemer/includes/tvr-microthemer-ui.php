@@ -54,6 +54,7 @@ $this->preferences['auto_capitalize'] ? $ui_class.= ' tvr-caps' : false;
 		<span id="fonts-api" rel="<?php echo $this->thispluginurl.'includes/fonts-api.php'; ?>"></span>
 		<span id="ui-url" rel="<?php echo 'admin.php?page=' . $this->microthemeruipage; ?>"></span>
 		<span id="admin-url" rel="<?php echo $this->wp_blog_admin_url; ?>"></span>
+		<span id="micro-url" rel="<?php echo $this->micro_root_url; ?>"></span>
 		<span id="user-browser" rel="<?php echo $this->check_browser(); ?>"></span>
 
 		<span id="ajaxUrl" rel="<?php echo $this->site_url .'/wp-admin/admin.php?page='.$this->microthemeruipage.'&_wpnonce='.wp_create_nonce('mcth_simple_ajax') ?>"></span>
@@ -269,7 +270,7 @@ $this->preferences['auto_capitalize'] ? $ui_class.= ' tvr-caps' : false;
 									</div>
 								</div>
 							</div>
-							<div class="scrollable-area">
+							<div class="scrollable-area menu-scrollable">
 								<ul id='tvr-menu'>
 									<?php
 									foreach ( $this->options as $section_name => $array) {

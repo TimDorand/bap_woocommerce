@@ -1,14 +1,277 @@
 <?php if (!defined('ABSPATH')) die('No direct access allowed'); ?>
 
-
 <?php
 //+++
 $args = array();
 $args['show_count'] = get_option('woof_show_count', 0);
 $args['show_count_dynamic'] = get_option('woof_show_count_dynamic', 0);
-$args['hide_dynamic_empty_pos'] = false;
-$args['woof_autosubmit'] = get_option('woof_autosubmit', 0);
+$args['hide_dynamic_empty_pos'] = 0;
+$args['woof_autosubmit'] = $autosubmit;
+//***
+$_REQUEST['tax_only'] = $tax_only;
+$_REQUEST['by_only'] = $by_only;
+
+if (!function_exists('woof_only'))
+{
+
+    function woof_only($key_slug, $type = 'taxonomy')
+    {
+        switch ($type)
+        {
+            case 'taxonomy':
+
+                if (!empty($_REQUEST['tax_only']))
+                {
+                    if (!in_array($key_slug, $_REQUEST['tax_only']))
+                    {
+                        return FALSE;
+                    }
+                }
+
+                break;
+
+            case 'item':
+                if (!empty($_REQUEST['by_only']))
+                {
+                    if (!in_array($key_slug, $_REQUEST['by_only']))
+                    {
+                        return FALSE;
+                    }
+                }
+                break;
+        }
+
+
+        return TRUE;
+    }
+
+}
+
+//***
+if (!function_exists('woof_print_tax'))
+{
+
+    function woof_print_tax($taxonomies, $tax_slug, $terms, $exclude_tax_key, $taxonomies_info, $additional_taxes, $woof_settings, $args, $counter)
+    {
+
+        global $WOOF;
+
+        if ($exclude_tax_key == $tax_slug)
+        {
+            //$terms = apply_filters('woof_exclude_tax_key', $terms);
+            if (empty($terms))
+            {
+                return;
+            }
+        }
+
+        //***
+
+        if (!woof_only($tax_slug, 'taxonomy'))
+        {
+            return;
+        }
+
+        //***
+
+
+        $args['taxonomy_info'] = $taxonomies_info[$tax_slug];
+        $args['tax_slug'] = $tax_slug;
+        $args['terms'] = $terms;
+        $args['all_terms_hierarchy'] = $taxonomies[$tax_slug];
+        $args['additional_taxes'] = $additional_taxes;
+
+        //***
+        $woof_container_styles = "";
+        if ($woof_settings['tax_type'][$tax_slug] == 'radio' OR $woof_settings['tax_type'][$tax_slug] == 'checkbox')
+        {
+            if ($WOOF->settings['tax_block_height'][$tax_slug] > 0)
+            {
+                $woof_container_styles = "max-height:{$WOOF->settings['tax_block_height'][$tax_slug]}px; overflow-y: auto;";
+            }
+        }
+        //***
+        //https://wordpress.org/support/topic/adding-classes-woof_container-div
+        $primax_class = sanitize_key(WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]));
+        ?>
+        <div data-css-class="woof_container_<?php echo $tax_slug ?>" class="woof_container woof_container_<?php echo $woof_settings['tax_type'][$tax_slug] ?> woof_container_<?php echo $tax_slug ?> woof_container_<?php echo $counter ?> woof_container_<?php echo $primax_class ?>">
+            <div class="woof_container_overlay_item"></div>
+            <div class="woof_container_inner woof_container_inner_<?php echo $primax_class ?>">
+                <?php
+                switch ($woof_settings['tax_type'][$tax_slug])
+                {
+                    case 'checkbox':
+                        if ($WOOF->settings['show_title_label'][$tax_slug])
+                        {
+                            ?>
+                            <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
+                            <?php
+                        }
+                        ?>
+                        <div <?php if (!empty($woof_container_styles)): ?>style="<?php echo $woof_container_styles ?>" class="woof_section_scrolled"<?php endif; ?>>
+                            <?php
+                            echo $WOOF->render_html(WOOF_PATH . 'views/html_types/checkbox.php', $args);
+                            ?>
+                        </div>
+                        <?php
+                        break;
+                    case 'select':
+                        if ($WOOF->settings['show_title_label'][$tax_slug])
+                        {
+                            ?>
+                            <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
+                            <?php
+                        }
+                        echo $WOOF->render_html(WOOF_PATH . 'views/html_types/select.php', $args);
+                        break;
+                    case 'mselect':
+                        if ($WOOF->settings['show_title_label'][$tax_slug])
+                        {
+                            ?>
+                            <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
+                            <?php
+                        }
+                        echo $WOOF->render_html(WOOF_PATH . 'views/html_types/mselect.php', $args);
+                        break;
+
+                    default:
+                        if ($WOOF->settings['show_title_label'][$tax_slug])
+                        {
+                            ?>
+                            <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
+                            <?php
+                        }
+                        ?>
+
+
+
+                        <div <?php if (!empty($woof_container_styles)):
+                            ?>style="<?php echo $woof_container_styles ?>" class="woof_section_scrolled"<?php endif; ?>>
+                            <?php
+                            if (!empty(WOOF_EXT::$includes['taxonomy_type_objects']))
+                            {
+                                $is_custom = false;
+                                foreach (WOOF_EXT::$includes['taxonomy_type_objects'] as $obj)
+                                {
+                                    if ($obj->html_type == $woof_settings['tax_type'][$tax_slug])
+                                    {
+                                        $is_custom = true;
+                                        $args['woof_settings'] = $woof_settings;
+                                        $args['taxonomies_info'] = $taxonomies_info;
+                                        echo $WOOF->render_html($obj->get_html_type_view(), $args);
+                                        break;
+                                    }
+                                }
+
+
+                                if (!$is_custom)
+                                {
+                                    echo $WOOF->render_html(WOOF_PATH . 'views/html_types/radio.php', $args);
+                                }
+                            } else
+                            {
+                                echo $WOOF->render_html(WOOF_PATH . 'views/html_types/radio.php', $args);
+                            }
+                            ?>
+
+                        </div>
+                        <?php
+                        break;
+                }
+                ?>
+
+            </div>
+        </div>
+        <?php
+    }
+
+}
+
+if (!function_exists('woof_print_item_by_key'))
+{
+
+    function woof_print_item_by_key($key, $woof_settings, $additional_taxes)
+    {
+
+        if (!woof_only($key, 'item'))
+        {
+            return;
+        }
+
+        //***
+
+        global $WOOF;
+        switch ($key)
+        {
+            case 'by_price':
+
+                if (isset($WOOF->settings['by_price']['show']))
+                {
+                    //just for compatibility from 2.1.2 to 2.1.3
+                    $price_filter = (int) $WOOF->settings['by_price']['show'];
+                } else
+                {
+                    $price_filter = (int) get_option('woof_show_price_search', 0);
+                }
+                ?>
+
+                <?php if ($price_filter == 1): ?>
+                    <div data-css-class="woof_price_search_container" class="woof_price_search_container woof_container">
+                        <div class="woof_container_overlay_item"></div>
+                        <div class="woof_container_inner">
+                            <div class="woocommerce widget_price_filter">
+                                <?php //the_widget('WC_Widget_Price_Filter', array('title' => ''));      ?>
+                                <?php if (isset($WOOF->settings['by_price']['title_text']) AND ! empty($WOOF->settings['by_price']['title_text'])): ?>
+                                    <h4><?php echo $WOOF->settings['by_price']['title_text']; ?></h4>
+                                <?php endif; ?>
+                                <?php WOOF_HELPER::price_filter(); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                <?php endif; ?>
+
+                <?php if ($price_filter == 2): ?>
+                    <div data-css-class="woof_price2_search_container" class="woof_price2_search_container woof_container">
+                        <div class="woof_container_overlay_item"></div>
+                        <div class="woof_container_inner">
+                            <?php if (isset($WOOF->settings['by_price']['title_text']) AND ! empty($WOOF->settings['by_price']['title_text'])): ?>
+                                <h4><?php echo $WOOF->settings['by_price']['title_text']; ?></h4>
+                            <?php endif; ?>
+
+                            <?php echo do_shortcode('[woof_price_filter type="select" additional_taxes="' . $additional_taxes . '"]'); ?>
+
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+
+                <?php if ($price_filter == 3): ?>
+                    <div data-css-class="woof_price3_search_container" class="woof_price3_search_container woof_container">
+                        <div class="woof_container_overlay_item"></div>
+                        <div class="woof_container_inner">
+                            <?php if (isset($WOOF->settings['by_price']['title_text']) AND ! empty($WOOF->settings['by_price']['title_text'])): ?>
+                                <h4><?php echo $WOOF->settings['by_price']['title_text']; ?></h4>
+                            <?php endif; ?>
+
+                            <?php echo do_shortcode('[woof_price_filter type="slider" additional_taxes="' . $additional_taxes . '"]'); ?>
+
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php
+                break;
+
+            default:
+                do_action('woof_print_html_type_' . $key);
+                break;
+        }
+    }
+
+}
 ?>
+
 
 <?php if ($autohide): ?>
     <div>
@@ -49,90 +312,16 @@ $args['woof_autosubmit'] = get_option('woof_autosubmit', 0);
             <div class="woof_auto_show_indent woof_overflow_hidden">
             <?php endif; ?>
 
-
-
-
-            <div class="woof <?php if (!empty($sid)): ?>woof_sid woof_sid_<?php echo $sid ?><?php endif; ?>" <?php if (!empty($sid)): ?>data-sid="<?php echo $sid; ?>"<?php endif; ?> shortcode="<?php echo(isset($_REQUEST['woof_shortcode_txt']) ? $_REQUEST['woof_shortcode_txt'] : 'woof') ?>">
+            <div class="woof <?php if (!empty($sid)): ?>woof_sid woof_sid_<?php echo $sid ?><?php endif; ?>" <?php if (!empty($sid)): ?>data-sid="<?php echo $sid; ?>"<?php endif; ?> data-shortcode="<?php echo(isset($_REQUEST['woof_shortcode_txt']) ? $_REQUEST['woof_shortcode_txt'] : 'woof') ?>" data-redirect="<?php echo $redirect ?>" data-autosubmit="<?php echo $autosubmit ?>" data-ajax-redraw="<?php echo $ajax_redraw ?>">
 
                 <?php if ($show_woof_edit_view AND ! empty($sid)): ?>
                     <a href="#" class="woof_edit_view" data-sid="<?php echo $sid ?>"><?php _e('edit view helper', 'woocommerce-products-filter') ?></a>
                     <div></div>
                 <?php endif; ?>
 
-
-                <?php if ($price_filter == 1): ?>
-                    <div data-css-class="woof_price_search_container" class="woof_price_search_container woof_container">
-                        <div class="woof_container_overlay_item"></div>
-                        <div class="woof_container_inner">
-                            <div class="woocommerce widget_price_filter">
-                                <?php //the_widget('WC_Widget_Price_Filter', array('title' => ''));   ?>
-                                <?php if (isset($this->settings['price_filter_title_txt']) AND ! empty($this->settings['price_filter_title_txt'])): ?>
-                                    <h4><?php echo $this->settings['price_filter_title_txt']; ?></h4>
-                                <?php endif; ?>
-                                <?php WOOF_HELPER::price_filter(); ?>
-                            </div>
-                        </div>
-                    </div>
-                   <div style="clear:both;"></div>
-                <?php endif; ?>
-
+                <!--- here is possible drop html code which is never redraws by AJAX ---->
 
                 <div class="woof_redraw_zone">
-
-                    <?php if ($price_filter == 2): ?>
-                        <div data-css-class="woof_price2_search_container" class="woof_price2_search_container woof_container">
-                            <div class="woof_container_overlay_item"></div>
-                            <div class="woof_container_inner">
-                                <?php if (isset($this->settings['price_filter_title_txt']) AND ! empty($this->settings['price_filter_title_txt'])): ?>
-                                    <h4><?php echo $this->settings['price_filter_title_txt']; ?></h4>
-                                <?php endif; ?>
-
-
-                                <?php echo do_shortcode('[woof_price_filter additional_taxes="' . $additional_taxes . '"]'); ?>
-
-
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (get_option('woof_show_in_stock_only')): ?>
-                        <div data-css-class="woof_checkbox_instock_container" class="woof_checkbox_instock_container woof_container">
-                            <div class="woof_container_overlay_item"></div>
-                            <div class="woof_container_inner">
-                                <input type="checkbox" class="woof_checkbox_instock" id="woof_checkbox_instock" name="stock" value="0" <?php checked('instock', $this->is_isset_in_request_data('stock') ? 'instock' : '', true) ?> />&nbsp;&nbsp;<label for="woof_checkbox_instock"><?php _e('In stock only', 'woocommerce-products-filter') ?></label><br />
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-
-                    <?php if (get_option('woof_show_sales_only')): ?>
-                        <div data-css-class="woof_checkbox_sales_container" class="woof_checkbox_sales_container woof_container">
-                            <div class="woof_container_overlay_item"></div>
-                            <div class="woof_container_inner">
-                                <input type="checkbox" class="woof_checkbox_sales" id="woof_checkbox_sales" name="sales" value="0" <?php checked('salesonly', $this->is_isset_in_request_data('insales') ? 'salesonly' : '', true) ?> />&nbsp;&nbsp;<label for="woof_checkbox_sales"><?php _e('In sales only', 'woocommerce-products-filter') ?></label><br />
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-
-                    <?php
-                    if (get_option('woof_show_title_search', 0))
-                    {
-                        echo do_shortcode('[woof_title_filter]');
-                    }
-                    ?>
-
-
-                    <?php
-                    if (get_option('woof_show_sku_search', 0))
-                    {
-                        echo do_shortcode('[woof_sku_filter]');
-                    }
-                    ?>
-
-
-
-
 
                     <?php
                     global $wp_query;
@@ -182,132 +371,48 @@ $args['woof_autosubmit'] = get_option('woof_autosubmit', 0);
                         }
 
                         //***
-                        $taxonomies_tmp = $taxonomies;
-                        $taxonomies = array();
-                        //sort them as in options
-                        foreach ($this->settings['tax'] as $key => $value)
+
+                        $items_order = array();
+                        $taxonomies_keys = array_keys($taxonomies);
+                        if (isset($woof_settings['items_order']) AND ! empty($woof_settings['items_order']))
                         {
-                            $taxonomies[$key] = $taxonomies_tmp[$key];
+                            $items_order = explode(',', $woof_settings['items_order']);
+                        } else
+                        {
+                            $items_order = array_merge($this->items_keys, $taxonomies_keys);
                         }
-                        //check for absent
-                        foreach ($taxonomies_tmp as $key => $value)
+
+                        //*** lets check if we have new taxonomies added in woocommerce or new item
+                        foreach (array_merge($this->items_keys, $taxonomies_keys) as $key)
                         {
-                            if (!in_array(@$taxonomies[$key], $taxonomies_tmp))
+                            if (!in_array($key, $items_order))
                             {
-                                $taxonomies[$key] = $taxonomies_tmp[$key];
+                                $items_order[] = $key;
                             }
                         }
-                        //+++
+
+                        //lets print our items and taxonomies
                         $counter = 0;
-                        foreach ($taxonomies as $tax_slug => $terms)
+                        foreach ($items_order as $key)
                         {
-                            if ($exclude_tax_key == $tax_slug)
+                            if (in_array($key, $this->items_keys))
                             {
-                                $terms = apply_filters('woof_exclude_tax_key', $terms);
-                                if (empty($terms))
+                                woof_print_item_by_key($key, $woof_settings, $additional_taxes);
+                            } else
+                            {
+                                if (!isset($woof_settings['tax'][$key]))
                                 {
                                     continue;
                                 }
+                                woof_print_tax($taxonomies, $key, $taxonomies[$key], $exclude_tax_key, $taxonomies_info, $additional_taxes, $woof_settings, $args, $counter);
                             }
-
-
-                            $args['taxonomy_info'] = $taxonomies_info[$tax_slug];
-                            $args['tax_slug'] = $tax_slug;
-                            $args['terms'] = $terms;
-                            $args['all_terms_hierarchy'] = $taxonomies[$tax_slug];
-                            $args['additional_taxes'] = $additional_taxes;
-
-                            //***
-                            $woof_container_styles = "";
-                            if ($woof_settings['tax_type'][$tax_slug] == 'radio' OR $woof_settings['tax_type'][$tax_slug] == 'checkbox')
-                            {
-                                if ($this->settings['tax_block_height'][$tax_slug] > 0)
-                                {
-                                    $woof_container_styles = "max-height:{$this->settings['tax_block_height'][$tax_slug]}px; overflow-y: auto;";
-                                }
-                            }
-                            //***
-                            //https://wordpress.org/support/topic/adding-classes-woof_container-div
-                            $primax_class = sanitize_key(WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]));
-                            ?>
-                            <div data-css-class="woof_container_<?php echo $tax_slug ?>" class="woof_container woof_container_<?php echo $woof_settings['tax_type'][$tax_slug] ?> woof_container_<?php echo $tax_slug ?> woof_container_<?php echo $counter++ ?> woof_container_<?php echo $primax_class ?>">
-                                <div class="woof_container_overlay_item"></div>
-                                <div class="woof_container_inner woof_container_inner_<?php echo $primax_class ?>">
-                                    <?php
-                                    switch ($woof_settings['tax_type'][$tax_slug])
-                                    {
-                                        case 'checkbox':
-                                            if ($this->settings['show_title_label'][$tax_slug])
-                                            {
-                                                ?>
-                                                <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
-                                                <?php
-                                            }
-                                            ?>
-                                            <div <?php if (!empty($woof_container_styles)): ?>style="<?php echo $woof_container_styles ?>" class="woof_section_scrolled"<?php endif; ?>>
-                                                <?php
-                                                echo $this->render_html(WOOF_PATH . 'views/html_types/checkbox.php', $args);
-                                                ?>
-                                            </div>
-                                            <?php
-                                            break;
-                                        case 'select':
-                                            if ($this->settings['show_title_label'][$tax_slug])
-                                            {
-                                                ?>
-                                                <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
-                                                <?php
-                                            }
-                                            echo $this->render_html(WOOF_PATH . 'views/html_types/select.php', $args);
-                                            break;
-                                        case 'mselect':
-                                            if ($this->settings['show_title_label'][$tax_slug])
-                                            {
-                                                ?>
-                                                <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
-                                                <?php
-                                            }
-                                            echo $this->render_html(WOOF_PATH . 'views/html_types/mselect.php', $args);
-                                            break;
-                                        case 'color':
-                                            //http://code.tutsplus.com/articles/how-to-use-wordpress-color-picker-api--wp-33067
-                                            if ($this->settings['show_title_label'][$tax_slug])
-                                            {
-                                                ?>
-                                                <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
-                                                <?php
-                                            }
-                                            $args['colors'] = isset($woof_settings['color'][$tax_slug]) ? $woof_settings['color'][$tax_slug] : array();
-                                            echo $this->render_html(WOOF_PATH . 'views/html_types/color.php', $args);
-                                            break;
-                                        default:
-                                            if ($this->settings['show_title_label'][$tax_slug])
-                                            {
-                                                ?>
-                                                <h4><?php echo WOOF_HELPER::wpml_translate($taxonomies_info[$tax_slug]) ?></h4>
-                                                <?php
-                                            }
-                                            ?>
-                                            <div <?php if (!empty($woof_container_styles)):
-                                                ?>style="<?php echo $woof_container_styles ?>" class="woof_section_scrolled"<?php endif; ?>>
-                                                <?php
-                                                echo $this->render_html(WOOF_PATH . 'views/html_types/radio.php', $args);
-                                                ?>
-                                            </div>
-                                            <?php
-                                            break;
-                                    }
-                                    ?>
-
-                                </div>
-                            </div>
-                            <?php
+                            $counter++;
                         }
                     }
-
-//***
-                    $woof_autosubmit = (int) get_option('woof_autosubmit');
                     ?>
+
+
+
 
                     <div class="woof_submit_search_form_container">
 
@@ -322,7 +427,7 @@ $args['woof_autosubmit'] = get_option('woof_autosubmit', 0);
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <?php if (!$woof_autosubmit): ?>
+                        <?php if (!$autosubmit OR $ajax_redraw): ?>
                             <?php
                             $woof_filter_btn_txt = __('Filter', 'woocommerce-products-filter');
                             ?>

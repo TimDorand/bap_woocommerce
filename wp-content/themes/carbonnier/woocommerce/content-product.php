@@ -63,12 +63,21 @@ $classes[] = 'hsov';
 			$link =  "checkout/?add-to-cart=".$product->id;
 
 			?>
-					<div class="content-hover">
+					<!--<div class="content-hover">
+						<a href="<?php /*the_permalink(); */?>">
+							<img src="<?php /*bloginfo('template_directory'); */?>/img/logo.png"  class="iconeseyes icon-custom">
+						</a>
+						<a href="<?php /*echo $link; */?>">
+						<img src="<?php /*bloginfo('template_directory'); */?>/img/logo1.png"  class="iconespanier icon-custom">
+						</a>
+					</div>-->
+
+				 	<div class="content-hover">
 						<a href="<?php the_permalink(); ?>">
-							<img src="<?php bloginfo('template_directory'); ?>/img/logo.png" class="iconeseyes icon-custom">
+							<div class="icon-view"></div>
 						</a>
 						<a href="<?php echo $link; ?>">
-						<img src="<?php bloginfo('template_directory'); ?>/img/logo1.png" class="iconespanier icon-custom">
+							<div class="icon-cart"></div>
 						</a>
 					</div>
 			</div>

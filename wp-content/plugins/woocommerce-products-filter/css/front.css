@@ -36,7 +36,8 @@
 
 .woof_sid_auto_shortcode .woof_container{
     float: left;
-    width: 32%;
+    width: 33%;
+    min-width: 150px;
 }
 
 
@@ -53,12 +54,6 @@
 li.woof_childs_list_li{
     padding-bottom: 0 !important;
 }
-
-.woof_checkbox_instock_container, .woof_checkbox_sales_container{
-    margin-bottom: 4px;
-}
-
-
 
 /********************/
 div.woof_info_popup {
@@ -88,46 +83,6 @@ div.woof_info_popup {
 }
 
 /*************/
-ul.woof_list_color{
-
-}
-
-ul.woof_list_color li {
-    display: inline-block !important;
-    float: none !important;
-    margin: 3px 3px 0 0 !important;
-    padding: 0 !important;
-}
-
-.woof_color_term {
-    width: 20px;
-    height: 20px;
-    padding: 0px;
-    /*background: url("../img/color_checkbox.png");*/
-    display: block;
-    clear: left;
-    float: left;
-    border:solid 1px #aaa;
-}
-
-.woof_color_term.checked {
-    /*background-position: 0px -50px;*/
-    background: url("../img/checked4.png");
-}
-
-.woof_color_term.clicked {
-    /*background-position: 0px -25px;*/
-    background: url("../img/checked4.png");
-}
-
-.woof_color_term.clicked.checked {
-    /*background-position: 0px -75px;*/
-    background: url("../img/checked4.png");
-}
-
-.woof_color_term_ffffff .woof_color_term.checked{
-    background: url("../img/checked_for_white.png");
-}
 
 p.woof_tooltip {
     position: relative;
@@ -170,80 +125,6 @@ p:hover.woof_tooltip span.woof_tooltip_data {
     margin-left: -74px;
     z-index: 999;
 }
-
-.woof_title_search_container{
-    margin: 0 0 9px 0;
-}
-
-.woof_title_search_container.woof_container{
-    width: 100%;
-    margin-top: 5px;
-}
-
-.woof_title_search_container input[type='search']{
-    width: 100% !important;
-    padding: 5px !important;
-    margin: 0 !important;
-}
-
-.woof_title_search_container .woof_title_search_go{
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin-left: 3px;
-    background: url("../img/eye-icon2.png");
-    /*margin: -25px 83%;*/
-    display: none;
-    border: none !important;
-    text-decoration: none !important;
-    z-index: 999;
-    position: relative;
-}
-
-table.woof_title_table{
-    width: 100%;
-}
-
-.woof_sku_search_container.woof_container{
-    width: 100%;
-    margin-top: 5px;
-}
-
-.woof_sku_search_container .woof_sku_search_go{
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin-left: 3px;
-    background: url("../img/eye-icon2.png");
-    /*margin: -25px 83%;*/
-    display: none;
-    border: none !important;
-    text-decoration: none !important;
-    z-index: 999;
-    position: relative;
-}
-
-.woof_sku_search_container input[type='search']{
-    width: 100% !important;
-    padding: 5px !important;
-    margin: 0 !important;
-}
-
-table.woof_sku_table{
-    width: 100%;
-}
-
-.woof_title_search_container .woof_container_inner{
-    width: auto !important;
-}
-
-
-@-moz-document url-prefix() {
-    .woof_title_search_container .woof_title_search_go{
-
-    }
-}
-
 
 
 .woof_products_top_panel{
@@ -313,23 +194,6 @@ table.woof_sku_table{
     margin: 0 0 5px 0 !important;
 }
 
-.woof_sid_auto_shortcode .woof_show_title_search{
-    width: 100% !important;
-}
-
-.woof_sid_auto_shortcode .woof_container_color{   
-    width: 100% !important;
-    clear: both;
-    margin-bottom: 11px;
-}
-
-.woof_sid_auto_shortcode .woof_container_inner_color{
-    padding: 9px;
-    background: #fff;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    border-radius: 7px;
-}
 
 
 .woof_edit_view{
@@ -615,3 +479,52 @@ table.woof_sku_table{
     width: 100%;
 }
 
+.chosen-results li{
+    margin-left: 0 !important;
+}
+
+.woof-padding-1{
+    padding-left: 12px !important;
+}
+.woof-padding-2{
+    padding-left: 24px !important;
+}
+.woof-padding-3{
+    padding-left: 36px !important;
+}
+.woof-padding-4{
+    padding-left: 48px !important;
+}
+.woof-padding-5{
+    padding-left: 60px !important;
+}
+
+/*******************************/
+
+.chosen-container{
+    margin-bottom: 3px;
+}
+
+.woof_search_is_going nav.woocommerce-breadcrumb+h1.page-title{
+    display: none;
+}
+
+.woof_search_is_going nav.woocommerce-breadcrumb{
+    display: none;
+}
+
+.woof_checkbox_label{
+    margin-left: 7px;
+}
+
+.woof_checkbox_count{
+    margin-left: 3px;
+}
+
+.woof_radio_label{
+    margin-left: 5px;
+}
+
+.woof_radio_count{
+    margin-left: 2px;
+}

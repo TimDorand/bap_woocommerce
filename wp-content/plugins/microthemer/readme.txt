@@ -104,6 +104,14 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+= 4.7.1 (Dec 11th, 2015) =
+* Microthemer now works well with Autoptimize even with CSS minification and concatenation enabled.
+* Import and merge appends numbers to imported folders that have the same name (like it did before we made some internationalisation improvements to the folders).
+* Folder quick edit and main menu popdowns don't auto-close after manually adding/editing a selector. Nicer when updating multiple selectors. The single selector quick edit popdown still auto-closes.
+* Main menu and quick edit popdowns provide more room for editing folders and selectors (up to the full height of the screen).
+* Background position/size fields can have default units set, including auto-conversion (e.g. px to em).
+* Background color no longer overrides gradient if both are specified alongside a background image. The stacking order is background (top) image, gradient (middle), background color (bottom).
+
 = 4.6.4 (Nov 18th, 2015) =
 * Microthemer detects when an error (e.g. plugin/theme conflict) is preventing it from completing an action and provides self-help tips.
 * CSS units could not all be set in one go on the standalone preferences page.

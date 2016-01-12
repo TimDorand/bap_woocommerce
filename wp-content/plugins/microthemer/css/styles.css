@@ -2540,7 +2540,7 @@ Folder navigation menu
     position: fixed;
     z-index: 99999;
     top: -99999px;
-    width: 500px;
+    min-width: 500px;
     max-height: 500px;
     overflow: hidden;
     background: #e6e6e6;
@@ -2630,6 +2630,8 @@ Folder navigation menu
     clear: both;
     margin: 0 0 0 0;
     padding-bottom: 5px; }
+  .strk .selector-css-textarea {
+    resize: vertical; }
   .strk .polyfills .input-icon-toggle {
     float: left;
     margin: 3px 8px 0 0; }
@@ -2708,7 +2710,7 @@ Quick Edit
   z-index: 999911 !important;
   top: 41px;
   left: 0;
-  width: 500px;
+  min-width: 500px;
   background: #e6e6e6;
   border: 1px solid #cbcbcb; }
   .bye-for-now .quick-edit-mode .sel-row {

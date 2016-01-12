@@ -695,6 +695,13 @@ $propertyOptions['background']['background_position'] = array(
 	'label' => esc_attr__('Background Position', 'microthemer'),
 	'type' => 'combobox',
 	'input-class' => 'bg-position-select size-6',
+	'auto' => array(
+		'%' => array(
+			'node' => 'element',
+			'prop' => array('width', 'height')
+		)
+	),
+	'default_unit' => 1,
 	'select_options' => array(
 		'',
 		'left top',
@@ -766,6 +773,13 @@ $propertyOptions['background']['background_size'] = array(
 	'label' => esc_attr__('Background Size', 'microthemer'),
 	'type' => 'combobox',
 	'input-class' => 'size-3a',
+	'auto' => array(
+		'%' => array(
+			'node' => 'element',
+			'prop' => array('width', 'height')
+		)
+	),
+	'default_unit' => 1,
 	'select_options' => array(
 		'',
 		'auto',
@@ -1899,12 +1913,14 @@ $legacy_groups['shadow'] = array(
 		'box_shadow_blur' => 1
 	)
 );
+/* // to be reliable, this needs to merge the value into one
 $legacy_groups['background'] = array(
 	'background' => array(
-		'background_position_x' => 1, // this may need to be an exception
+		'background_position_x' => 1,
 		'background_position_y' => 1
 	)
 );
+*/
 $legacy_groups['padding_margin'] = array(
 	'padding' =>array(
 		'padding_top' => 1,

@@ -1644,8 +1644,8 @@ Folder navigation menu
 		z-index:99999;
 		top:-99999px;
 		// top:40px;
-		width: 500px;
-		max-height:500px;
+		min-width: 500px;
+		max-height:500px; // replaced by JS
 		overflow:hidden;
 		background:$lightGrey;
 		border:1px solid $mediumGrey;
@@ -1743,9 +1743,6 @@ Folder navigation menu
 	.sel-row {
 		margin-left:44px;
 	}
-
-
-
 	.edit-section-form {
 		display: inline-block;
 		float:left;
@@ -1788,6 +1785,9 @@ Folder navigation menu
 		clear:both;
 		margin:0 0 0 0;
 		padding-bottom: 5px;
+	}
+  	.selector-css-textarea {
+	  resize: vertical;
 	}
 	// polyfills
 	.polyfills {
@@ -1893,7 +1893,7 @@ Quick Edit
 		z-index:999911 !important;
 		top:41px;
 		left:0;
-		width:500px;
+		min-width:500px;
 		background: $lightGrey;
 		border:1px solid $mediumGrey;
 		//@include grey-shadow();

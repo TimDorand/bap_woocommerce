@@ -6,7 +6,7 @@ function woof_init_checkboxes() {
     if (icheck_skin != 'none') {
         jQuery('.woof_checkbox_term').iCheck('destroy');
 
-        jQuery('.woof_checkbox_term, .woof_checkbox_instock, .woof_checkbox_sales').iCheck({
+        jQuery('.woof_checkbox_term').iCheck({
             checkboxClass: 'icheckbox_' + icheck_skin.skin + '-' + icheck_skin.color,
             //checkboxClass: 'icheckbox_square-green'
         });

@@ -35,9 +35,9 @@ endif;*/
   </div>
 
   <div id="navbar navbartop" class="navbar-collapse collapse">
-    <a href="<?= esc_url(home_url('/')); ?>"><img src="<?php bloginfo('template_directory');?>/img/logofinal.png" width="100" alt="logo yc"></a>
+    <a href="<?= esc_url(home_url('/')); ?>"><img src="<?php bloginfo('template_directory');?>/img/logofinal.png" style="float:left;margin-left:10%;" width="150" alt="logo yc"></a>
 
-    <ul class="nav navbar-nav navbar-center">
+    <ul style="margin-left:-10%;" class="nav navbar-nav navbar-center">
       <li><a href="<?= esc_url(home_url('/')); ?>">ACCUEIL</a></li>
 
       <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/cartomagie/">CARTOMAGIE</a></li>
@@ -54,7 +54,7 @@ endif;*/
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TOURS & VIDEOS<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/tours-de-magie">TOURS</a></li>
-          <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/videos-a-telecharger">VIDEOS</a></li>
+          <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/video-a-telecharger">VIDEOS</a></li>
         </ul>
       </li>
 

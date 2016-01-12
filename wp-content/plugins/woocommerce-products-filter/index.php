@@ -4,48 +4,62 @@
   Plugin URI: http://woocommerce-filter.com/
   Description: WOOF - WooCommerce Products Filter. Easy & Quick!
   Requires at least: WP 4.1.0
-  Tested up to: WP 4.3
+  Tested up to: WP 4.4.0
   Author: realmag777
   Author URI: http://pluginus.net/
-  Version: 1.1.2
-  Tags: filter,search,woocommerce,woocommerce filter,products filter,product filter,filter of products,filter for products
+  Version: 1.1.3.1
+  Tags: filter,search,woocommerce,woocommerce filter,woocommerce product filter,woocommerce products filter,products filter,product filter,filter of products,filter for products,filter for woocommerce
   Text Domain: woocommerce-products-filter
   Domain Path: /languages
   Forum URI: #
  */
 
-
+//update_option('woof_settings', '');//nearly absolute reset of the plugin settings
 if (!defined('ABSPATH'))
 {
     exit; // Exit if accessed directly
 }
 
-//https://wordpress.org/support/topic/filtering-by-attributes-stopped-working-after-update-to-232
-if (!defined('WOOF_PATH'))
+if (defined('DOING_AJAX'))
 {
-    define('WOOF_PATH', plugin_dir_path(__FILE__));
+    if (isset($_REQUEST['action']))
+    {
+        //for wp plugin WP Live Chat Support http://wp-livechat.com/
+        if ($_REQUEST['action'] == 'wplc_call_to_server_visitor')
+        {
+            return;
+        }
+    }
 }
+
+define('WOOF_PATH', plugin_dir_path(__FILE__));
 define('WOOF_LINK', plugin_dir_url(__FILE__));
 define('WOOF_PLUGIN_NAME', plugin_basename(__FILE__));
+define('WOOF_EXT_PATH', WOOF_PATH . 'ext/');
 //classes
-include plugin_dir_path(__FILE__) . 'classes/helper.php';
-include plugin_dir_path(__FILE__) . 'classes/storage.php';
-include plugin_dir_path(__FILE__) . 'classes/counter.php';
-include plugin_dir_path(__FILE__) . 'classes/widgets.php';
+include WOOF_PATH . 'classes/storage.php';
+include WOOF_PATH . 'classes/helper.php';
+include WOOF_PATH . 'classes/hooks.php';
+include WOOF_PATH . 'classes/ext.php';
+//***
+include WOOF_PATH . 'classes/counter.php';
+include WOOF_PATH . 'classes/widgets.php';
 
 //***
-//14-09-2015
+//05-01-2016
 final class WOOF
 {
 
     public $settings = array();
-    public $version = '1.1.2';
+    public $version = '1.1.3.1';
     public $html_types = array(
         'radio' => 'Radio',
         'checkbox' => 'Checkbox',
         'select' => 'Drop-down',
-        'mselect' => 'Multi drop-down',
-        'color' => 'Color'
+        'mselect' => 'Multi drop-down'
+    );
+    public $items_keys = array(
+        'by_price'
     );
     public static $query_cache_table = 'woof_query_cache';
     private $session_rct_key = 'woof_really_current_term';
@@ -54,7 +68,12 @@ final class WOOF
 
     public function __construct()
     {
+
         $this->init_settings();
+        //extensions initializating
+        $this->init_extensions();
+
+        //***
 
         if (isset($this->settings['storage_type']))
         {
@@ -83,26 +102,113 @@ final class WOOF
             foreach ($attribute_taxonomies as $att)
             {
                 //fixing for woo >= 2.3.2
+                //https://wordpress.org/support/topic/filtering-by-attributes-stopped-working-after-update-to-232
                 add_filter("woocommerce_taxonomy_args_pa_{$att->attribute_name}", array($this, 'change_woo_att_data'));
             }
         }
         //add_filter("woocommerce_taxonomy_args_pa_color", array($this, 'change_woo_att_data'));
         //add_action('init', array($this, 'price_filter_init'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts_styles'));
+        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
         add_action('widgets_init', array($this, 'widgets_init'));
+    }
+
+    public function admin_enqueue_scripts()
+    {
+        if (isset($_GET['tab']) AND $_GET['tab'] == 'woof')
+        {
+            if (version_compare($this->version, '2.1.3', '>=') OR version_compare($this->version, '1.1.3', '>='))
+            {
+                WOOF_HELPER::add_notice('woof_notice_update_213');
+            }
+
+            WOOF_HELPER::hide_admin_notices();
+            //***
+
+            wp_enqueue_style('woof', WOOF_LINK . 'css/plugin_options.css');
+            wp_enqueue_style('woof_fontello', WOOF_LINK . 'css/fontello.css');
+        }
+    }
+
+    public function print_plugin_options()
+    {
+        if (isset($_POST['woof_settings']))
+        {
+            WC_Admin_Settings::save_fields($this->get_options());
+            //+++
+            if (class_exists('SitePress'))
+            {
+                $lang = ICL_LANGUAGE_CODE;
+                if (isset($_POST['woof_settings']['wpml_tax_labels']) AND ! empty($_POST['woof_settings']['wpml_tax_labels']))
+                {
+                    $translations_string = $_POST['woof_settings']['wpml_tax_labels'];
+                    $translations_string = explode(PHP_EOL, $translations_string);
+                    $translations = array();
+                    if (!empty($translations_string) AND is_array($translations_string))
+                    {
+                        foreach ($translations_string as $line)
+                        {
+                            if (empty($line))
+                            {
+                                continue;
+                            }
+
+                            $line = explode(':', $line);
+                            if (!isset($translations[$line[0]]))
+                            {
+                                $translations[$line[0]] = array();
+                            }
+                            $tmp = explode('^', $line[1]);
+                            $translations[$line[0]][$tmp[0]] = $tmp[1];
+                        }
+                    }
+
+                    $_POST['woof_settings']['wpml_tax_labels'] = $translations;
+                }
+            }
+            //+++
+            update_option('woof_settings', $_POST['woof_settings']);
+            $this->settings = $_POST['woof_settings'];
+            $this->init_extensions();
+            wp_cache_flush();
+            //wp_redirect(admin_url('admin.php?page=wc-settings&tab=woof&settings_saved=1'));
+        }
+
+        //+++
+        wp_enqueue_script('media-upload');
+        wp_enqueue_style('thickbox');
+        wp_enqueue_script('thickbox');
+
+        wp_enqueue_script('woof_modernizr', WOOF_LINK . 'js/modernizr.js');
+        wp_enqueue_script('woof', WOOF_LINK . 'js/plugin_options.js', array('jquery', 'jquery-ui-core', 'jquery-ui-sortable'));
+
+
+        $args = array(
+            "woof_settings" => $this->settings,
+            "extensions" => $this->get_ext_directories()
+        );
+        echo $this->render_html(WOOF_PATH . 'views/plugin_options.php', $args);
     }
 
     public function enqueue_scripts_styles()
     {
         //enqueue styles
-        wp_enqueue_style('woof', WOOF_LINK . 'css/front.css');
+        if (isset($this->settings['custom_front_css']) AND ! empty($this->settings['custom_front_css']))
+        {
+            wp_enqueue_style('woof', $this->settings['custom_front_css']);
+        } else
+        {
+            wp_enqueue_style('woof', WOOF_LINK . 'css/front.css');
+        }
+
+        //***
 
         if ($this->is_woof_use_chosen())
         {
             wp_enqueue_style('chosen-drop-down', WOOF_LINK . 'js/chosen/chosen.min.css');
         }
 
-        if ($this->settings['overlay_skin'] != 'default')
+        if (isset($this->settings['overlay_skin']) AND $this->settings['overlay_skin'] != 'default')
         {
             wp_enqueue_style('plainoverlay', WOOF_LINK . 'css/plainoverlay.css');
         }
@@ -112,7 +218,11 @@ final class WOOF
             wp_enqueue_style('malihu-custom-scrollbar', WOOF_LINK . 'js/malihu-custom-scrollbar/jquery.mCustomScrollbar.css');
         }
 
-        $icheck_skin = $this->settings['icheck_skin'];
+        $icheck_skin = 'none';
+        if (isset($this->settings['icheck_skin']))
+        {
+            $icheck_skin = $this->settings['icheck_skin'];
+        }
         if ($icheck_skin != 'none')
         {
             if (!$icheck_skin)
@@ -126,6 +236,16 @@ final class WOOF
                 wp_enqueue_style('icheck-jquery-color', WOOF_LINK . 'js/icheck/skins/' . $icheck_skin[0] . '/' . $icheck_skin[1] . '.css');
             }
         }
+
+        //***
+        //for extensions
+        if (!empty(WOOF_EXT::$includes['css']))
+        {
+            foreach (WOOF_EXT::$includes['css'] as $css_key => $css_link)
+            {
+                wp_enqueue_style($css_key, $css_link);
+            }
+        }
     }
 
     public function init()
@@ -134,7 +254,6 @@ final class WOOF
         {
             return;
         }
-
 
         //***
         $first_init = (int) get_option('woof_first_init', 0);
@@ -150,11 +269,6 @@ final class WOOF
             update_option('woof_use_chosen', 1);
             update_option('woof_checkboxes_slide', 1);
             update_option('woof_use_beauty_scroll', 1);
-            update_option('woof_show_title_search', 1);
-            update_option('woof_show_sku_search', 0);
-            update_option('woof_sku_conditions', 'LIKE');
-            update_option('woof_show_in_stock_only', 0);
-            update_option('woof_show_sales_only', 0);
             update_option('woof_show_price_search', 0);
             update_option('woof_show_price_search_button', 0);
             update_option('woof_hide_red_top_panel', 0);
@@ -181,19 +295,19 @@ final class WOOF
         //+++
         add_filter('widget_text', 'do_shortcode');
         add_filter('parse_query', array($this, "parse_query"), 9999);
-        add_filter('woocommerce_product_query', array($this, "woocommerce_product_query"), 9999);
-        //add_filter('posts_where', array($this, 'woof_post_title_filter'), 9999); //for searching by title
+        //add_filter('woocommerce_product_query', array($this, "woocommerce_product_query"), 9999);
+        add_action('body_class', array($this, 'body_class'), 9999);
         //+++
         add_action('woocommerce_before_shop_loop', array($this, 'woocommerce_before_shop_loop'));
         add_action('woocommerce_after_shop_loop', array($this, 'woocommerce_after_shop_loop'));
         add_shortcode('woof_products', array($this, 'woof_products'));
         add_shortcode('woof_price_filter', array($this, 'woof_price_filter'));
-        add_shortcode('woof_title_filter', array($this, 'woof_title_filter'));
-        add_shortcode('woof_sku_filter', array($this, 'woof_sku_filter'));
+
+        add_shortcode('woof_search_options', array($this, 'woof_search_options'));
         //add_filter('woocommerce_pagination_args', array($this, 'woocommerce_pagination_args'));
         add_action('wp_ajax_woof_cache_count_data_clear', array($this, 'cache_count_data_clear'));
+        add_action('wp_ajax_woof_cache_terms_clear', array($this, 'woof_cache_terms_clear'));
 
-        add_filter('woof_exclude_tax_key', array($this, 'woof_exclude_tax_key'));
         add_filter('sidebars_widgets', array($this, 'sidebars_widgets'));
         //own filters of WOOF
         add_filter('woof_modify_query_args', array($this, 'woof_modify_query_args'), 1);
@@ -207,6 +321,7 @@ final class WOOF
             }
         }
 
+
         //for pagination
         //http://docs.woothemes.com/document/change-number-of-products-displayed-per-page/
         add_filter('loop_shop_per_page', create_function('$cols', "return {$this->settings['per_page']};"), 9999);
@@ -215,6 +330,16 @@ final class WOOF
         add_filter('cron_schedules', array($this, 'cron_schedules'), 10, 1);
         //custom filters
         //add_filter('woof_before_term_name', array($this, 'woof_before_term_name'));
+    }
+
+    public function body_class($classes)
+    {
+        if ($this->is_isset_in_request_data($this->get_swoof_search_slug()))
+        {
+            $classes[] = 'woof_search_is_going';
+        }
+
+        return $classes;
     }
 
     public function widgets_init()
@@ -231,7 +356,16 @@ final class WOOF
 
     public function sidebars_widgets($sidebars_widgets)
     {
-        if (get_option('woof_show_price_search', 0))
+        if (isset($this->settings['by_price']['show']))
+        {
+            //just for compatibility from 2.1.2 to 2.1.3
+            $price_filter = (int) $this->settings['by_price']['show'];
+        } else
+        {
+            $price_filter = (int) get_option('woof_show_price_search', 0);
+        }
+
+        if ($price_filter)
         {
             $sidebars_widgets['sidebar-woof'] = array('woocommerce_price_filter');
         }
@@ -253,29 +387,6 @@ final class WOOF
         return (array) $schedules;
     }
 
-    /*
-      public function price_filter_init()
-      {
-      if (get_option('woof_show_price_search'))
-      {
-      $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
-
-      wp_register_script('wc-jquery-ui-touchpunch', WC()->plugin_url() . '/assets/js/frontend/jquery-ui-touch-punch' . $suffix . '.js', array('jquery-ui-slider'), WC_VERSION, true);
-      wp_register_script('wc-price-slider', WC()->plugin_url() . '/assets/js/frontend/price-slider' . $suffix . '.js', array('jquery-ui-slider', 'wc-jquery-ui-touchpunch'), WC_VERSION, true);
-
-      wp_localize_script('wc-price-slider', 'woocommerce_price_slider_params', array(
-      'currency_symbol' => get_woocommerce_currency_symbol(),
-      'currency_pos' => get_option('woocommerce_currency_pos'),
-      'min_price' => isset($_GET['min_price']) ? esc_attr($_GET['min_price']) : '',
-      'max_price' => isset($_GET['max_price']) ? esc_attr($_GET['max_price']) : ''
-      ));
-
-      global $woocommerce;
-      add_filter('loop_shop_post_in', array($woocommerce->query, 'price_filter'));
-      }
-      }
-     */
-
     /**
      * Show action links on the plugin screen
      */
@@ -290,26 +401,44 @@ final class WOOF
     }
 
     public function get_swoof_search_slug()
-    {
-        $slug = 'swoof';
-
-
-        return $slug;
+    {       
+        return 'swoof';
     }
 
     public function woocommerce_product_query($q)
     {
         //http://docs.woothemes.com/wc-apidocs/class-WC_Query.html
         //wp-content\plugins\woocommerce\includes\class-wc-query.php -> public function product_query( $q )
-        add_filter('posts_where', array($this, 'woof_post_title_filter'), 9999); //for searching by title
         $meta_query = $q->get('meta_query');
-        $q->set('meta_query', $this->assemble_stock_sales_params($meta_query));
-        $q->set('meta_query', $this->assemble_sku_params($meta_query)); //for searching by sku
+
+        //for extensions
+        if (!empty(WOOF_EXT::$includes['html_type_objects']))
+        {
+            foreach (WOOF_EXT::$includes['html_type_objects'] as $obj)
+            {
+                if (method_exists($obj, 'assemble_query_params'))
+                {
+                    $q->set('meta_query', $obj->assemble_query_params($meta_query));
+                }
+            }
+        }
+
+
         return $q;
     }
 
     public function parse_query($wp_query)
     {
+        //on single page works [woof_products] shortcode, so we doesn need parse query there!!!
+        if (!defined('DOING_AJAX'))
+        {
+            if (@is_page() AND @!is_shop())
+            {
+                return $wp_query;
+            }
+        }
+
+        //***
         $_REQUEST['woof_parse_query'] = 1;
 
         if (!defined('DOING_AJAX'))
@@ -327,22 +456,23 @@ final class WOOF
         {
             if ($this->is_isset_in_request_data($this->get_swoof_search_slug()))
             {
-                if (!is_page())
+
+                if (@!$this->settings['disable_swoof_influence'])
                 {
-                    $wp_query->set('post_type', 'product');
-                    if (!$this->is_isset_in_request_data('stock'))
+                    if (!is_page())
                     {
-                        $wp_query->is_page = false;
+                        $wp_query->set('post_type', 'product');                        
+                        $wp_query->is_post_type_archive = true;
                     }
-                    $wp_query->is_post_type_archive = true;
+
+                    $wp_query->is_tax = false;
+                    $wp_query->is_tag = false;
+                    $wp_query->is_home = false;
+                    $wp_query->is_single = false;
+                    $wp_query->is_posts_page = false;
+                    $wp_query->is_search = false; //!!!
                 }
 
-                $wp_query->is_tax = false;
-                $wp_query->is_tag = false;
-                $wp_query->is_home = false;
-                $wp_query->is_single = false;
-                $wp_query->is_posts_page = false;
-                $wp_query->is_search = false; //!!!
                 //+++
                 $meta_query = array();
                 if (isset($wp_query->query_vars['meta_query']))
@@ -351,112 +481,35 @@ final class WOOF
                 }
                 $meta_query['relation'] = 'AND';
                 //+++
-                $assemble_stock_sales_params = !is_page();
-                if (!$assemble_stock_sales_params)
+                //for extensions
+                if (!empty(WOOF_EXT::$includes['html_type_objects']))
                 {
-                    $assemble_stock_sales_params = ($wp_query->query_vars['page_id'] == wc_get_page_id('shop'));
+                    foreach (WOOF_EXT::$includes['html_type_objects'] as $obj)
+                    {
+                        if (method_exists($obj, 'assemble_query_params'))
+                        {
+                            //lock adding meta params for single page while shortcode start to work when searching is going
+                            if (is_page())
+                            {
+                                if (!isset($_REQUEST['woof_products_doing']))
+                                {
+                                    return $wp_query;
+                                }
+                            }
+                            $obj->assemble_query_params($meta_query);
+                        }
+                    }
                 }
 
-                if (!$assemble_stock_sales_params)
-                {
-                    $assemble_stock_sales_params = $wp_query->is_post_type_archive;
-                }
+                //***               
+                $meta_query = $this->listen_catalog_visibility($meta_query, true);
 
-                if ($assemble_stock_sales_params)
-                {
-                    $this->assemble_stock_sales_params($meta_query);
-                    $this->assemble_sku_params($meta_query);
-                }
-                //***
-                //out of stock products
-                //http://stackoverflow.com/questions/24480982/hide-out-of-stock-products-in-woocommerce
-                /*
-                  if (get_option('woof_exclude_out_stock_products', 0))
-                  {
-                  $meta_query[] = array(
-                  'key' => '_stock_status',
-                  'value' => array('instock'),
-                  'compare' => 'IN'
-                  );
-                  }
-                 */
                 //***
                 $wp_query->set('meta_query', $meta_query);
             }
         }
 
         return $wp_query;
-    }
-
-    private function assemble_stock_sales_params(&$meta_query)
-    {
-        //http://stackoverflow.com/questions/20990199/woocommerce-display-only-on-sale-products-in-shop
-        $request = $this->get_request_data();
-        if (isset($request['stock']))
-        {
-            if ($request['stock'] == 'instock')
-            {
-                $meta_query[] = array(
-                    'key' => '_stock_status',
-                    'value' => 'outofstock', //instock,outofstock
-                    'compare' => 'NOT IN'
-                );
-            }
-
-            if ($request['stock'] == 'outofstock')
-            {
-                $meta_query[] = array(
-                    array(
-                        'key' => '_stock_status',
-                        'value' => 'outofstock', //instock,outofstock
-                        'compare' => 'IN'
-                    )
-                );
-            }
-        }
-        //+++
-        if (isset($request['insales']) AND $request['insales'] == 'salesonly')
-        {
-            //http://stackoverflow.com/questions/20990199/woocommerce-display-only-on-sale-products-in-shop
-            $meta_query[] = array(
-                array(
-                    'relation' => 'OR',
-                    array(
-                        'key' => '_sale_price',
-                        'value' => 0,
-                        'compare' => '>',
-                        'type' => 'DECIMAL'
-                    ),
-                    array(
-                        'key' => '_min_variation_sale_price',
-                        'value' => 0,
-                        'compare' => '>',
-                        'type' => 'DECIMAL'
-                    )
-                )
-            );
-        }
-
-
-        return $meta_query;
-    }
-
-    private function assemble_sku_params(&$meta_query)
-    {
-        $request = $this->get_request_data();
-        if (isset($request['woof_sku']))
-        {
-            if (!empty($request['woof_sku']))
-            {
-                $meta_query[] = array(
-                    'key' => '_sku',
-                    'value' => $request['woof_sku'],
-                    'compare' => get_option('woof_sku_conditions', '=')
-                );
-            }
-        }
-
-        return $meta_query;
     }
 
     private function assemble_price_params(&$meta_query)
@@ -478,31 +531,6 @@ final class WOOF
         return $meta_query;
     }
 
-    public function woof_post_title_filter($where = '')
-    {
-
-        global $wp_query;
-        $request = $this->get_request_data();
-        if (defined('DOING_AJAX'))
-        {
-            $conditions = (isset($wp_query->query_vars['post_type']) AND $wp_query->query_vars['post_type'] == 'product') OR isset($_REQUEST['woof_products_doing']);
-        } else
-        {
-            $conditions = isset($_REQUEST['woof_products_doing']);
-        }
-        //***
-        //if ($conditions)
-        {
-            if ($this->is_isset_in_request_data('woof_title'))
-            {
-                $woof_title = strtolower($request['woof_title']);
-                $where .= "AND post_title LIKE '%{$woof_title}%'";
-            }
-        }
-        //***
-        return $where;
-    }
-
     public function woocommerce_settings_tabs_array($tabs)
     {
         $tabs['woof'] = __('Products Filter', 'woocommerce-products-filter');
@@ -511,14 +539,18 @@ final class WOOF
 
     public function admin_head()
     {
-        if (isset($_GET['page']) AND isset($_GET['tab']))
+        if (isset($_GET['tab']) AND $_GET['tab'] == 'woof')
         {
-            if ($_GET['page'] == 'wc-settings' AND $_GET['tab'] == 'woof')
-            {
-                wp_enqueue_script('jquery');
-                wp_enqueue_script('jquery-ui-core');
-                wp_enqueue_script('woof-admin', WOOF_LINK . 'js/admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-sortable'));
-            }
+            ?>
+            <script type="text/javascript">
+                jQuery(window).load(function () {
+                    // Animate loader off screen
+                    if (jQuery(".se-pre-con").length > 0) {
+                        jQuery(".se-pre-con").fadeOut("slow");
+                    }
+                });
+            </script>
+            <?php
         }
     }
 
@@ -526,6 +558,7 @@ final class WOOF
     {
         global $wp_query;
         //***
+        $request_data = $this->get_request_data();
         if (!isset($wp_query->query_vars['taxonomy']) AND ! defined('DOING_AJAX'))
         {
             $this->set_really_current_term();
@@ -534,7 +567,7 @@ final class WOOF
         //***
         ?>
 
-        <?php //if (isset($this->settings['custom_css_code'])):                        ?>
+        <?php //if (isset($this->settings['custom_css_code'])):                                              ?>
         <style type="text/css">
         <?php
         if (isset($this->settings['custom_css_code']))
@@ -574,45 +607,44 @@ final class WOOF
 
 //***
 
-
-
-        if (isset($this->settings['title_submit_image']))
+        if (isset($this->settings['woof_auto_subcats_plus_img']))
         {
-            if (!empty($this->settings['title_submit_image']))
+            if (!empty($this->settings['woof_auto_subcats_plus_img']))
             {
                 ?>
-                    .woof_title_search_container .woof_title_search_go{
-                        background: url(<?php echo $this->settings['title_submit_image'] ?>) !important;
+                    .woof_childs_list_opener span.woof_is_closed{
+                        background: url(<?php echo $this->settings['woof_auto_subcats_plus_img'] ?>) !important;
                     }
                 <?php
             }
         }
 
-
-//***
-//***
-
-
-        if ((int) get_option('woof_autosubmit', 0))
+        if (isset($this->settings['woof_auto_subcats_minus_img']))
         {
-            /*
-              ?>
-              .woof_price_search_container .price_slider_amount button.button{
-              display: none;
-              }
-
-              .woof_price_search_container .price_slider_amount .price_label{
-              text-align: left !important;
-              }
-              <?php
-             *
-             */
+            if (!empty($this->settings['woof_auto_subcats_minus_img']))
+            {
+                ?>
+                    .woof_childs_list_opener span.woof_is_opened{
+                        background: url(<?php echo $this->settings['woof_auto_subcats_minus_img'] ?>) !important;
+                    }
+                <?php
+            }
         }
         ?>
 
 
 
-        <?php if (get_option('woof_show_price_search_button', 0) == 1): ?>
+        <?php
+        if (isset($this->settings['by_price']['show_button']))
+        {
+            //just for compatibility from 2.1.2 to 2.1.3
+            $show_price_search_button = (int) $this->settings['by_price']['show_button'];
+        } else
+        {
+            $show_price_search_button = (int) get_option('woof_show_price_search_button', 0);
+        }
+        if ($show_price_search_button == 1):
+            ?>
 
 
         <?php else: ?>
@@ -640,7 +672,7 @@ final class WOOF
 
 
         </style>
-        <?php //endif;                             ?>
+        <?php //endif;                                                  ?>
 
         <?php if (!current_user_can('create_users')): ?>
             <style type="text/css">
@@ -651,29 +683,54 @@ final class WOOF
         <?php endif; ?>
 
 
-        <?php
-        //svg preloading
-        if (isset($this->settings['overlay_skin'])):
-            ?>
-            <img style="display: none;" src="<?php echo WOOF_LINK ?>img/loading-master/<?php echo $this->settings['overlay_skin'] ?>.svg" alt="preloader" />
-        <?php endif; ?>
+
 
         <script type="text/javascript">
+
+            if (typeof woof_lang_custom == 'undefined') {
+                var woof_lang_custom = {};//!!important
+            }
+
+            //***
 
             var woof_is_mobile = 0;
         <?php if (WOOF_HELPER::is_mobile_device()): ?>
                 woof_is_mobile = 1;
         <?php endif; ?>
 
+            var woof_is_permalink =<?php echo intval((bool) $this->is_permalink_activated()) ?>;
+
+            var woof_shop_page = "";
+        <?php if (!$this->is_permalink_activated()): ?>
+                woof_shop_page = "<?php echo home_url('/?post_type=product'); ?>";
+        <?php endif; ?>
+
+            var woof_really_curr_tax = {};
 
             var woof_show_price_search_button = 0;
-        <?php if (get_option('woof_show_price_search_button', 0) == 1): ?>
+        <?php
+        if (isset($this->settings['by_price']['show_button']))
+        {
+            //just for compatibility from 2.1.2 to 2.1.3
+            $show_price_search_button = (int) $this->settings['by_price']['show_button'];
+        } else
+        {
+            $show_price_search_button = (int) get_option('woof_show_price_search_button', 0);
+        }
+        if ($show_price_search_button == 1):
+            ?>
                 woof_show_price_search_button = 1;
         <?php endif; ?>
 
             var swoof_search_slug = "<?php echo $this->get_swoof_search_slug(); ?>";
 
-        <?php $icheck_skin = $this->settings['icheck_skin']; ?>
+        <?php
+        $icheck_skin = 'none';
+        if (isset($this->settings['icheck_skin']))
+        {
+            $icheck_skin = $this->settings['icheck_skin'];
+        }
+        ?>
 
             var icheck_skin = {};
         <?php if ($icheck_skin != 'none'): ?>
@@ -688,14 +745,20 @@ final class WOOF
 
             var woof_current_page_link = location.protocol + '//' + location.host + location.pathname;
             //***lets remove pagination from woof_current_page_link
-            woof_current_page_link = woof_current_page_link.replace(/\page\/[0-9]/, "");
+            woof_current_page_link = woof_current_page_link.replace(/\page\/[0-9]+/, "");
         <?php
         if (!isset($wp_query->query_vars['taxonomy']))
         {
             $page_id = get_option('woocommerce_shop_page_id');
             if ($page_id > 0)
             {
-                $link = get_permalink($page_id);
+                if (!$this->is_permalink_activated())
+                {
+                    $link = home_url('/?post_type=product');
+                } else
+                {
+                    $link = get_permalink($page_id);
+                }
             }
 
             if (is_string($link) AND ! empty($link))
@@ -711,7 +774,6 @@ final class WOOF
 //like here: http://dev.pluginus.net/product-category/clothing/?swoof=1&product_cat=hoo1
         if (!defined('DOING_AJAX') AND ! is_page())
         {
-            $request_data = $this->get_request_data();
             if (isset($wp_query->query_vars['taxonomy']) AND empty($request_data))
             {
                 $queried_obj = get_queried_object();
@@ -719,6 +781,9 @@ final class WOOF
                 {
                     //$_SESSION['woof_really_current_term'] = $queried_obj;
                     $this->set_really_current_term($queried_obj);
+                    ?>
+                        woof_really_curr_tax = {term_id:<?php echo $queried_obj->term_id ?>, taxonomy: "<?php echo $queried_obj->taxonomy ?>"};
+                    <?php
                 }
             }
         } else
@@ -733,6 +798,7 @@ final class WOOF
         $woof_use_beauty_scroll = (int) get_option('woof_use_beauty_scroll', 0);
         ?>
             var woof_link = '<?php echo WOOF_LINK ?>';
+
             var woof_current_values = '<?php echo json_encode($this->get_request_data()); ?>';
             //+++
             var woof_lang_loading = "<?php _e('Loading ...', 'woocommerce-products-filter') ?>";
@@ -741,25 +807,59 @@ final class WOOF
                 woof_lang_loading = "<?php echo __($this->settings['default_overlay_skin_word'], 'woocommerce-products-filter') ?>";
         <?php endif; ?>
 
-            var woof_lang_orderby = "<?php _e('orderby', 'woocommerce-products-filter') ?>";
-            var woof_lang_title = "<?php _e('Title', 'woocommerce-products-filter') ?>";
-            var woof_lang_insales = "<?php _e('In sales only', 'woocommerce-products-filter') ?>";
-            var woof_lang_instock = "<?php _e('In stock only', 'woocommerce-products-filter') ?>";
-            var woof_lang_perpage = "<?php _e('Per page', 'woocommerce-products-filter') ?>";
-            var woof_lang_sku = "<?php _e('SKU', 'woocommerce-products-filter') ?>";
-            var woof_lang_pricerange = "<?php _e('price range', 'woocommerce-products-filter') ?>";
             var woof_lang_show_products_filter = "<?php _e('show products filter', 'woocommerce-products-filter') ?>";
             var woof_lang_hide_products_filter = "<?php _e('hide products filter', 'woocommerce-products-filter') ?>";
+            var woof_lang_pricerange = "<?php _e('price range', 'woocommerce-products-filter') ?>";
+
+
+            var woof_lang = {
+                'orderby': "<?php _e('orderby', 'woocommerce-products-filter') ?>",
+                'perpage': "<?php _e('Per page', 'woocommerce-products-filter') ?>",
+                'pricerange': "<?php _e('price range', 'woocommerce-products-filter') ?>"
+            };
+
+
+
             var woof_use_beauty_scroll =<?php echo $woof_use_beauty_scroll ?>;
             //+++
             var woof_autosubmit =<?php echo (int) get_option('woof_autosubmit', 0) ?>;
             var woof_ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
             var woof_submit_link = "";
             var woof_is_ajax = 0;
+            var woof_ajax_redraw = 0;
             var woof_ajax_page_num =<?php echo ((get_query_var('page')) ? get_query_var('page') : 1) ?>;
             var woof_ajax_first_done = false;
             var woof_checkboxes_slide_flag = <?php echo(((int) get_option('woof_checkboxes_slide') == 1 ? 'true' : 'false')); ?>;
 
+            //indexes which can be displayed in red buttons panel
+        <?php
+        $taxonomies = $this->get_taxonomies();
+        $taxonomies_keys = array_keys($taxonomies);
+        array_walk($taxonomies_keys, create_function('&$str', '$str = "\"$str\"";'));
+        $taxonomies_keys = implode(',', $taxonomies_keys);
+        $extensions_html_type_indexes = array();
+
+        if (!empty(WOOF_EXT::$includes['html_type_objects']))
+        {
+            foreach (WOOF_EXT::$includes['html_type_objects'] as $obj)
+            {
+                if ($obj->index !== NULL)
+                {
+                    $extensions_html_type_indexes[] = $obj->index;
+                }
+            }
+        }
+        array_walk($extensions_html_type_indexes, create_function('&$str', '$str = "\"$str\"";'));
+        $extensions_html_type_indexes = implode(',', $extensions_html_type_indexes);
+        ?>
+            var woof_accept_array = ["min_price", "orderby", "perpage", <?php echo $extensions_html_type_indexes ?>,<?php echo $taxonomies_keys ?>];
+
+        <?php if (isset($request_data['really_curr_tax'])): ?>
+            <?php
+            $tmp = explode('-', $request_data['really_curr_tax']);
+            ?>
+                woof_really_curr_tax = {term_id:<?php echo $tmp[0] ?>, taxonomy: "<?php echo $tmp[1] ?>"};
+        <?php endif; ?>
 
 
             var woof_overlay_skin = "<?php echo(isset($this->settings['overlay_skin']) ? $this->settings['overlay_skin'] : 'default') ?>";
@@ -770,6 +870,15 @@ final class WOOF
                 }
 
             });
+            //***
+            //for extensions
+
+            var woof_ext_init_functions = null;
+        <?php if (!empty(WOOF_EXT::$includes['js_init_functions'])) : ?>
+                woof_ext_init_functions = '<?php echo json_encode(WOOF_EXT::$includes['js_init_functions']); ?>';
+        <?php endif; ?>
+
+
             //***
             function woof_js_after_ajax_done() {
         <?php echo(isset($this->settings['js_after_ajax_done']) ? stripcslashes($this->settings['js_after_ajax_done']) : ''); ?>
@@ -788,22 +897,32 @@ final class WOOF
           }
          */
         //***
+        //wp_enqueue_script('md5', WOOF_LINK . 'js/jquery.md5.js', array('jquery'));
+        //wp_enqueue_script('masonry', WOOF_LINK . 'js/jquery.masonry.min.js', array('jquery'));
         wp_enqueue_script('woof_front', WOOF_LINK . 'js/front.js', array('jquery'));
         wp_enqueue_script('woof_radio_html_items', WOOF_LINK . 'js/html_types/radio.js', array('jquery'));
         wp_enqueue_script('woof_checkbox_html_items', WOOF_LINK . 'js/html_types/checkbox.js', array('jquery'));
-        wp_enqueue_script('woof_color_html_items', WOOF_LINK . 'js/html_types/color.js', array('jquery'));
         wp_enqueue_script('woof_select_html_items', WOOF_LINK . 'js/html_types/select.js', array('jquery'));
         wp_enqueue_script('woof_mselect_html_items', WOOF_LINK . 'js/html_types/mselect.js', array('jquery'));
-        //+++
-        wp_enqueue_script('woof_title_html_items', WOOF_LINK . 'js/html_types/title.js', array('jquery'));
-        wp_enqueue_script('woof_sku_html_items', WOOF_LINK . 'js/html_types/sku.js', array('jquery'));
+
+        //for extensions
+        if (!empty(WOOF_EXT::$includes['js']))
+        {
+            foreach (WOOF_EXT::$includes['js'] as $js_key => $js_link)
+            {
+                wp_enqueue_script($js_key, $js_link, array('jquery'));
+            }
+        }
+
+
+
         //+++
         if ($this->is_woof_use_chosen())
         {
             wp_enqueue_script('chosen-drop-down', WOOF_LINK . 'js/chosen/chosen.jquery.min.js', array('jquery'));
         }
 
-        if ($this->settings['overlay_skin'] != 'default')
+        if (isset($this->settings['overlay_skin']) AND $this->settings['overlay_skin'] != 'default')
         {
             wp_enqueue_script('plainoverlay', WOOF_LINK . 'js/plainoverlay/jquery.plainoverlay.min.js', array('jquery'));
         }
@@ -815,8 +934,16 @@ final class WOOF
             wp_enqueue_script('malihu-custom-scrollbar-concat', WOOF_LINK . 'js/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js', array('jquery'));
         }
 
+        if (isset($this->settings['by_price']['show']))
+        {
+            //just for compatibility from 2.1.2 to 2.1.3
+            $price_filter = (int) $this->settings['by_price']['show'];
+        } else
+        {
+            $price_filter = (int) get_option('woof_show_price_search', 0);
+        }
 
-        if (get_option('woof_show_price_search', 0) == 1)
+        if ($price_filter == 1)
         {
             wp_enqueue_script('jquery-ui-core', array('jquery'));
             wp_enqueue_script('jquery-ui-slider', array('jquery-ui-core'));
@@ -827,61 +954,12 @@ final class WOOF
 
     public function wp_footer()
     {
-
-    }
-
-    public function print_plugin_options()
-    {
-        wp_enqueue_script('jquery');
-        wp_enqueue_script('jquery-ui-core');
-        wp_enqueue_script('jquery-ui-dialog');
-        wp_enqueue_style('wp-color-picker');
-        wp_enqueue_script('wp-color-picker');
-        if (isset($_POST['woof_settings']))
+        if (isset($this->settings['overlay_skin']) AND ( $this->settings['overlay_skin'] != 'default' AND $this->settings['overlay_skin'] != 'plainoverlay'))
         {
-            WC_Admin_Settings::save_fields($this->get_options());
-            //+++
-            if (class_exists('SitePress'))
-            {
-                $lang = ICL_LANGUAGE_CODE;
-                if (isset($_POST['woof_settings']['wpml_tax_labels']) AND ! empty($_POST['woof_settings']['wpml_tax_labels']))
-                {
-                    $translations_string = $_POST['woof_settings']['wpml_tax_labels'];
-                    $translations_string = explode(PHP_EOL, $translations_string);
-                    $translations = array();
-                    if (!empty($translations_string) AND is_array($translations_string))
-                    {
-                        foreach ($translations_string as $line)
-                        {
-                            if (empty($line))
-                            {
-                                continue;
-                            }
-
-                            $line = explode(':', $line);
-                            if (!isset($translations[$line[0]]))
-                            {
-                                $translations[$line[0]] = array();
-                            }
-                            $tmp = explode('^', $line[1]);
-                            $translations[$line[0]][$tmp[0]] = $tmp[1];
-                        }
-                    }
-
-                    $_POST['woof_settings']['wpml_tax_labels'] = $translations;
-                }
-            }
-            //+++
-            update_option('woof_settings', $_POST['woof_settings']);
-            $this->init_settings();
+            ?>
+            <img style="display: none;" src="<?php echo WOOF_LINK ?>img/loading-master/<?php echo $this->settings['overlay_skin'] ?>.svg" alt="preloader" />
+            <?php
         }
-        //+++
-        wp_enqueue_script('jquery-ui-tabs');
-        wp_enqueue_script('woof', WOOF_LINK . 'js/plugin_options.js', array('jquery', 'jquery-ui-core', 'jquery-ui-sortable'));
-        wp_enqueue_style('woof', WOOF_LINK . 'css/plugin_options.css');
-
-        $args = array("woof_settings" => get_option('woof_settings', array()));
-        echo $this->render_html(WOOF_PATH . 'views/plugin_options.php', $args);
     }
 
     private function init_settings()
@@ -891,8 +969,6 @@ final class WOOF
         {
             $this->settings['per_page'] = 12;
         }
-
-        $this->settings['hide_terms_count_txt'] = 0;
     }
 
     private function get_taxonomies()
@@ -970,13 +1046,14 @@ final class WOOF
             ),
             array(
                 'name' => __('Hide empty terms', 'woocommerce-products-filter'),
-                'desc' => __('Hide empty terms in "Dynamic recount" mode', 'woocommerce-products-filter'),
+                'desc' => __('Hide empty terms in "Dynamic recount" mode. Premium only!', 'woocommerce-products-filter'),
                 'id' => 'woof_hide_dynamic_empty_pos',
                 'type' => 'select',
                 'class' => 'chosen_select',
                 'css' => 'min-width:300px;',
                 'options' => array(
-                    0 => __('No - Premium only', 'woocommerce-products-filter')
+                    0 => __('No - premium only', 'woocommerce-products-filter'),
+                    
                 ),
                 'desc_tip' => true
             ),
@@ -1033,98 +1110,8 @@ final class WOOF
                 'desc_tip' => true
             ),
             array(
-                'name' => __('Show "Search by title" textinput', 'woocommerce-products-filter'),
-                'desc' => __('Show textinput for searching by products title', 'woocommerce-products-filter'),
-                'id' => 'woof_show_title_search',
-                'type' => 'select',
-                'class' => 'chosen_select',
-                'css' => 'min-width:300px;',
-                'options' => array(
-                    0 => __('No', 'woocommerce-products-filter'),
-                    1 => __('Yes', 'woocommerce-products-filter')
-                ),
-                'desc_tip' => true
-            ),
-            array(
-                'name' => __('Show "Search by SKU" textinput', 'woocommerce-products-filter'),
-                'desc' => __('Show textinput for searching by products sku', 'woocommerce-products-filter'),
-                'id' => 'woof_show_sku_search',
-                'type' => 'select',
-                'class' => 'chosen_select',
-                'css' => 'min-width:300px;',
-                'options' => array(
-                    0 => __('No - Premium only', 'woocommerce-products-filter'),
-                ),
-                'desc_tip' => true
-            ),
-            array(
-                'name' => __('Conditions logic of "Search by SKU"', 'woocommerce-products-filter'),
-                'desc' => __('LIKE or Equally', 'woocommerce-products-filter'),
-                'id' => 'woof_sku_conditions',
-                'type' => 'select',
-                'class' => 'chosen_select',
-                'css' => 'min-width:300px;',
-                'options' => array(
-                    '=' => __('No - Premium only', 'woocommerce-products-filter'),
-                ),
-                'desc_tip' => true
-            ),
-            array(
-                'name' => __('Show "In stock only checkbox"', 'woocommerce-products-filter'),
-                'desc' => __('Show "In stock only checkbox" on the front', 'woocommerce-products-filter'),
-                'id' => 'woof_show_in_stock_only',
-                'type' => 'select',
-                'class' => 'chosen_select',
-                'css' => 'min-width:300px;',
-                'options' => array(
-                    0 => __('No', 'woocommerce-products-filter'),
-                    1 => __('Yes', 'woocommerce-products-filter')
-                ),
-                'desc_tip' => true
-            ),
-            array(
-                'name' => __('Show "In sales only checkbox"', 'woocommerce-products-filter'),
-                'desc' => __('Show "In sales only checkbox" on the front', 'woocommerce-products-filter'),
-                'id' => 'woof_show_sales_only',
-                'type' => 'select',
-                'class' => 'chosen_select',
-                'css' => 'min-width:300px;',
-                'options' => array(
-                    0 => __('No', 'woocommerce-products-filter'),
-                    1 => __('Yes', 'woocommerce-products-filter')
-                ),
-                'desc_tip' => true
-            ),
-            array(
-                'name' => __('Show "Filter by price"', 'woocommerce-products-filter'),
-                'desc' => __('Show woocommerce filter by price inside woof search form', 'woocommerce-products-filter'),
-                'id' => 'woof_show_price_search',
-                'type' => 'select',
-                'class' => 'chosen_select',
-                'css' => 'min-width:300px;',
-                'options' => array(
-                    0 => __('No', 'woocommerce-products-filter'),
-                    1 => __('As range-slider', 'woocommerce-products-filter'),
-                    2 => __('As drop-down - Premium only', 'woocommerce-products-filter'),
-                ),
-                'desc_tip' => true
-            ),
-            array(
-                'name' => __('Show button for "Filter by price"', 'woocommerce-products-filter'),
-                'desc' => __('Show button for woocommerce filter by price inside woof search form', 'woocommerce-products-filter'),
-                'id' => 'woof_show_price_search_button',
-                'type' => 'select',
-                'class' => 'chosen_select',
-                'css' => 'min-width:300px;',
-                'options' => array(
-                    0 => __('No', 'woocommerce-products-filter'),
-                    1 => __('Yes', 'woocommerce-products-filter')
-                ),
-                'desc_tip' => true
-            ),
-            array(
                 'name' => __('Hide woof top panel buttons', 'woocommerce-products-filter'),
-                'desc' => __('Red buttons on the top of the widget or shop when searching done', 'woocommerce-products-filter'),
+                'desc' => __('Red buttons on the top of the shop page when searching done', 'woocommerce-products-filter'),
                 'id' => 'woof_hide_red_top_panel',
                 'type' => 'select',
                 'class' => 'chosen_select',
@@ -1137,7 +1124,7 @@ final class WOOF
             ),
             array(
                 'name' => __('Filter button text', 'woocommerce-products-filter'),
-                'desc' => __('Filter button text in the search form', 'woocommerce-products-filter'),
+                'desc' => __('Filter button text in the search form. Premium only!', 'woocommerce-products-filter'),
                 'id' => 'woof_filter_btn_txt',
                 'type' => 'text',
                 'class' => 'text',
@@ -1146,7 +1133,7 @@ final class WOOF
             ),
             array(
                 'name' => __('Reset button text', 'woocommerce-products-filter'),
-                'desc' => __('Reset button text in the search form. Write "none" to hide this button on front.', 'woocommerce-products-filter'),
+                'desc' => __('Reset button text in the search form. Write "none" to hide this button on front. Premium only!', 'woocommerce-products-filter'),
                 'id' => 'woof_reset_btn_txt',
                 'type' => 'text',
                 'class' => 'text',
@@ -1160,6 +1147,7 @@ final class WOOF
     }
 
     //for dynamic count
+    //$type - 0,1,2
     public function dynamic_count($curr_term, $type, $additional_taxes = '')
     {
         //global $wp_query;
@@ -1241,11 +1229,24 @@ final class WOOF
         //***
 
         $terms_to_query = array();
+
+        $default_types = array('radio', 'select', 'price2', 'checkbox', 'mselect');
+        //for extensions
+        if (!in_array($type, $default_types))
+        {
+            if (isset(WOOF_EXT::$includes['taxonomy_type_objects'][$type]))
+            {
+                $obj = WOOF_EXT::$includes['taxonomy_type_objects'][$type];
+                $type = $obj->html_type_dynamic_recount_behavior;
+            }
+        }
+        //***
+        //price2 -> 0 (default)
+        //radio, select -> 1
+        //checkbox, mselect -> 2
         switch ($type)
         {
-            case 'radio':
-            case 'select':
-
+            case 1:
 
                 if (isset($in_query_terms[$curr_term['taxonomy']]))
                 {
@@ -1258,14 +1259,7 @@ final class WOOF
 
                 break;
 
-            case 'price2':
-                //for drop-down price
-                //leave it empty
-                break;
-
-            case 'checkbox':
-            case 'color':
-            case 'mselect':
+            case 2:
 
                 if (isset($in_query_terms[$curr_term['taxonomy']]))
                 {
@@ -1276,6 +1270,9 @@ final class WOOF
                 }
 
 
+                break;
+            default:
+                //leave it empty
                 break;
         }
 
@@ -1369,92 +1366,52 @@ final class WOOF
             $args['lang'] = ICL_LANGUAGE_CODE;
         }
 
-        //for dynamic recount cache working with title search
-        if ($this->is_isset_in_request_data('woof_title'))
-        {
-            $args['woof_title'] = strtolower($request['woof_title']);
-        }
-
+        /*
+          //for dynamic recount cache working with title search
+          if ($this->is_isset_in_request_data('woof_text'))
+          {
+          $args['woof_text'] = strtolower($request['woof_text']);
+          }
+         */
         //***
         $atts = array();
         if (!isset($args['meta_query']))
         {
             $args['meta_query'] = array();
         }
-        $this->assemble_stock_sales_params($args['meta_query']);
-        $this->assemble_sku_params($args['meta_query']);
+        //for extensions
+        if (!empty(WOOF_EXT::$includes['html_type_objects']))
+        {
+            foreach (WOOF_EXT::$includes['html_type_objects'] as $obj)
+            {
+                if (method_exists($obj, 'assemble_query_params'))
+                {
+                    $obj->assemble_query_params($args['meta_query']);
+                }
+            }
+        }
         $args = apply_filters('woocommerce_shortcode_products_query', $args, $atts);
         //***
         $_REQUEST['woof_dyn_recount_going'] = 1;
         remove_filter('posts_clauses', array(WC()->query, 'order_by_popularity_post_clauses'));
         remove_filter('posts_clauses', array(WC()->query, 'order_by_rating_post_clauses'));
 
-        //out of stock products - remove from dyn recount
-        //wp-admin/admin.php?page=wc-settings&tab=products&section=inventory
-        if (get_option('woocommerce_hide_out_of_stock_items', 'no') == 'yes')
+
+        if ($this->get_option('listen_catalog_visibility'))
         {
             $args['meta_query'][] = array(
-                'key' => '_stock_status',
-                'value' => array('instock'),
+                'key' => '_visibility',
+                'value' => array('search', 'visible'),
                 'compare' => 'IN'
             );
         }
 
+
         //***
-        //$post_count = WOOF_HELPER::get_post_count($args);
-
-        static $woof_post_title_filter_added = 0; //just a flag to not add this filter a lot of times
-        if ($woof_post_title_filter_added == 0)
-        {
-            add_filter('posts_where', array($this, 'woof_post_title_filter'), 9999);
-            $woof_post_title_filter_added++;
-        }
-        /*
-          if ($type == 'price2')
-          {
-          echo '<pre>';
-          print_r($args);
-          echo '</pre>';
-          }
-         */
         $query = new WP_QueryWoofCounter($args);
-
 
         unset($_REQUEST['woof_dyn_recount_going']);
         return $query->found_posts;
-    }
-
-    //need for checkboxes and multi-selects dynamic recount
-    private function _util_dynamic_count_add_term(&$taxonomies, $curr_term_taxonomy, $curr_term_slug)
-    {
-        $is_tax_inside_index = -1;
-        if (!empty($taxonomies))
-        {
-            foreach ($taxonomies as $k => $t)
-            {
-                if ($t['taxonomy'] == $curr_term_taxonomy)
-                {
-                    $is_tax_inside_index = $k;
-                }
-            }
-        }
-
-        if ($is_tax_inside_index === -1)
-        {
-            $taxonomies[] = array(
-                'taxonomy' => $curr_term_taxonomy,
-                'terms' => array($curr_term_slug),
-                'field' => 'slug',
-                'operator' => 'IN',
-                'include_children' => 1
-            );
-        } else
-        {
-            $terms = $taxonomies[$is_tax_inside_index]['terms'];
-            $terms[] = $curr_term_slug;
-            $terms = array_unique($terms);
-            $taxonomies[$is_tax_inside_index]['terms'] = $terms;
-        }
     }
 
     public function is_woof_use_chosen()
@@ -1475,16 +1432,27 @@ final class WOOF
                 $shortcode_hide = intval($this->settings['woof_auto_hide_button']);
             }
 
-            $price_filter = (int) get_option('woof_show_price_search', 0);
+            if (isset($this->settings['by_price']['show']))
+            {
+                //just for compatibility from 2.1.2 to 2.1.3
+                $price_filter = (int) $this->settings['by_price']['show'];
+            } else
+            {
+                $price_filter = (int) get_option('woof_show_price_search', 0);
+            }
+
 
             echo do_shortcode('[woof sid="auto_shortcode" autohide=' . $shortcode_hide . ' price_filter=' . $price_filter . ']');
         }
         ?>
 
 
-        <?php if (get_option('woof_hide_red_top_panel', 0) == 0): ?>
-            <div class="woof_products_top_panel"></div>
-        <?php endif; ?>
+        <?php
+        if (get_option('woof_hide_red_top_panel', 0) == 0)
+        {
+            echo do_shortcode('[woof_search_options]');
+        }
+        ?>
 
         <?php
         //for ajax output
@@ -1515,11 +1483,7 @@ final class WOOF
 
     public function get_request_data()
     {
-        if (isset($_GET['s']))
-        {
-            $_GET['woof_title'] = $_GET['s'];
-        }
-        return $_GET;
+        return apply_filters('woof_get_request_data', $_GET);
     }
 
     public function is_isset_in_request_data($key)
@@ -1654,6 +1618,46 @@ final class WOOF
         return $res;
     }
 
+    private function listen_catalog_visibility($meta_query, $is_search = false)
+    {
+        if ($this->get_option('listen_catalog_visibility'))
+        {
+            //if search is going
+            if ($this->is_isset_in_request_data($this->get_swoof_search_slug()))
+            {
+                if (!empty($meta_query))
+                {
+                    foreach ($meta_query as $key => $value)
+                    {
+                        if (isset($value['key']))
+                        {
+                            if ($value['key'] == '_visibility')
+                            {
+                                unset($meta_query[$key]);
+                                $meta_query = array_values($meta_query);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if ($is_search)
+                {
+                    global $wp_query;
+                    $wp_query->is_search = true;
+                }
+
+                $meta_query[] = array(
+                    'key' => '_visibility',
+                    'value' => array('search', 'visible'),
+                    'compare' => 'IN'
+                );
+            }
+        }
+
+        return $meta_query;
+    }
+
     //works only in shortcode [woof_products]
     private function get_meta_query($args = array())
     {
@@ -1662,9 +1666,19 @@ final class WOOF
         $meta_query = array_merge(array('relation' => 'AND'), $meta_query);
         //+++
         $this->assemble_price_params($meta_query);
-        $this->assemble_stock_sales_params($meta_query);
-        //for sku searching in [woof_products] shortcode
-        $this->assemble_sku_params($meta_query);
+        //for extensions
+        if (!empty(WOOF_EXT::$includes['html_type_objects']))
+        {
+            foreach (WOOF_EXT::$includes['html_type_objects'] as $obj)
+            {
+                if (method_exists($obj, 'assemble_query_params'))
+                {
+                    $obj->assemble_query_params($meta_query);
+                }
+            }
+        }
+
+        $meta_query = $this->listen_catalog_visibility($meta_query);
 
         return $meta_query;
     }
@@ -1674,7 +1688,8 @@ final class WOOF
     public function woof_products($atts)
     {
         $_REQUEST['woof_products_doing'] = 1;
-        add_filter('posts_where', array($this, 'woof_post_title_filter'), 9999);
+        //add_filter('posts_where', array($this, 'woof_post_text_filter'), 9999);
+        //add_filter('posts_where', array($this, 'woof_post_author_filter'), 9999);
         $shortcode_txt = 'woof_products';
         if (!empty($atts))
         {
@@ -1687,18 +1702,30 @@ final class WOOF
         $data = $this->get_request_data();
         $catalog_orderby = $this->get_catalog_orderby(isset($data['orderby']) ? $data['orderby'] : '');
 
-
+        //https://gist.github.com/mikejolley/1622323
         extract(shortcode_atts(array(
             'columns' => apply_filters('loop_shop_columns', 4),
-            'orderby' => $catalog_orderby['orderby'],
-            'order' => $catalog_orderby['order'],
+            'orderby' => 'no',
+            'order' => 'no',
             'page' => 1,
             'per_page' => 0,
             'is_ajax' => 0,
             'taxonomies' => '',
             'sid' => '',
-            'dp' => 0
+            'dp' => 0,
+            'behavior' => ''//recent
                         ), $atts));
+
+
+        $order_by_defined_in_atts = false;
+        if ($orderby == 'no')
+        {
+            $orderby = $catalog_orderby['orderby'];
+            $order = $catalog_orderby['order'];
+        } else
+        {
+            $order_by_defined_in_atts = true;
+        }
 
         //***
         //this needs just for AJAX mode for shortcode [woof] in woof_draw_products()
@@ -1706,9 +1733,8 @@ final class WOOF
 
         //+++
         $args = array(
-            'post_type' => 'product',
+            'post_type' => array('product'/* ,'product_variation' */),
             'post_status' => 'publish',
-            //'posts_per_page' => $per_page,
             'orderby' => $orderby,
             'order' => $order,
             'meta_query' => $this->get_meta_query(),
@@ -1748,21 +1774,23 @@ final class WOOF
         }
 
         //***
-
-        if (!empty($catalog_orderby['meta_key']))
+        if (!$order_by_defined_in_atts)
         {
-            $args['meta_key'] = $catalog_orderby['meta_key'];
-            $args['orderby'] = $catalog_orderby['orderby'];
-            if (!empty($catalog_orderby['order']))
+            if (!empty($catalog_orderby['meta_key']))
             {
-                $args['order'] = $catalog_orderby['order'];
-            }
-        } else
-        {
-            $args['orderby'] = $catalog_orderby['orderby'];
-            if (!empty($catalog_orderby['order']))
+                $args['meta_key'] = $catalog_orderby['meta_key'];
+                $args['orderby'] = $catalog_orderby['orderby'];
+                if (!empty($catalog_orderby['order']))
+                {
+                    $args['order'] = $catalog_orderby['order'];
+                }
+            } else
             {
-                $args['order'] = $catalog_orderby['order'];
+                $args['orderby'] = $catalog_orderby['orderby'];
+                if (!empty($catalog_orderby['order']))
+                {
+                    $args['order'] = $catalog_orderby['order'];
+                }
             }
         }
         //print_r($args);
@@ -1786,11 +1814,34 @@ final class WOOF
         }
         //+++
 
+        if (!empty($behavior))
+        {
+            switch ($behavior)
+            {
+                case 'recent':
+                    $args['orderby'] = 'date';
+                    $args['order'] = 'desc';
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        //***
         $wr = apply_filters('woocommerce_shortcode_products_query', $args, $atts);
         global $products, $wp_query;
-
+        $wr = apply_filters('woof_products_query', $wr);
         //print_r($wr);
         $_REQUEST['woof_wp_query'] = $wp_query = $products = new WP_Query($wr);
+
+        if ($this->get_option('listen_catalog_visibility')
+                AND $this->is_isset_in_request_data($this->get_swoof_search_slug()))
+        {
+            //for wp-content\plugins\woocommerce\includes\class-wc-query.php -> $in = array( 'visible', 'search' )
+            $wp_query->is_search = true;
+        }
+
+        $wp_query->is_post_type_archive = true; //we need it to display top panel with counter and order drop-down
         $_REQUEST['woof_wp_query_args'] = $wr;
         //***
         ob_start();
@@ -1800,9 +1851,9 @@ final class WOOF
         ?>
 
         <?php if ($is_ajax == 1): ?>
-            <?php //if (!get_option('woof_try_ajax')):                                                                                   ?>
+                <?php //if (!get_option('woof_try_ajax')):                                                                                                            ?>
             <div id="woof_results_by_ajax" class="woof_results_by_ajax_shortcode" data-shortcode="<?php echo $shortcode_txt ?>">
-            <?php //endif;                            ?>
+                <?php //endif;                                   ?>
             <?php endif; ?>
             <?php
             if ($products->have_posts()) :
@@ -1812,59 +1863,59 @@ final class WOOF
 
                 <div class="woocommerce columns-<?php echo $columns ?> woocommerce-page woof_shortcode_output">
 
-            <?php
-            if ($dp == 0)
-            {//Display Product for WooCommerce compatibility
-                do_action('woocommerce_before_shop_loop');
-            }
-            ?>
+                    <?php
+                    $show_loop_filters = true; //for attribute behavior of the shortcode
+                    if (!empty($behavior))
+                    {
+                        if ($behavior == 'recent')
+                        {
+                            $show_loop_filters = false;
+                        }
+                    }
+
+                    if ($dp == 0)
+                    {//Display Product for WooCommerce compatibility
+                        if ($show_loop_filters)
+                        {
+                            do_action('woocommerce_before_shop_loop');
+                        }
+                    }
+                    ?>
 
 
-            <?php
-            if (function_exists('woocommerce_product_loop_start'))
-            {
-                woocommerce_product_loop_start();
-            }
-            ?>
+                    <?php
+                    if (function_exists('woocommerce_product_loop_start'))
+                    {
+                        woocommerce_product_loop_start();
+                    }
+                    ?>
 
                     <?php
                     global $woocommerce_loop;
                     $woocommerce_loop['columns'] = $columns;
                     $woocommerce_loop['loop'] = 0;
                     //+++
-                    wc_get_template('loop/loop-start.php');
+                    //wc_get_template('loop/loop-start.php');
+                    ?>
 
-                    //WOOCS compatibility
-                    global $WOOCS;
-                    if (!method_exists($WOOCS, 'woocs_convert_currency'))
+
+
+                    <?php
+                    //products output
+                    if ($dp == 0)
+                    {//Display Product for WooCommerce compatibility
+                        while ($products->have_posts()) : $products->the_post();
+                            wc_get_template_part('content', 'product');
+                        endwhile; // end of the loop.
+                    } else
                     {
-                        if (class_exists('WOOCS') AND defined('DOING_AJAX'))
-                        {
-                            //IT IS OBSOLETE AND NOT RIGHT ALREADY FROM X.0.9 VERSIONS
-                            //add_filter('raw_woocommerce_price', array($this, 'raw_woocommerce_price'), 1001);
-                            //add_filter('woocommerce_currency_symbol', array($this, 'woocommerce_currency_symbol'), 1001);
-                        }
+                        echo do_shortcode('[displayProduct id="' . $dp . '"]');
                     }
                     ?>
 
 
 
-            <?php
-            //products output
-            if ($dp == 0)
-            {//Display Product for WooCommerce compatibility
-                while ($products->have_posts()) : $products->the_post();
-                    wc_get_template_part('content', 'product');
-                endwhile; // end of the loop.
-            } else
-            {
-                echo do_shortcode('[displayProduct id="' . $dp . '"]');
-            }
-            ?>
-
-
-
-            <?php wc_get_template('loop/loop-end.php'); ?>
+                    <?php //wc_get_template('loop/loop-end.php');   ?>
 
                     <?php
                     if (function_exists('woocommerce_product_loop_end'))
@@ -1873,57 +1924,62 @@ final class WOOF
                     }
                     ?>
 
-                    <?php do_action('woocommerce_after_shop_loop'); ?>
+                    <?php
+                    if ($show_loop_filters)
+                    {
+                        do_action('woocommerce_after_shop_loop');
+                    }
+                    ?>
 
                 </div>
 
 
-            <?php
-        else:
-            if ($is_ajax == 1)
-            {
-                //if (!get_option('woof_try_ajax'))
+                <?php
+            else:
+                if ($is_ajax == 1)
                 {
-                    ?>
+                    //if (!get_option('woof_try_ajax'))
+                    {
+                        ?>
                         <div id="woof_results_by_ajax" class="woof_results_by_ajax_shortcode" data-shortcode="<?php echo $shortcode_txt ?>">
-                        <?php
+                            <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
                     <div class="woocommerce woocommerce-page woof_shortcode_output">
 
-            <?php
-            if (!$is_ajax)
-            {
-                wc_get_template('loop/no-products-found.php');
-            } else
-            {
-                ?>
-                            <div id="woof_results_by_ajax" class="woof_results_by_ajax_shortcode" data-shortcode="<?php echo $shortcode_txt ?>">
-                            <?php
+                        <?php
+                        if (!$is_ajax)
+                        {
                             wc_get_template('loop/no-products-found.php');
+                        } else
+                        {
                             ?>
-                            </div>
+                            <div id="woof_results_by_ajax" class="woof_results_by_ajax_shortcode" data-shortcode="<?php echo $shortcode_txt ?>">
                                 <?php
-                            }
-                            ?>
+                                wc_get_template('loop/no-products-found.php');
+                                ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
 
                     </div>
-            <?php
-            if ($is_ajax == 1)
-            {
-                if (!get_option('woof_try_ajax', 0))
-                {
-                    echo '</div>';
-                }
-            }
-        endif;
-        ?>
+                    <?php
+                    if ($is_ajax == 1)
+                    {
+                        if (!get_option('woof_try_ajax', 0))
+                        {
+                            echo '</div>';
+                        }
+                    }
+                endif;
+                ?>
 
                 <?php if ($is_ajax == 1): ?>
-                    <?php if (!get_option('woof_try_ajax', 0)): ?>
+                <?php if (!get_option('woof_try_ajax', 0)): ?>
                     </div>
-                    <?php endif; ?>
+                <?php endif; ?>
             <?php endif; ?>
             <?php
             wp_reset_postdata();
@@ -1932,30 +1988,6 @@ final class WOOF
             unset($_REQUEST['woof_products_doing']);
 
             return ob_get_clean();
-        }
-
-        public function raw_woocommerce_price($price)
-        {
-            if (class_exists('WOOCS'))
-            {
-                global $WOOCS;
-                $currencies = $WOOCS->get_currencies();
-                return $price * $currencies[$WOOCS->current_currency]['rate'];
-            }
-
-            return $price;
-        }
-
-        public function woocommerce_currency_symbol($currency)
-        {
-            if (class_exists('WOOCS'))
-            {
-                global $WOOCS;
-                $currencies = $WOOCS->get_currencies();
-                return $currencies[$WOOCS->current_currency]['symbol'];
-            }
-
-            return $currency;
         }
 
         //for shortcode woof_products
@@ -1975,18 +2007,21 @@ final class WOOF
         {
             $link = parse_url($_REQUEST['link'], PHP_URL_QUERY);
             parse_str($link, $_GET); //$_GET data init
-            //add_filter('posts_where', array($this, 'woof_post_title_filter'), 9999);
+            //add_filter('posts_where', array($this, 'woof_post_text_filter'), 9999);
             $products = do_shortcode("[" . $_REQUEST['shortcode'] . " page=" . $_REQUEST['page'] . "]");
             //+++
             $form = '';
             if (isset($_REQUEST['woof_shortcode']))//if search form on the page exists
             {
+                //for data-shortcode in woof.php in ajax mode
+                $_REQUEST['woof_shortcode_txt'] = $_REQUEST['woof_shortcode'];
+                //***
                 if (empty($_REQUEST['woof_additional_taxonomies_string']))
                 {
-                    $form = do_shortcode("[" . $_REQUEST['woof_shortcode'] . "]");
+                    $form = do_shortcode("[" . stripslashes($_REQUEST['woof_shortcode']) . "]");
                 } else
                 {
-                    $form = do_shortcode("[" . $_REQUEST['woof_shortcode'] . " taxonomies={$_REQUEST['woof_additional_taxonomies_string']}]");
+                    $form = do_shortcode("[" . stripslashes($_REQUEST['woof_shortcode']) . " taxonomies={$_REQUEST['woof_additional_taxonomies_string']}]");
                 }
             }
             wp_die(json_encode(compact('products', 'form')));
@@ -2008,8 +2043,9 @@ final class WOOF
 
             //+++
             $taxonomies = $this->get_taxonomies();
-            $allow_taxonomies = (array) $this->settings['tax'];
+            $allow_taxonomies = (array) (isset($this->settings['tax']) ? $this->settings['tax'] : array());
             $args['taxonomies'] = array();
+            $hide_empty = false;
             if (!empty($taxonomies))
             {
                 foreach ($taxonomies as $tax_key => $tax)
@@ -2021,8 +2057,38 @@ final class WOOF
                     //+++
                     $args['woof_settings'] = get_option('woof_settings', array());
                     $args['taxonomies_info'][$tax_key] = $tax;
-                    $hide_empty = false;
                     $args['taxonomies'][$tax_key] = WOOF_HELPER::get_terms($tax_key, $hide_empty);
+
+                    //show only subcategories if is_really_current_term_exists
+                    if ($this->is_really_current_term_exists())
+                    {
+                        $t = $this->get_really_current_term();
+                        if ($tax_key == $t->taxonomy)
+                        {
+                            if (isset($args['taxonomies'][$tax_key][$t->term_id]))
+                            {
+                                $args['taxonomies'][$tax_key] = $args['taxonomies'][$tax_key][$t->term_id]['childs'];
+                            } else
+                            {
+                                $parent = get_term($t->parent, $tax_key);
+                                $parents_ids = array();
+                                $parents_ids[] = $parent->term_id;
+                                while ($parent->parent != 0)
+                                {
+                                    $parent = get_term_by('id', $parent->parent, $tax_key);
+                                    $parents_ids[] = $parent->term_id;
+                                }
+                                $parents_ids = array_reverse($parents_ids);
+                                //***
+                                $tmp = $args['taxonomies'][$tax_key];
+                                foreach ($parents_ids as $id)
+                                {
+                                    $tmp = $tmp[$id]['childs'];
+                                }
+                                $args['taxonomies'][$tax_key] = $tmp[$t->term_id]['childs'];
+                            }
+                        }
+                    }
                 }
             }
             //***
@@ -2047,40 +2113,100 @@ final class WOOF
                 $args['autohide'] = 0;
             }
 
+            if (isset($atts['redirect']))
+            {
+                $args['redirect'] = $atts['redirect'];
+            } else
+            {
+                $args['redirect'] = '';
+            }
 
-            $args['price_filter'] = get_option('woof_show_price_search', 0);
+            if (isset($atts['tax_only']))
+            {
+                $args['tax_only'] = explode(',', $atts['tax_only']);
+            } else
+            {
+                $args['tax_only'] = array();
+            }
+
+            if (isset($atts['by_only']))
+            {
+                $args['by_only'] = explode(',', $atts['by_only']);
+            } else
+            {
+                $args['by_only'] = array();
+            }
+
+
+            if (isset($atts['autosubmit']))
+            {
+                $args['autosubmit'] = $atts['autosubmit'];
+            } else
+            {
+                $args['autosubmit'] = get_option('woof_autosubmit', 0);
+            }
+
+
+            if (isset($atts['ajax_redraw']))
+            {
+                $args['ajax_redraw'] = $atts['ajax_redraw'];
+            } else
+            {
+                $args['ajax_redraw'] = 0;
+            }
+
+
+
+            if (isset($this->settings['by_price']['show']))
+            {
+                //just for compatibility from 2.1.2 to 2.1.3
+                $args['price_filter'] = (int) $this->settings['by_price']['show'];
+            } else
+            {
+                $args['price_filter'] = (int) get_option('woof_show_price_search', 0);
+            }
 
 
             //***
-            $args['show_woof_edit_view'] = 0;
+            $args['show_woof_edit_view'] = 1;
             if (current_user_can('create_users'))
             {
-                $args['show_woof_edit_view'] = 1;
-                //wp_enqueue_script('jquery');
-                //wp_enqueue_script('jquery-ui-core', array('jquery'));
-                //wp_enqueue_script('jquery-ui-dialog', array('jquery', 'jquery-ui-core'));
-                //wp_enqueue_style('jquery-ui-dialog',includes_url('css/jquery-ui-dialog.min.css'));
-                //wp_enqueue_style('jquery-ui-dialog', 'http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');
+                $args['show_woof_edit_view'] = isset($this->settings['show_woof_edit_view']) ? (int) $this->settings['show_woof_edit_view'] : 1;
             }
+
+            //lets assemble shortcode txt for ajax mode for data-shortcode in woof.php
+            $_REQUEST['woof_shortcode_txt'] = 'woof ';
+            if (!empty($atts))
+            {
+                foreach ($atts as $key => $value)
+                {
+                    if (($key == 'tax_only' OR $key == 'by_only') AND empty($value))
+                    {
+                        continue;
+                    }
+
+                    $_REQUEST['woof_shortcode_txt'].=$key . "='" . (is_array($value) ? explode(',', $value) : $value) . "' ";
+                }
+            }
+            //$_REQUEST['woof_shortcode_txt'] = "woof tax_only='pa_color' by_only='none'";
             return $this->render_html(WOOF_PATH . 'views/woof.php', $args);
         }
 
         //shortcode
         public function woof_price_filter($args = array())
         {
-            return $this->render_html(WOOF_PATH . 'views/shortcodes/woof_price_filter.php', $args);
+            $type = 'slider';
+            if (isset($args['type']) AND $args['type'] == 'select')
+            {
+                $type = 'select';
+            }
+            return $this->render_html(WOOF_PATH . 'views/shortcodes/woof_price_filter_' . $type . '.php', $args);
         }
 
         //shortcode
-        public function woof_title_filter($args = array())
+        public function woof_search_options($args = array())
         {
-            return $this->render_html(WOOF_PATH . 'views/shortcodes/woof_title_filter.php', $args);
-        }
-
-        //shortcode
-        public function woof_sku_filter($args = array())
-        {
-            return $this->render_html(WOOF_PATH . 'views/shortcodes/woof_sku_filter.php', $args);
+            return $this->render_html(WOOF_PATH . 'views/shortcodes/woof_search_options.php', $args);
         }
 
         //redraw search form
@@ -2095,101 +2221,26 @@ final class WOOF
             return $args;
         }
 
-        //for relevant excluding terms in shortcode [woof]
-        public function woof_exclude_tax_key($terms)
-        {
-            //if (!defined('DOING_AJAX')) - fixed, commented for AJAX mode because widget redraw was bad (18-08-2015)
-            {
-                if ($this->is_really_current_term_exists())
-                {
-                    /*
-                      $queried_obj = get_queried_object();
-                      $current_term_id = $queried_obj->term_id;
-                      $terms = $terms[$current_term_id]['childs'];
-                     *
-                     */
-
-                    $queried_obj = $this->get_really_current_term();
-                    $current_term_id = $queried_obj->term_id;
-                    $parent_id = $queried_obj->parent;
-                    //search for childs in cycle
-                    if ($parent_id == 0)
-                    {
-                        $terms = $terms[$current_term_id]['childs'];
-                    } else
-                    {
-                        foreach ($terms as $top_tid => $value)
-                        {
-                            if (!empty($value['childs']))
-                            {
-                                $terms = $this->_woof_exclude_tax_key_util1($current_term_id, $top_tid, $value['childs']);
-                                if (!empty($terms))
-                                {
-                                    break;
-                                }
-                            }
-                        }
-
-                        //woocommerce-products-filter-bk21 - old code is here
-                    }
-                }
-                //+++
-            }
-
-            return $terms;
-        }
-
-        ///just utilita for woof_exclude_tax_key
-        private function _woof_exclude_tax_key_util1($current_term_id, $top_tid, $child_terms)
-        {
-            $terms = array();
-            if (!empty($child_terms))
-            {
-                if (isset($child_terms[$current_term_id]['childs']))
-                {
-                    $terms = $child_terms[$current_term_id]['childs'];
-                } else
-                {
-                    foreach ($child_terms as $tid => $value)
-                    {
-                        $parent_keys[] = $top_tid;
-                        $terms = $this->_woof_exclude_tax_key_util1($current_term_id, $tid, $value['childs']);
-                        if (!empty($terms))
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            return $terms;
-        }
-
         //if we are on the category products page, or any another product taxonomy page
         private function get_really_current_term()
         {
             $res = NULL;
             $key = $this->session_rct_key;
-            /*
-              if (isset($_SESSION['woof_really_current_term']))
-              {
-              $res = $_SESSION['woof_really_current_term'];
-              }
-             */
-
-
-
-            /*
-              if (WC()->session->__isset($key))
-              {
-              $res = WC()->session->__get($key);
-              }
-             */
+            $request = $this->get_request_data();
 
 
             if ($this->storage->is_isset($key))
             {
                 $res = $this->storage->get_val($key);
+            }
+
+            if (!$res)
+            {
+                if (isset($request['really_curr_tax']))
+                {
+                    $tmp = explode('-', $request['really_curr_tax']);
+                    $res = get_term($tmp[0], $tmp[1]);
+                }
             }
 
 
@@ -2207,6 +2258,16 @@ final class WOOF
             if (defined('DOING_AJAX'))
             {
                 return false;
+            }
+
+
+            $request = $this->get_request_data();
+            if (!$queried_obj)
+            {
+                if (isset($request['really_curr_tax']))
+                {
+                    return false;
+                }
             }
 
             $key = $this->session_rct_key;
@@ -2243,6 +2304,23 @@ final class WOOF
             //wp_die('done');
         }
 
+        //ajax only
+        public function woof_cache_terms_clear()
+        {
+            global $wpdb;
+            $res = $wpdb->get_results("SELECT * FROM {$wpdb->options} WHERE option_name LIKE '_transient_woof_terms_cache_%'");
+
+            if (!empty($res))
+            {
+                foreach ($res as $transient)
+                {
+                    delete_transient(str_replace('_transient_', '', $transient->option_name));
+                }
+            }
+
+            wp_die('done');
+        }
+
         //Display Product for WooCommerce compatibility
         public function woof_modify_query_args($query_args)
         {
@@ -2258,6 +2336,97 @@ final class WOOF
             }
 
             return $query_args;
+        }
+
+        public function get_custom_ext_path($relative = '')
+        {
+            return WP_CONTENT_DIR . '/' . $this->settings['custom_extensions_path'] . '/' . $relative . '/';
+        }
+
+        public function get_custom_ext_link($relative = '')
+        {
+            return WP_CONTENT_URL . '/' . $this->settings['custom_extensions_path'] . '/' . $relative . '/';
+        }
+
+        public function get_ext_directories()
+        {
+            $directories = array();
+            $directories['default'] = glob(WOOF_EXT_PATH . '*', GLOB_ONLYDIR);
+            $directories['custom'] = array();
+            if (isset($this->settings['custom_extensions_path']) AND ! empty($this->settings['custom_extensions_path']))
+            {
+                $directories['custom'] = glob($this->get_custom_ext_path() . '*', GLOB_ONLYDIR);
+            }
+            return $directories;
+        }
+
+        public function init_extensions()
+        {
+
+            $directories = $this->get_ext_directories();
+            if (isset($this->settings['activated_extensions']))
+            {
+                $activated = $this->settings['activated_extensions'];
+            } else
+            {
+                $activated = array();
+            }
+            //***
+            if (!empty($directories['default']) AND is_array($directories['default']))
+            {
+                if (!is_array($activated))
+                {
+                    $activated = array();
+                }
+
+                foreach ($directories['default'] as $path)
+                {
+                    if (in_array(md5($path), $activated))
+                    {
+                        include_once $path . '/index.php';
+                    }
+                }
+            }
+
+            //for extensions defined by user
+            if (!empty($directories['custom']) AND is_array($directories['custom']))
+            {
+                if (!is_array($activated))
+                {
+                    $activated = array();
+                }
+
+                foreach ($directories['custom'] as $path)
+                {
+                    if (in_array(md5($path), $activated))
+                    {
+                        include_once $path . '/index.php';
+                    }
+                }
+            }
+
+            //hooked feature for extensions
+            //remove_all_filters('woof_add_html_types');
+            $this->html_types = apply_filters('woof_add_html_types', $this->html_types);
+            //hooked feature for extensions
+            //remove_all_filters('woof_add_items_keys');
+            $this->items_keys = apply_filters('woof_add_items_keys', $this->items_keys);
+        }
+
+        public function is_permalink_activated()
+        {
+            return get_option('permalink_structure', '');
+        }
+
+        public function get_option($key, $default = 0)
+        {
+            $res = $default;
+            if (isset($this->settings[$key]))
+            {
+                $res = $this->settings[$key];
+            }
+
+            return $res;
         }
 
         public function render_html($pagepath, $data = array())
@@ -2276,3 +2445,5 @@ final class WOOF
     $GLOBALS['WOOF'] = $WOOF;
     add_action('init', array($WOOF, 'init'), 1);
 
+
+    
