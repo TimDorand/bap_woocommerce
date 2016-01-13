@@ -42,12 +42,6 @@ body .nav.navbar-nav.navbar-center a {
     font-family: helvetica;
     font-size: 1em;
 }
-body .navbar-center :hover {
-    background-color: #9b9b9b !important;
-}
-body .nav.navbar-nav.navbar-center :hover a {
-    /*color: black !important;*/
-}
 body #myCarousel .item img {
     width: 100%;
     background-size: cover;
@@ -670,6 +664,16 @@ body footer a:hover{
 .navbar-center #icon-cart :hover{
     background: rgb(245, 245, 245) !important;
 }
+body .nav.navbar-nav.navbar-center a:hover{
+    background: rgb(245, 245, 245) !important;
+
+}
+.dropdown-menu>li>a{
+    padding-top:10%;
+}
+.navbar-center a{
+    height:52px;
+}
 .navbar-center a:hover{
     background: rgb(245, 245, 245) !important;
     height:52px;
@@ -780,4 +784,26 @@ background:white !important;
     .logomobile{
         display:none;
     }
+}
+
+/*SINGLE PRODUCT*/
+
+.panel{
+    background:none;
+}
+
+.woocommerce ul.products li.product .button{
+    display:none;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active{
+    background: rgb(255, 142, 141);
+    border-bottom-color: rgb(255, 159, 141);
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li:after, .woocommerce div.product .woocommerce-tabs ul.tabs li:before{
+    display: none;
+}
+
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
+    background: rgb(255, 142, 141);
 }
