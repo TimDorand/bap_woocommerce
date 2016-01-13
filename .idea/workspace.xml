@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6971058e-6868-44cf-b473-fd45271e677b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/carbonnier/style.css" afterPath="$PROJECT_DIR$/wp-content/themes/carbonnier/style.css" />
     </list>
     <ignored path="bap_woocommerce.iws" />
@@ -28,7 +28,7 @@
       <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.958333">
+            <state vertical-scroll-proportion="0.0">
               <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding />
             </state>
@@ -38,12 +38,12 @@
       <file leaf-file-name="wc-template-functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1913" column="12" selection-start-line="1913" selection-start-column="12" selection-end-line="1913" selection-end-column="12" />
+            <state vertical-scroll-proportion="-1.9230769">
+              <caret line="352" column="59" selection-start-line="352" selection-start-column="59" selection-end-line="352" selection-end-column="59" />
               <folding>
                 <element signature="e#6#178#0#PHP" expanded="true" />
-                <marker date="1452605385000" expanded="true" signature="36810:36888" placeholder="SELECT term_..${{$wpdb-&gt;term_taxonomy}..." />
-                <marker date="1452605385000" expanded="true" signature="46312:46325" placeholder="..." />
+                <marker date="1452699375000" expanded="true" signature="36819:36897" placeholder="SELECT term_..${{$wpdb-&gt;term_taxonomy}..." />
+                <marker date="1452699375000" expanded="true" signature="46321:46334" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -62,7 +62,7 @@
       <file leaf-file-name="general-template.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.625">
+            <state vertical-scroll-proportion="0.0">
               <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
               <folding>
                 <marker date="1452601868000" expanded="true" signature="51281:51463" placeholder="SELECT YEAR(..." />
@@ -86,8 +86,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.4991844">
-              <caret line="671" column="4" selection-start-line="671" selection-start-column="4" selection-end-line="671" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.730832">
+              <caret line="821" column="24" selection-start-line="821" selection-start-column="24" selection-end-line="821" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -172,8 +172,9 @@
         <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/page-header.php" />
         <option value="$PROJECT_DIR$/wp-includes/general-template.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/base.php" />
-        <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql" />
+        <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/style.css" />
       </list>
     </option>
@@ -217,7 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -363,6 +363,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -464,13 +465,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/storefront/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.208333">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/storefront/header.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.75">
@@ -804,18 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1913" column="12" selection-start-line="1913" selection-start-column="12" selection-end-line="1913" selection-end-column="12" />
-          <folding>
-            <element signature="e#6#178#0#PHP" expanded="true" />
-            <marker date="1452605385000" expanded="true" signature="36810:36888" placeholder="SELECT term_..${{$wpdb-&gt;term_taxonomy}..." />
-            <marker date="1452605385000" expanded="true" signature="46312:46325" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/add-to-cart.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -826,7 +808,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
+        <state vertical-scroll-proportion="0.0">
           <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
           <folding>
             <marker date="1452601868000" expanded="true" signature="51281:51463" placeholder="SELECT YEAR(..." />
@@ -848,16 +830,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.958333">
+        <state vertical-scroll-proportion="0.0">
           <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33447686">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9230769">
+          <caret line="352" column="59" selection-start-line="352" selection-start-column="59" selection-end-line="352" selection-end-column="59" />
+          <folding>
+            <element signature="e#6#178#0#PHP" expanded="true" />
+            <marker date="1452699375000" expanded="true" signature="36819:36897" placeholder="SELECT term_..${{$wpdb-&gt;term_taxonomy}..." />
+            <marker date="1452699375000" expanded="true" signature="46321:46334" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4991844">
-          <caret line="671" column="4" selection-start-line="671" selection-start-column="4" selection-end-line="671" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.730832">
+          <caret line="821" column="24" selection-start-line="821" selection-start-column="24" selection-end-line="821" selection-end-column="24" />
           <folding />
         </state>
       </provider>
