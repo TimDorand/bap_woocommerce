@@ -350,7 +350,8 @@ if ( ! function_exists( 'woocommerce_content' ) ) {
 							<h1 class="title-front"><?php woocommerce_page_title(); ?></h1>
 						</div>
 						<div class="col-md-6">
-						<?php get_search_form(); ?>
+						<?php get_product_search_form(); ?>
+
 						</div>
 					</div>
 

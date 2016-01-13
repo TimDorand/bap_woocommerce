@@ -811,3 +811,30 @@ background:white !important;
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
     background: rgb(255, 142, 141);
 }
+
+        /*prix*/
+
+.woocommerce div.product p.price, .woocommerce div.product span.price{
+    width:100%;
+}
+
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary p{
+    text-align: justify;
+
+}
+
+/*BARRE RECHERCHE*/
+
+.woocommerce-product-search {
+    float:right;
+}
+
+.woocommerce-product-search input{
+    border: none;
+    padding: 5px;
+}
+
+.woocommerce-product-search label{
+    display:none;
+}
+
