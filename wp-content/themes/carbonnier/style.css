@@ -779,10 +779,14 @@ background:white !important;
 
     }
 }
-
+/*DESKTOP*/
 @media (min-width: 750px){
     .logomobile{
         display:none;
+    }
+
+    .woocommerce {
+        margin-top:52px !important;
     }
 }
 
@@ -793,7 +797,7 @@ background:white !important;
 }
 
 .woocommerce ul.products li.product .button{
-    display:none;
+    /*display:none;*/
 }
 
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active{
