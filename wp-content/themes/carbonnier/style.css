@@ -425,7 +425,7 @@ body section #subForm{width: 58%;}
     border-color: #b6b6b6;
     font-family: helvetica;
     float: left;
-    margin-top: 8px;
+    
     margin-left: 11px;
 }
 #wpcf7-f773-o1{margin-top: -11px;}
@@ -437,7 +437,7 @@ body section #subForm{width: 58%;}
     font-weight: lighter;
     float: left;
     padding: 8px;
-    margin-top: 8px;
+    
 }
 #subForm h2 {
     float: left;
@@ -807,3 +807,37 @@ background:white !important;
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
     background: rgb(255, 142, 141);
 }
+
+/*CONTACT*/
+.field-wrap, #ninja_forms_required_items {
+    margin-bottom:0!important;
+    width: 50%;
+    margin-left: 25%;
+}
+
+#ninja_forms_field_16 {
+    background-color: #c42845;
+    color: white;
+    border-width: 0;
+    font-family: helvetica;
+    font-weight: lighter;
+    float: left;
+    padding: 8px;
+    margin-top: 8px;
+    float: right;
+    width: 36%;
+}
+
+.ninja-forms-form-wrap input, .ninja-forms-form-wrap select, .ninja-forms-form-wrap textarea {
+     border-width: 1px;
+    border-style: solid;
+    border-color: #b6b6b6;
+    width: 58%;
+    height: 54px;
+    font-family: helvetica;
+    font-weight: lighter;
+    color: #b6b6b6;
+    margin-right: auto;
+    margin-left: auto;
+}
+/* FIN CONTACT*/

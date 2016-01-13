@@ -93,6 +93,7 @@ get_template_part('templates/header');
     </div>
   </div>
   <!--FIN NEWSLETTER-->
+  
   <?php
   do_action('get_footer');
   get_template_part('templates/footer');
