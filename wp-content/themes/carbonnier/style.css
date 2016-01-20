@@ -384,11 +384,7 @@ body .imgproduit {
         display: none;
     }
 }
-@media (max-width: 600px) {
-    body footer {
-        display: none;
-    }
-}
+
 @media (max-width: 320px) {
     body .news {
         display: none;
@@ -765,7 +761,13 @@ background:white !important;
     display:none;
 }
 
-
+.logoprincipal{
+    float:left;
+    margin-left:10%;
+}
+.navbar-center{
+    margin-left:-15%;
+}
 /*MEDIA QUERIES*/
 
 @media (max-width: 750px) {
@@ -779,7 +781,7 @@ background:white !important;
 
     }
 }
-/*DESKTOP*/
+/*SMALL DESKTOP*/
 @media (min-width: 750px){
     .logomobile{
         display:none;
@@ -788,6 +790,20 @@ background:white !important;
     .woocommerce {
         margin-top:52px !important;
     }
+}
+
+/*BIG DESKTOP*/
+@media (min-width: 1300px){
+    .logoprincipal{
+        margin-left:20% !important;
+    }
+    .navbar-center{
+        margin-left: -25%;
+    }
+    .footer-fixed{
+        margin-left:15% !important;
+    }
+
 }
 
 /*SINGLE PRODUCT*/
@@ -812,7 +828,6 @@ background:white !important;
     background: rgb(255, 142, 141);
 }
 
-<<<<<<< HEAD
 /*CONTACT*/
 .field-wrap, #ninja_forms_required_items {
     margin-bottom:0!important;
@@ -820,7 +835,7 @@ background:white !important;
     margin-left: 25%;
 }
 
-#ninja_forms_field_16 {
+#ninja_forms_field_10 {
     background-color: #c42845;
     color: white;
     border-width: 0;
@@ -846,7 +861,6 @@ background:white !important;
     margin-left: auto;
 }
 /* FIN CONTACT*/
-=======
         /*prix*/
 
 .woocommerce div.product p.price, .woocommerce div.product span.price{
@@ -873,4 +887,17 @@ background:white !important;
     display:none;
 }
 
->>>>>>> b24d22445027e614ba9c47f0b17beb01a0a2c6c0
+
+/*MOBILE FOOTER + NEWSLETTER*/
+
+@media screen and (max-width: 750px) {
+    body section #subForm {
+        display:none;
+    }
+}
+
+/*TIMOTHEE EDIT FOOTER*/
+
+.f11 h1{
+    margin-left:13px;
+}

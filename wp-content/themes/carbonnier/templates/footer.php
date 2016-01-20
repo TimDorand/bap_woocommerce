@@ -24,9 +24,8 @@
         <h1>BOUTIQUE</h1>
         <div class="footer3">
         <a href="<?php bloginfo( 'url' ); ?>">Boutique</a><br>
-        <a href="<?php bloginfo( 'url' ); ?>">Catégories</a><br>
-        <a href="<?php bloginfo( 'url' ); ?>">Mon compte</a><br>
-        <a href="<?php bloginfo( 'url' ); ?>">Panier</a><br>
+        <a href="<?php bloginfo( 'url' ); ?>/categories">Catégories</a><br>
+        <a href="<?php bloginfo( 'url' ); ?>/cart">Panier</a><br>
         </div>
       </div>
       <div class="col-md-2 f3">
@@ -41,10 +40,10 @@
       <div class="col-md-2 f3">
         <h1>LIENS</h1>
         <div class="footer3">
-        <a href="<?php bloginfo( 'url' ); ?>">Repas magique</a><br>
-        <a href="<?php bloginfo( 'url' ); ?>">MGAnimations</a><br>
-        <a href="<?php bloginfo( 'url' ); ?>">DFITV</a><br>
-        <a href="<?php bloginfo( 'url' ); ?>">Musée de la magie</a><br>
+        <a href="http://repasmagique.fr/">Repas magique</a><br>
+        <a href="http://mg-animations-ludiques.com/">MGAnimations</a><br>
+        <a href="http://www.dfitv.fr/">DFITV</a><br>
+        <a href="http://www.museedelamagie.com/">Musée de la magie</a><br>
         </div>
       </div>
     </div>

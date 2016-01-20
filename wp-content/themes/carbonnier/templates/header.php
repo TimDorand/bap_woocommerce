@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="navbar-header">
-    <a href="<?= esc_url(home_url('/')); ?>"><img src="<?php bloginfo('template_directory');?>/img/logofinal.png" class="logomobile" style="float:left;margin-left:10%;" width="150" alt="logo yc"></a>
+    <a href="<?= esc_url(home_url('/')); ?>"><img src="<?php bloginfo('template_directory');?>/img/logofinal.png" class="logomobile" style="" width="150" alt="logo yc"></a>
 
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
       <span class="sr-only">Toggle navigation</span>
@@ -16,7 +16,7 @@
 
   <div id="navbar" class="navbar-collapse collapse">
 
-    <ul style="margin-left:-20%;" class="nav navbar-nav navbar-center">
+    <ul style="" class="nav navbar-nav navbar-center">
       <li><a href="<?= esc_url(home_url('/')); ?>">ACCUEIL</a></li>
 
       <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/cartomagie/">CARTOMAGIE</a></li>
