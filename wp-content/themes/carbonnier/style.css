@@ -604,9 +604,10 @@ body .imgproduit {
 .page-title {
     font-size:1.5em;
     text-transform: uppercase;
-    margin-top: 80px;
+    margin-top: 40px;
     width:40%;
     float:left;
+    margin-bottom:30px;
 }
 
 .title-front{
@@ -900,4 +901,81 @@ background:white !important;
 
 .f11 h1{
     margin-left:13px;
+}
+
+/*TIMOTHEE EDIT 25JANV*/
+
+@media screen and (max-width: 730px) {
+    .woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+        width:50%;
+        float:left;
+    }
+}
+@media screen and (max-width: 400px) {
+    .woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+        width:100%;
+        float:left;
+    }
+}
+
+.woocommerce nav.woocommerce-pagination ul li a, .woocommerce nav.woocommerce-pagination ul li span{
+padding:18px;
+
+}
+
+
+
+/*TIMOTHEE EDIT SEARCH BAR*/
+
+.woocommerce-product-search{
+    margin-top:40px;
+    margin-bottom:-50px;
+}
+
+/*HOME PAGE */
+
+
+//Home shop
+
+#logo_home{position:absolute;top:0;left:28px;width: 126px; height: 132px; z-index: 1;
+      a{line-height:176px;width:87px;height:120px;margin:auto;display:block}
+}
+.home_shop{
+   background: #000;
+   position: relative;
+   height: 100%;
+   .repas, .boutique{ 
+      height: 100%; width: 50%; float:left; position: relative;
+   }
+   .repas:hover #link_repas:not(.link_texte), .boutique:hover #link_boutique:not(.link_texte){opacity: 0.5;}
+   span{ color: #FFF; margin: auto; display: block; z-index: 4; width: 80%; position: absolute; top: 50%; text-align: center; padding: 0 10%; opacity: 1;}
+   #link_boutique, #link_repas{
+      position: relative;
+      height: 100%;
+      display: block;
+      text-decoration: none;
+   }
+   #link_boutique{
+      -webkit-transition: all 500ms;
+      -moz-transition: all 500ms;
+      -ms-transition: all 500ms;
+      -o-transition: all 500ms;
+      transition: all 500ms;
+      background: url('img/image_boutique.jpg') center center no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+   }
+   #link_repas{
+      -webkit-transition: all 500ms;
+      -moz-transition: all 500ms;
+      -ms-transition: all 500ms;
+      -o-transition: all 500ms;
+      transition: all 500ms;
+      background: url('img/image_repasmagique.jpg') center center no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+   }
+   .link_texte{ font-family: proxima_nova_regular; font-size: 22px; text-shadow: 1px 1px 7px #000000; }
 }

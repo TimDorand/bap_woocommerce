@@ -2,12 +2,439 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6971058e-6868-44cf-b473-fd45271e677b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/languages/plugins/woocommerce-fr_FR.mo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/languages/plugins/woocommerce-fr_FR.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/accounting.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/accounting.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.pie.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.pie.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.resize.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.resize.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.stack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.stack.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.time.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/jquery.flot.time.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/round.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/round.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/jquery-ui-touch-punch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/jquery-ui-touch-punch.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/languages/woocommerce-admin.pot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-welcome.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-notice-translation-upgrade.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-language-pack-upgrader.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/title.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.eot" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.eot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.ttf" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.woff" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.woff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql" afterPath="$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/activation.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/activation.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/admin.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/admin.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/admin.scss" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/admin.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/dashboard.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/dashboard.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/menu.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/menu.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/prettyPhoto.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/prettyPhoto.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/wc-setup.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/wc-setup.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/wc-setup.scss" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/wc-setup.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.scss" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.scss" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce.css" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce.scss" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.svg" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-order.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-order.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-order.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-order.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-product-variation.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-product-variation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-product-variation.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-product-variation.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-product.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-product.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-product.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes-product.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/meta-boxes.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/order-backbone-modal.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/order-backbone-modal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/order-backbone-modal.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/order-backbone-modal.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/users.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/users.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/users.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/users.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/wc-enhanced-select.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/wc-enhanced-select.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/wc-enhanced-select.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/wc-enhanced-select.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/woocommerce_admin.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/woocommerce_admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/woocommerce_admin.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/admin/woocommerce_admin.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart-variation.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart-variation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart-variation.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart-variation.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/checkout.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/checkout.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/checkout.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/checkout.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/country-select.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/country-select.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/country-select.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/country-select.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/geolocation.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/geolocation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/geolocation.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/geolocation.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/single-product.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/single-product.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/single-product.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/frontend/single-product.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/select2/select2.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/select2/select2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/select2/select2.min.js" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/js/select2/select2.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/dummy-data/dummy-data.xml" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/dummy-data/dummy-data.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/languages/woocommerce.pot" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/languages/woocommerce.pot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/states/MX.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/states/MX.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/states/MY.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/states/MY.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/states/NP.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/states/NP.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/states/TR.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/i18n/states/TR.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-integration.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-integration.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-payment-gateway.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-payment-gateway.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-session.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-session.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-settings-api.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-settings-api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-shipping-method.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-shipping-method.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-widget.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-widget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-addons.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-addons.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-api-keys-table-list.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-api-keys-table-list.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-api-keys.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-api-keys.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-assets.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-assets.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-attributes.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-attributes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-dashboard.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-dashboard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-duplicate-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-duplicate-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-help.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-help.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-importers.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-importers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-menus.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-menus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-meta-boxes.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-meta-boxes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-notices.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-notices.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-permalink-settings.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-permalink-settings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-pointers.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-pointers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-post-types.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-post-types.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-profile.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-profile.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-reports.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-reports.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-settings.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-settings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-setup-wizard.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-setup-wizard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-status.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-status.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-taxonomies.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-taxonomies.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-webhooks-table-list.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-webhooks-table-list.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-webhooks.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin-webhooks.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/class-wc-admin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/importers/class-wc-tax-rate-importer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/importers/class-wc-tax-rate-importer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-coupon-data.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-coupon-data.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-actions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-actions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-data.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-data.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-downloads.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-downloads.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-items.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-items.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-notes.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-notes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-reviews.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-order-reviews.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-product-data.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-product-data.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-product-images.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-product-images.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-product-short-description.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-product-short-description.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/views/html-order-item.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/views/html-order-item.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/views/html-order-items.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/views/html-order-items.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/views/html-order-shipping.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/views/html-order-shipping.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/views/html-variation-admin.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/meta-boxes/views/html-variation-admin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-admin-report.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-admin-report.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-coupon-usage.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-coupon-usage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-customer-list.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-customer-list.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-customers.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-customers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-low-in-stock.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-low-in-stock.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-most-stocked.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-most-stocked.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-out-of-stock.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-out-of-stock.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-sales-by-category.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-sales-by-category.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-sales-by-date.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-sales-by-date.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-sales-by-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-sales-by-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-stock.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-stock.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-taxes-by-code.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-taxes-by-code.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-taxes-by-date.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/reports/class-wc-report-taxes-by-date.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-accounts.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-accounts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-api.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-checkout.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-emails.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-emails.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-general.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-general.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-integrations.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-integrations.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-page.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-page.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-products.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-shipping.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-shipping.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-tax.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/class-wc-settings-tax.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/views/html-keys-edit.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/views/html-keys-edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/views/html-settings-tax.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/views/html-settings-tax.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/views/html-webhooks-edit.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/settings/views/html-webhooks-edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-addons.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-addons.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-reports.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-reports.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-status-report.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-status-report.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-status-tools.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-status-tools.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-status.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-admin-page-status.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-email-template-preview.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-email-template-preview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-quick-edit-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/views/html-quick-edit-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/wc-admin-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/wc-admin-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/wc-meta-box-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/admin/wc-meta-box-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-authentication.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-authentication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-customers.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-customers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-orders.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-orders.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-products.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-resource.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-resource.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-server.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-server.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-webhooks.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/class-wc-api-webhooks.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v1/class-wc-api-authentication.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v1/class-wc-api-authentication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v1/class-wc-api-products.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v1/class-wc-api-products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v2/class-wc-api-authentication.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v2/class-wc-api-authentication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v2/class-wc-api-orders.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v2/class-wc-api-orders.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v2/class-wc-api-products.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v2/class-wc-api-products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v2/class-wc-api-server.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/api/v2/class-wc-api-server.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-ajax.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-ajax.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-api.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-auth.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-auth.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-autoloader.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-autoloader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-breadcrumb.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-breadcrumb.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-cache-helper.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-cache-helper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-cart.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-checkout.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-comments.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-comments.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-countries.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-countries.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-coupon.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-coupon.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-customer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-customer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-download-handler.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-download-handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-emails.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-emails.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-embed.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-embed.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-form-handler.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-form-handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-frontend-scripts.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-frontend-scripts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-geo-ip.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-geo-ip.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-geolocation.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-geolocation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-https.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-https.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-install.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-install.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-integrations.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-integrations.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-logger.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-logger.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-order-factory.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-order-factory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-order-item-meta.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-order-item-meta.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-order-refund.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-order-refund.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-payment-gateways.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-payment-gateways.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-post-data.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-post-data.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-post-types.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-post-types.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-external.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-external.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-factory.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-factory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-grouped.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-grouped.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-simple.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-simple.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-variable.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-variable.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-variation.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-product-variation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-query.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-query.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-session-handler.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-session-handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-shipping-rate.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-shipping-rate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-shipping.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-shipping.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-shortcodes.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-shortcodes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-tax.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-tax.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-template-loader.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-template-loader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-tracker.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-tracker.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-validation.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-validation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-webhook.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/class-wc-webhook.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-cancelled-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-cancelled-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-completed-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-completed-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-invoice.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-invoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-new-account.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-new-account.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-note.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-note.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-processing-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-processing-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-refunded-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-refunded-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-reset-password.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-customer-reset-password.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-new-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email-new-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/emails/class-wc-email.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/bacs/class-wc-gateway-bacs.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/bacs/class-wc-gateway-bacs.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/cheque/class-wc-gateway-cheque.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/cheque/class-wc-gateway-cheque.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/cod/class-wc-gateway-cod.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/cod/class-wc-gateway-cod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/class-wc-gateway-paypal.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/class-wc-gateway-paypal.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-ipn-handler.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-ipn-handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-pdt-handler.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-pdt-handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-refund.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-refund.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-request.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-request.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-response.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/class-wc-gateway-paypal-response.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/settings-paypal.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/paypal/includes/settings-paypal.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce-deprecated/class-wc-addons-gateway-simplify-commerce-deprecated.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce-deprecated/class-wc-addons-gateway-simplify-commerce-deprecated.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/class-wc-addons-gateway-simplify-commerce.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/class-wc-addons-gateway-simplify-commerce.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/class-wc-gateway-simplify-commerce.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/class-wc-gateway-simplify-commerce.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/AccessToken.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/AccessToken.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Authentication.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Authentication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/CardToken.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/CardToken.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Chargeback.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Chargeback.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Constants.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Constants.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Coupon.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Coupon.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Customer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Customer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Deposit.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Deposit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Event.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Event.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Exceptions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Exceptions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Http.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Http.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Invoice.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Invoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/InvoiceItem.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/InvoiceItem.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Object.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Object.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Payment.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Payment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/PaymentsApi.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/PaymentsApi.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Plan.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Plan.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Refund.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Refund.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/ResourceList.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/ResourceList.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Subscription.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Subscription.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Webhook.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/gateways/simplify-commerce/includes/Simplify/Webhook.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/libraries/class-emogrifier.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/libraries/class-emogrifier.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/flat-rate/class-wc-shipping-flat-rate.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/flat-rate/class-wc-shipping-flat-rate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/flat-rate/includes/class-wc-eval-math.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/flat-rate/includes/class-wc-eval-math.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/flat-rate/includes/settings-flat-rate.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/flat-rate/includes/settings-flat-rate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/free-shipping/class-wc-shipping-free-shipping.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/free-shipping/class-wc-shipping-free-shipping.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/international-delivery/class-wc-shipping-international-delivery.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/international-delivery/class-wc-shipping-international-delivery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/local-delivery/class-wc-shipping-local-delivery.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/local-delivery/class-wc-shipping-local-delivery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/local-pickup/class-wc-shipping-local-pickup.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shipping/local-pickup/class-wc-shipping-local-pickup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-cart.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-checkout.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/updates/woocommerce-update-2.3.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/updates/woocommerce-update-2.3.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/updates/woocommerce-update-2.4.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/updates/woocommerce-update-2.4.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/walkers/class-product-cat-dropdown-walker.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/walkers/class-product-cat-dropdown-walker.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/walkers/class-product-cat-list-walker.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/walkers/class-product-cat-list-walker.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-attribute-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-attribute-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-cart-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-cart-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-conditional-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-conditional-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-core-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-core-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-coupon-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-coupon-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-deprecated-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-deprecated-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-formatting-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-formatting-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-notice-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-notice-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-order-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-order-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-page-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-page-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-product-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-product-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-hooks.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-hooks.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-term-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-term-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-user-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-user-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-webhook-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-webhook-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-widget-functions.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-widget-functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-cart.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-layered-nav-filters.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-layered-nav-filters.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-layered-nav.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-layered-nav.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-price-filter.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-price-filter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-product-categories.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-product-categories.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-product-search.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-product-search.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-product-tag-cloud.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-product-tag-cloud.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-products.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-recent-reviews.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-recent-reviews.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-recently-viewed.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-recently-viewed.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-top-rated-products.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-top-rated-products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/readme.txt" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/archive-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/archive-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/auth/footer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/auth/footer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/auth/form-grant-access.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/auth/form-grant-access.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/auth/form-login.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/auth/form-login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/auth/header.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/auth/header.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart-empty.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart-empty.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart-item-data.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart-item-data.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart-shipping.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart-shipping.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart-totals.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart-totals.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cross-sells.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/cross-sells.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/mini-cart.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/mini-cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/proceed-to-checkout-button.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/proceed-to-checkout-button.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/shipping-calculator.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/cart/shipping-calculator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/cart-errors.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/cart-errors.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-billing.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-billing.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-checkout.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-checkout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-coupon.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-coupon.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-login.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-pay.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-pay.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-shipping.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/form-shipping.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/payment-method.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/payment-method.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/payment.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/payment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/review-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/review-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/thankyou.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/checkout/thankyou.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/content-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/content-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/content-product_cat.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/content-product_cat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/content-single-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/content-single-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/content-widget-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/content-widget-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/admin-cancelled-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/admin-cancelled-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/admin-new-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/admin-new-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-completed-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-completed-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-invoice.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-invoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-new-account.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-new-account.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-note.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-note.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-processing-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-processing-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-refunded-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-refunded-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-reset-password.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/customer-reset-password.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-addresses.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-addresses.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-footer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-footer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-header.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-header.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-order-items.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-order-items.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-styles.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/email-styles.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/admin-cancelled-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/admin-cancelled-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/admin-new-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/admin-new-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-completed-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-completed-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-invoice.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-invoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-new-account.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-new-account.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-note.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-note.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-processing-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-processing-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-refunded-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-refunded-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-reset-password.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/customer-reset-password.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/email-addresses.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/email-addresses.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/email-order-items.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/emails/plain/email-order-items.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/breadcrumb.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/breadcrumb.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/form-login.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/form-login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/quantity-input.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/quantity-input.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/sidebar.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/sidebar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/wrapper-end.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/wrapper-end.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/wrapper-start.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/global/wrapper-start.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/add-to-cart.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/add-to-cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/loop-end.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/loop-end.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/loop-start.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/loop-start.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/no-products-found.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/no-products-found.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/orderby.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/orderby.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/pagination.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/pagination.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/price.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/price.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/rating.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/rating.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/result-count.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/result-count.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/sale-flash.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/sale-flash.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-add-payment-method.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-add-payment-method.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-edit-account.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-edit-account.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-edit-address.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-edit-address.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-login.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-lost-password.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/form-lost-password.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/my-account.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/my-account.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/my-address.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/my-address.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/my-downloads.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/my-downloads.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/my-orders.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/my-orders.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/view-order.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/myaccount/view-order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/notices/error.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/notices/error.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/notices/notice.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/notices/notice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/notices/success.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/notices/success.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/form-tracking.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/form-tracking.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/order-again.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/order-again.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/order-details-customer.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/order-details-customer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/order-details-item.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/order-details-item.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/order-details.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/order-details.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/tracking.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/order/tracking.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/product-searchform.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/product-searchform.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product-reviews.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product-reviews.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/external.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/external.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/grouped.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/grouped.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/simple.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/simple.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/variable.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/variable.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/meta.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/meta.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/price.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/price.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/product-attributes.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/product-attributes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/product-image.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/product-image.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/product-thumbnails.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/product-thumbnails.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/rating.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/rating.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/related.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/related.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/review.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/review.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/sale-flash.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/sale-flash.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/share.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/share.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/short-description.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/short-description.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/tabs/additional-information.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/tabs/additional-information.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/tabs/description.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/tabs/description.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/tabs/tabs.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/tabs/tabs.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/title.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/title.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/up-sells.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/up-sells.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/taxonomy-product_cat.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/taxonomy-product_cat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/taxonomy-product_tag.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/taxonomy-product_tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/uninstall.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/uninstall.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/plugins/woocommerce/woocommerce.php" afterPath="$PROJECT_DIR$/wp-content/plugins/woocommerce/woocommerce.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/carbonnier/404.php" afterPath="$PROJECT_DIR$/wp-content/themes/carbonnier/404.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/carbonnier/base.php" afterPath="$PROJECT_DIR$/wp-content/themes/carbonnier/base.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/carbonnier/style.css" afterPath="$PROJECT_DIR$/wp-content/themes/carbonnier/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/footer.php" afterPath="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/footer.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php" afterPath="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/carbonnier/woocommerce/content-product.php" afterPath="$PROJECT_DIR$/wp-content/themes/carbonnier/woocommerce/content-product.php" />
     </list>
     <ignored path="bap_woocommerce.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,32 +459,18 @@
       <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+            <state vertical-scroll-proportion="-20.666666">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wc-template-functions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php">
+      <file leaf-file-name="404.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/404.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="352" column="59" selection-start-line="352" selection-start-column="59" selection-end-line="352" selection-end-column="59" />
-              <folding>
-                <element signature="e#6#178#0#PHP" expanded="true" />
-                <marker date="1452699375000" expanded="true" signature="36819:36897" placeholder="SELECT term_..${{$wpdb-&gt;term_taxonomy}..." />
-                <marker date="1452699375000" expanded="true" signature="46321:46334" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add-to-cart.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/add-to-cart.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.36290324">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,7 +479,7 @@
       <file leaf-file-name="general-template.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.625">
               <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
               <folding>
                 <marker date="1452601868000" expanded="true" signature="51281:51463" placeholder="SELECT YEAR(..." />
@@ -90,19 +503,21 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="803" column="22" selection-start-line="803" selection-start-column="22" selection-end-line="803" selection-end-column="22" />
+            <state vertical-scroll-proportion="-12.666667">
+              <caret line="905" column="24" selection-start-line="905" selection-start-column="24" selection-end-line="905" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/footer.php">
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.875">
-              <caret line="45" column="47" selection-start-line="45" selection-start-column="47" selection-end-line="45" selection-end-column="47" />
-              <folding />
+            <state vertical-scroll-proportion="-8.75">
+              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#a#0;n#nav#0;n#body#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,7 +525,7 @@
       <file leaf-file-name="content-single.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/content-single.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -120,7 +535,7 @@
       <file leaf-file-name="page-header.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/page-header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-1.25">
               <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
               <folding />
             </state>
@@ -130,20 +545,33 @@
       <file leaf-file-name="base.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/base.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
               <folding>
-                <marker date="1452700307000" expanded="true" signature="235:414" placeholder="..." />
+                <element signature="e#7#28#0#PHP" expanded="true" />
+                <marker date="1454253173000" expanded="true" signature="235:414" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bapwoocommerce.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="content-product.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/woocommerce/content-product.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+              <folding>
+                <element signature="e#2168#2287#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bapwoocommerce.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6115108">
-              <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -174,7 +602,6 @@
         <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/css/style.css" />
         <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce-products-filter/views/plugin_options.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce-products-filter/views/shortcodes/woof_title_filter.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/woocommerce/content-product.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce-products-filter/index.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce-products-filter/css/front.css" />
         <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/updates/woocommerce-update-2.4.php" />
@@ -184,12 +611,16 @@
         <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/archive-product.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/page-header.php" />
         <option value="$PROJECT_DIR$/wp-includes/general-template.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/base.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql" />
-        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/style.css" />
         <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/footer.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/woocommerce/content-product.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/base.php" />
+        <option value="$PROJECT_DIR$/wp-content/plugins/woocommerce/assets/css/woocommerce.scss" />
+        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/style.css" />
+        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/header.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/carbonnier/404.php" />
       </list>
     </option>
   </component>
@@ -203,10 +634,23 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1680" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="958" />
+    <option name="height" value="737" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>File Watchers</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -233,7 +677,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -328,6 +771,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="woocommerce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bap_woocommerce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bap_woocommerce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="carbonnier" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -353,13 +822,16 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bap_fish" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="header&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/themes/carbonnier/templates/header.php&#10;src&#9;null&#9;null&#10;front&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/plugins/woocommerce-products-filter/css/front.css&#10;front.css&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/plugins/woocommerce-products-filter/css/front.css&#10;wrapper&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/themes/carbonnier/lib/wrapper.php" />
+    <property name="SearchEverywhereHistoryKey" value="woocommerce.scss&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/plugins/woocommerce/assets/css/woocommerce.scss&#10;header&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/themes/carbonnier/templates/header.php&#10;src&#9;null&#9;null&#10;front&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/plugins/woocommerce-products-filter/css/front.css&#10;front.css&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/plugins/woocommerce-products-filter/css/front.css&#10;wrapper&#9;FILE&#9;file:///Applications/MAMP/htdocs/bap_woocommerce/wp-content/themes/carbonnier/lib/wrapper.php" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -414,28 +886,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1680" y="23" width="1280" height="958" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="737" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.228125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934132" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3248503" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932332" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298351" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -454,10 +926,56 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/storefront/header.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.75">
-          <caret line="48" column="57" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/content-single.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/page-header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="56" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
+          <folding>
+            <element signature="e#7#28#0#PHP" expanded="true" />
+            <marker date="1454253173000" expanded="true" signature="235:414" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/woocommerce/content-product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+          <folding>
+            <element signature="e#2168#2287#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -465,20 +983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/title.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/single-product/product-thumbnails.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -525,9 +1029,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/LICENSE.md">
-      <provider editor-type-id="MultiMarkdownFxPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.0">
@@ -535,6 +1036,9 @@
           </first_editor>
           <second_editor />
         </state>
+      </provider>
+      <provider editor-type-id="MultiMarkdownFxPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/package.json">
@@ -545,9 +1049,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/README.md">
-      <provider editor-type-id="MultiMarkdownFxPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.0">
@@ -555,6 +1056,9 @@
           </first_editor>
           <second_editor />
         </state>
+      </provider>
+      <provider editor-type-id="MultiMarkdownFxPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/page.php">
@@ -676,20 +1180,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/woocommerce.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/updates/woocommerce-update-2.4.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce-products-filter/views/woof.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-24.291666">
@@ -711,13 +1201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/woocommerce/content-product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/content.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -729,13 +1212,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="29" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/archive-product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.411093">
-          <caret line="29" column="76" selection-start-line="29" selection-start-column="76" selection-end-line="29" selection-end-column="76" />
         </state>
       </provider>
     </entry>
@@ -753,17 +1229,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/templates/loop/add-to-cart.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/footer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="45" column="47" selection-start-line="45" selection-start-column="47" selection-end-line="45" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.666667">
+          <caret line="905" column="24" selection-start-line="905" selection-start-column="24" selection-end-line="905" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/woocommerce/content-product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+          <folding>
+            <element signature="e#2168#2287#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/page-header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+          <folding>
+            <element signature="e#7#28#0#PHP" expanded="true" />
+            <marker date="1454253173000" expanded="true" signature="235:414" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.666666">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-0.625">
           <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
           <folding>
             <marker date="1452601868000" expanded="true" signature="51281:51463" placeholder="SELECT YEAR(..." />
@@ -783,39 +1311,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/woocommerce/includes/wc-template-functions.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="352" column="59" selection-start-line="352" selection-start-column="59" selection-end-line="352" selection-end-column="59" />
+        <state vertical-scroll-proportion="-8.75">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
           <folding>
-            <element signature="e#6#178#0#PHP" expanded="true" />
-            <marker date="1452699375000" expanded="true" signature="36819:36897" placeholder="SELECT term_..${{$wpdb-&gt;term_taxonomy}..." />
-            <marker date="1452699375000" expanded="true" signature="46321:46334" placeholder="..." />
+            <element signature="n#style#0;n#img#0;n#a#0;n#nav#0;n#body#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="803" column="22" selection-start-line="803" selection-start-column="22" selection-end-line="803" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.875">
-          <caret line="45" column="47" selection-start-line="45" selection-start-column="47" selection-end-line="45" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -827,28 +1329,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/templates/page-header.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/404.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
-          <folding>
-            <marker date="1452700307000" expanded="true" signature="235:414" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/carbonnier/bapwoocommerce.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6115108">
-          <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.36290324">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>

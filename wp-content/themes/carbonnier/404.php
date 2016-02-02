@@ -4,4 +4,6 @@
   <?php _e('Sorry, but the page you were trying to view does not exist.', 'sage'); ?>
 </div>
 
+<h2><a href="<?php bloginfo('');?>/cart">Accédez à votre panier</a></h2>
+
 <?php get_search_form(); ?>

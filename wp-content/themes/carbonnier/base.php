@@ -70,7 +70,8 @@ get_template_part('templates/header');
     <div class="wrap container" role="document">
       <div class="content row">
         <main class="main">
-          <div class="col-md-offset-2 col-md-8">
+          <div class="col-md-8 col-md-offset-2 col-xs-12">
+            <?php get_product_search_form(); ?>
             <?php include Wrapper\template_path(); ?>
           </div>
         </main><!-- /.main -->

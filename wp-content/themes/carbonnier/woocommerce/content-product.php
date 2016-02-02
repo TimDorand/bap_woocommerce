@@ -47,7 +47,6 @@ $classes[] = 'hsov';
 
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
-	<a href="<?php the_permalink(); ?>">
 
 		<?php
 			/**
@@ -81,14 +80,18 @@ $classes[] = 'hsov';
 						</a>
 					</div>
 			</div>
+
 			<?php
 			/**
 			 * woocommerce_shop_loop_item_title hook
 			 *
 			 * @hooked woocommerce_template_loop_product_title - 10
 			 */
+			echo '	<a style="color:black" href="';
+			the_permalink();
+			echo '">';
 			do_action( 'woocommerce_shop_loop_item_title' );
-
+			echo '</a>';
 			/**
 			 * woocommerce_after_shop_loop_item_title hook
 			 *

@@ -19,21 +19,21 @@
     <ul style="" class="nav navbar-nav navbar-center">
       <li><a href="<?= esc_url(home_url('/')); ?>">ACCUEIL</a></li>
 
-      <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/cartomagie/">CARTOMAGIE</a></li>
+      <li><a href="<?= esc_url(home_url('/')); ?>product-category/cartomagie/">CARTOMAGIE</a></li>
 
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LIVRES ET PDF<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/livres-2/">LIVRES</a></li>
-          <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/pdf/">PDF</a></li>
+          <li><a href="<?= esc_url(home_url('/')); ?>product-category/livres-2/">LIVRES</a></li>
+          <li><a href="<?= esc_url(home_url('/')); ?>product-category/pdf/">PDF</a></li>
         </ul>
       </li>
 
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TOURS & VIDEOS<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/tours-de-magie">TOURS</a></li>
-          <li><a href="<?= esc_url(home_url('/')); ?>categorie-produit/video-a-telecharger">VIDEOS</a></li>
+          <li><a href="<?= esc_url(home_url('/')); ?>product-category/tours-de-magie">TOURS</a></li>
+          <li><a href="<?= esc_url(home_url('/')); ?>product-category/video-a-telecharger">VIDEOS</a></li>
         </ul>
       </li>
 
@@ -44,3 +44,5 @@
 
     </div>
 </nav>
+
+
